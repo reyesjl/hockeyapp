@@ -18,7 +18,7 @@
 <body>
     <nav class="navigation-bar">
         <div class="logo-wrapper">
-            <a href="#"><img src="{% static 'images/logo.png' %}" /></a>
+            <a href="{% url 'reviews:home' %}"><img src="{% static 'images/logo.png' %}" /></a>
         </div>
     </nav>
     {% block content %}

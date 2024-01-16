@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Tournament Page {% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Search for all hockey tournaments available in our system.">
+    <link rel="stylesheet" href="{% static 'css/tournaments.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="jumbotron" style="background-image: url('{% static 'images/tournament-bg.jpg' %}')">
+    <div class="title-container">
+        <h1 class="title">Search Tournaments</h1>
+        <div class="searchbar-wrapper">
+            <input type="text" id="search_input" name="query" aria-label="Search tournaments" />
+            <button type="submit" class="go-button">GO</button>
+        </div>
+    </div>
+</section>
+<section class="search-results">
+    <div class="tournmaments-container">
+        <div class="tournament">
+            <h1>Canada All-Stars Pro</h1>
+        </div>
+    </div>
+</section>
+{% endblock %}

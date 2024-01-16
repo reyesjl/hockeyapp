@@ -1,0 +1,57 @@
+.jumbotron {
+    height: 50vh;
+    background-size: cover; /* or "contain" depending on your preference */
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.title-container {
+    position: absolute;
+    top: 30%; /* Position the title container at the vertical center of the jumbotron */
+    left: 10%; /* Position the title container at the horizontal center of the jumbotron */
+}
+
+.title {
+    font-size: 4em;
+    color: white;
+    margin: 1rem 0;
+}
+
+.subtitle {
+    font-size: 1em;
+    letter-spacing: .1rem;
+    color: white;
+}
+
+#search_input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+    border-radius: 24px;
+}
+
+.searchbar-wrapper {
+    max-width: 60%;
+    display: flex;
+    gap: 1rem;
+}
+
+.go-button {
+    border-radius: 24px;
+    padding: 0 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: color .2s;
+    font-weight: bold;
+}
+
+.go-button:hover {
+    background-color: darkgreen;
+    color: white;
+    transition: color .2s;
+}
