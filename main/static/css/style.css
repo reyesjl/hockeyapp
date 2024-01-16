@@ -1,0 +1,33 @@
+/* Main stylesheet */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.navigation-bar {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: fixed;
+    z-index: 99;
+}
+
+.navigation-link {
+    color: white;
+    margin-right: 10px;
+    font-size: 1.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.navigation-link:hover {
+    color: gray;
+}
+
+
+.logo-wrapper img {
+    width: 100px; 
+    height: auto; 
+}

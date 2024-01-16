@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Home page {% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Discover the hockey tournament review platform.">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="jumbotron" style="background-image: url('{% static 'images/background.jpg' %}')">
+    <div class="title-container">
+        <h1 class="title">Plan.</h1>
+        <h1 class="title">Connect.</h1>
+        <h1 id="review" class="title">Review.</h1>
+        <p class="subtitle">The ultimate hockey tournament review system.</p>
+    </div>
+    <div class="action-container">
+        <a class="action-link" href="#"><span>&#9737;</span> Leave Review <span>&#8599;</span></a>
+        <a class="action-link" href="#"><span>&#9737;</span> All Tournaments <span>&#8599;</span></a>
+        <a class="action-link" href="#"><span>&#9737;</span> Contact</a>
+    </div>
+</section>
+{% endblock %}
