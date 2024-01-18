@@ -35,7 +35,6 @@
 }
 
 .searchbar-wrapper {
-    max-width: 60%;
     display: flex;
     gap: 1rem;
 }
@@ -69,22 +68,78 @@
     flex-wrap: wrap;
 }
 
+.tournaments-container a {
+    text-decoration: none;
+}
+
 .tournament {
     padding: 20px;
     border-radius: 20px;
     background-color: rgb(205, 205, 205);
-    width: 25%;
+    color: #333;
     margin-bottom: 2rem;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.tournament:hover {
+    background-color: darkgreen;
+    color: white;
+    transition: all .3s;
+    border-radius: 0;
+}
+
+.rating-wrapper {
+    height: 20px;
+    width: fit-content;
+    padding: 10px;
+    background-color: #e6e6e6;
+    display: flex;
+    color: black;
+    align-items: center;
+}
+
+.rating-likes {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likes-dislikes {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.likes {
+    margin: 0;
+}
+
+.stars {
+    margin: 0;
+}
+
+.dislikes {
+    margin: 0;
 }
 
 .name {
     font-weight: normal;
-    color: #3e3e3e;
 }
 
 @media only screen and (max-width: 768px) {
     .jumbotron {
         height: 60vh;
+    }
+
+    .searchbar-wrapper { 
+        margin-top: 20%;
+        max-width: 80%;
+    }
+
+    .title {
+        font-size: 3em;
     }
 
     .tournaments-container {

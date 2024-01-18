@@ -12,6 +12,8 @@ body {
     gap: 1rem;
     position: fixed;
     z-index: 99;
+    width: 100%;
+    background: linear-gradient(180deg, black, transparent)
 }
 
 .navigation-link {
