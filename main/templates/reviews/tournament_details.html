@@ -11,9 +11,103 @@
 {% endblock %}
 
 {% block content %}
-<section class="jumbotron" style="background-image: url('{% static 'images/tournament-bg.jpg' %}')">
+<section class="jumbotron" style="background-image: url('{% static 'images/detail-bg.jpg' %}')">
     <div class="title-container">
         <h1 class="title">{{ tournament.name }}</h1>
+        <div class="rating-likes">
+            <div class="rating">
+                <p clas="stars"><i class="fa-solid fa-star"></i> {{ tournament.overall_rating }}</p>
+            </div>
+            <div class="likes-dislikes">
+                <p class="likes"><i class="fa-regular fa-circle-up"></i> {{ tournament.thumbs_up }}</p>
+                <p class="dislikes"><i class="fa-regular fa-circle-down"></i> {{ tournament.thumbs_down }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="detail-section">
+    <h1 class="section-title">Average grades</h1>
+    <div class="core-details">
+        {% load custom_filters %}
+        <div class="detail">
+            <div class="grade">
+                {{ tournament.reffing_quality|quality_grade }}
+            </div>
+            <div class="grade-title">
+                REFEREEING
+            </div>
+        </div>
+
+        <div class="detail">
+            <div class="grade">
+                {{ tournament.hotel_quality|quality_grade }}
+            </div>
+            <div class="grade-title">
+                HOTELS
+            </div>
+        </div>
+
+        <div class="detail">
+            <div class="grade">
+                {{ tournament.director_communication|quality_grade }}
+            </div>
+            <div class="grade-title">
+                COMMUNICATION
+            </div>
+        </div>
+    </div>
+</section>
+<section class="review-section">
+    <h1 class="section-title">User Reviews</h1> 
+    <div class="review-wrapper">
+        <div class="review">
+            <h2>Review title</h2>
+            <div class="date-rating">
+                <div class="date">
+                    <i class="fa-regular fa-calendar-days"></i> January
+                </div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i> 4.7
+                </div>
+            </div>
+            <p>This is an example review that someone submitted for this tournament. A parent can write some text, and give an overall rating between 1.0 - 5.0</p>
+        </div>
+        <div class="review">
+            <h2>Review title</h2>
+            <div class="date-rating">
+                <div class="date">
+                    <i class="fa-regular fa-calendar-days"></i> March
+                </div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i> 3.7
+                </div>
+            </div>
+            <p>This is an example review that someone submitted for this tournament. A parent can write some text, and give an overall rating between 1.0 - 5.0</p>
+        </div>
+        <div class="review">
+            <h2>Review title</h2>
+            <div class="date-rating">
+                <div class="date">
+                    <i class="fa-regular fa-calendar-days"></i> April
+                </div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i> 4.8
+                </div>
+            </div>
+            <p>This is an example review that someone submitted for this tournament. A parent can write some text, and give an overall rating between 1.0 - 5.0</p>
+        </div>
+        <div class="review">
+            <h2>Review title</h2>
+            <div class="date-rating">
+                <div class="date">
+                    <i class="fa-regular fa-calendar-days"></i> October
+                </div>
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i> 3.6
+                </div>
+            </div>
+            <p>This is an example review that someone submitted for this tournament. A parent can write some text, and give an overall rating between 1.0 - 5.0</p>
+        </div>
     </div>
 </section>
 {% endblock %}

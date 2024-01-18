@@ -89,16 +89,6 @@
     border-radius: 0;
 }
 
-.rating-wrapper {
-    height: 20px;
-    width: fit-content;
-    padding: 10px;
-    background-color: #e6e6e6;
-    display: flex;
-    color: black;
-    align-items: center;
-}
-
 .rating-likes {
     margin-top: 2rem;
     display: flex;

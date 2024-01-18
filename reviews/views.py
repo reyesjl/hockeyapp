@@ -22,3 +22,12 @@ def tournaments(request):
 def tournament_details(request, tournament_id):
     tournament = get_object_or_404(Tournament, pk=tournament_id)
     return render(request, 'reviews/tournament_details.html', {'tournament':tournament})
+
+def tournament_entry(request):
+    return render(request, 'reviews/tournament_entry.html')
+
+def contact(request):
+    return render(request, 'reviews/contact.html')
+
+def review(request):
+    return render(request, 'reviews/review_entry.html')

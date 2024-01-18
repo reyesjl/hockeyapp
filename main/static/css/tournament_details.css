@@ -1,3 +1,4 @@
+
 .jumbotron {
     height: 50vh;
     background-size: cover; /* or "contain" depending on your preference */
@@ -8,12 +9,126 @@
 
 .title-container {
     position: absolute;
-    top: 30%; /* Position the title container at the vertical center of the jumbotron */
-    left: 10%; /* Position the title container at the horizontal center of the jumbotron */
+    color: white;
+    top: 25%;
+    left: 10%;
 }
 
 .title {
     font-size: 4em;
-    color: white;
-    margin: 1rem 0;
+    text-align: center;
+}
+
+.rating-likes {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.likes-dislikes {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.likes {
+    margin: 0;
+}
+
+.stars {
+    margin: 0;
+}
+
+.dislikes {
+    margin: 0;
+}
+
+.detail-section {
+    padding: 5% 10%;
+    margin-bottom: 3em;
+}
+
+.review-section {
+    padding: 5% 10%;
+}
+
+.core-details {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 4em;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.grade {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.section-title {
+    text-align: center;
+    font-weight: normal;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+}
+
+.review-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.review {
+    width: 25%;
+    padding: 10px;
+}
+
+.date-rating {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 1024px) {
+    .review {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .title {
+        font-size: 2em;
+    }
+
+    .title-container {
+        top: 30%;
+        left: 0;
+        width: 100%;
+    }
+
+    .rating-likes {
+        justify-content: center;
+    }
+
+    .core-details {
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .detail {
+        align-items: center;
+    }
+
+    .grade {
+        font-size: 2.5em;
+    }
+
+    .review {
+        width: 100%;
+    }
 }

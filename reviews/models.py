@@ -7,12 +7,21 @@ QUALITY_OPTIONS = [
     ('Average', 'Average'),
     ('Above Average', 'Above Average'),
     ('Excellent', 'Excellent'),
-]
+]   
+
+QUALITY_MAPPING = {
+    'Poor': 'F',
+    'Below Average': 'D',
+    'Average': 'C',
+    'Above Average': 'B',
+    'Excellent': 'A',
+}
 
 BOOL_LIST = [
     ('Yes', 'Yes'),
     ('No', 'No'),
 ]
+
 
 class Tournament(models.Model):
     name = models.CharField(max_length=100)

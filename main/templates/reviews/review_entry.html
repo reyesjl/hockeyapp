@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Review Page {% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="A page where users can submit a tournament review.">
+    <link rel="stylesheet" href="{% static 'css/review.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="jumbotron" style="background-image: url('{% static 'images/review-bg.jpg' %}')">
+    <div class="title-container">
+        <h1 class="title">Leave Review</h1>
+    </div>
+</section>
+{% endblock %}
