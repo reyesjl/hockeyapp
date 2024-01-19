@@ -15,4 +15,13 @@
         <h1 class="title">Leave Review</h1>
     </div>
 </section>
+<section class="form-section">
+    <div class="form-wrapper">
+        <form method="post" action="{% url 'reviews:review' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</section>
 {% endblock %}

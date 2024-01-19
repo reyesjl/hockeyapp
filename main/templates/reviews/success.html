@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Success Page {% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="A success page to let the viewer know something has gone well in a submission or event review.">
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="jumbotron" style="background-image: url('{% static 'images/tournament-bg.jpg' %}')">
+    <div class="title-container">
+        <h1 class="title">Success!</h1>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <a href="{% url 'reviews:home' %}">Safe to go Home</a>
+    </div>
+</section>
+{% endblock %}

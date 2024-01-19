@@ -1,5 +1,5 @@
 .jumbotron {
-    height: 100vh;
+    height: 50vh;
     background-size: cover; /* or "contain" depending on your preference */
     background-position: center center;
     background-repeat: no-repeat;
@@ -8,7 +8,7 @@
 
 .title-container {
     position: absolute;
-    top: 20%; /* Position the title container at the vertical center of the jumbotron */
+    top: 30%; /* Position the title container at the vertical center of the jumbotron */
     left: 10%; /* Position the title container at the horizontal center of the jumbotron */
 }
 
@@ -18,8 +18,61 @@
     margin: 1rem 0;
 }
 
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+form {
+    color: black;
+}
+
+.form-wrapper {
+    padding: 5%;
+    width: 60%;
+    margin: 0 auto;
+}
+
+button {
+    width: 20%;
+    padding: 20px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    float: right;
+}
+
 @media only screen and (max-width: 768px) {
     .title {
         font-size: 3em;
+    }
+
+    .title-container {
+        padding: 5%;
+        left: 0;
+    }
+
+    .form-wrapper {
+        width: auto;
     }
 }

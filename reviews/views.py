@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tournament
 from django.db.models import Q
+from .forms import ReviewForm
+from django.contrib import messages
 
 def home(request):
     return render(request, 'reviews/index.html')
@@ -30,4 +32,21 @@ def contact(request):
     return render(request, 'reviews/contact.html')
 
 def review(request):
-    return render(request, 'reviews/review_entry.html')
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page 
+            messages.success(request, "Your review was submitted successfully.")
+            return redirect('reviews:success')
+    else:
+        form = ReviewForm()
+
+    return render(request, 'reviews/review_entry.html', {'form':form})
+
+def success(request):
+    messages_list = list(messages.get_messages(request))
+    message = next(iter(messages_list), None)
+
+    context = {'message': message}
+    return render(request, 'reviews/success.html', context)

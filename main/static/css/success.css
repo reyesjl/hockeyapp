@@ -1,0 +1,34 @@
+.jumbotron {
+    height: 100vh;
+    background-size: cover; /* or "contain" depending on your preference */
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.title-container {
+    position: absolute;
+    top: 20%; /* Position the title container at the vertical center of the jumbotron */
+    left: 10%; /* Position the title container at the horizontal center of the jumbotron */
+    color: white;
+}
+
+.title {
+    font-size: 4em;
+    margin: 1rem 0;
+}
+
+a {
+    color: white;
+}
+
+
+@media screen and (max-width: 768px) {
+    .title-container {
+        transform: translateX(0);
+    }
+
+    .title {
+        font-size: 2.5em;
+    }
+}

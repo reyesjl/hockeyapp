@@ -62,6 +62,7 @@ class TournamentSubmission(models.Model):
     
 
 class Review(models.Model):
+    title = models.CharField(max_length=100, default='')
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     date = models.DateField()
     text = models.TextField(max_length=500)
