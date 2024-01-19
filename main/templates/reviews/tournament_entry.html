@@ -10,9 +10,25 @@
 {% endblock %}
 
 {% block content %}
-<section class="jumbotron" style="background-image: url('{% static 'images/review-bg.jpg' %}')">
-    <div class="title-container">
-        <h1 class="title">Suggest Tournament</h1>
+<section class="form-section">
+    <div class="form-wrapper">
+        <h1>Your Review</h1>
+        <p>Honest feedback is priceless.</p>
+        <form method="post" action="{% url 'reviews:review' %}">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert">
+                    Please correct the following issues.
+                    <ul>
+                        {% for error in form.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
     </div>
 </section>
 {% endblock %}
