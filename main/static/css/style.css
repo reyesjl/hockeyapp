@@ -13,7 +13,7 @@ body {
     position: fixed;
     z-index: 99;
     width: 100%;
-    background: linear-gradient(180deg, black, transparent)
+    background: linear-gradient(180deg, black, transparent);
 }
 
 .navigation-link {

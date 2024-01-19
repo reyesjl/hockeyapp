@@ -13,6 +13,6 @@ class TournamentSubmissionAdmin(admin.ModelAdmin):
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ['tournament', 'date', 'rating']
+    list_display = ['tournament', 'date_of_visit', 'rating']
     list_filter = ['tournament']  
-    ordering = ['date']
+    ordering = ['date_of_visit']

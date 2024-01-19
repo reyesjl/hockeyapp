@@ -62,7 +62,8 @@ class TournamentSubmission(models.Model):
 class Review(models.Model):
     title = models.CharField(max_length=100, default='')
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
-    date = models.DateField()
+    date_of_visit = models.DateField()
+    experience = models.TextField(max_length=250, default='')
     number_of_rinks = models.IntegerField(default=1)
     reffing_quality = models.CharField(choices=QUALITY_OPTIONS, max_length=15, default='Excellent')
     runs_on_time = models.CharField(choices=DELAY_OPTIONS, max_length=22, default='Runs Ontime')
@@ -73,8 +74,7 @@ class Review(models.Model):
     travelling_company = models.CharField(choices=BOOL_LIST, max_length=3, default='No')
     hotel_quality = models.CharField(choices=QUALITY_OPTIONS, max_length=15, default='Excellent')
     stay_and_play = models.CharField(choices=BOOL_LIST, max_length=3, default='No')
-    text = models.TextField(max_length=250, default='')
-    rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
+    rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1,)
     thumbs_rating = models.CharField(choices=[('Thumbs Up', 'Thumbs Up'), ('Thumbs Down', 'Thumbs Down')], max_length=11, default='Thumbs Up')
 
 class Hotel(models.Model):
