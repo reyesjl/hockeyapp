@@ -40,6 +40,8 @@
 }
 
 .go-button {
+    background-color: white;
+    color: black;
     border-radius: 24px;
     padding: 0 15px;
     border: none;
