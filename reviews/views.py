@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tournament
 from django.db.models import Q
-from .forms import ReviewForm
+from .forms import ReviewForm, TournamentSubmissionForm
 from django.contrib import messages
 
 def home(request):
@@ -26,7 +26,17 @@ def tournament_details(request, tournament_id):
     return render(request, 'reviews/tournament_details.html', {'tournament':tournament})
 
 def tournament_entry(request):
-    return render(request, 'reviews/tournament_entry.html')
+    if request.method == 'POST':
+        form = TournamentSubmissionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page 
+            messages.success(request, "Your tournament was submitted successfully.")
+            return redirect('reviews:success')
+    else:
+        form = TournamentSubmissionForm()
+
+    return render(request, 'reviews/tournament_entry.html', {'form':form})
 
 def contact(request):
     return render(request, 'reviews/contact.html')

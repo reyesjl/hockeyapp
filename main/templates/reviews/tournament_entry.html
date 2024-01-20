@@ -12,9 +12,9 @@
 {% block content %}
 <section class="form-section">
     <div class="form-wrapper">
-        <h1>Your Review</h1>
-        <p>Honest feedback is priceless.</p>
-        <form method="post" action="{% url 'reviews:review' %}">
+        <h1>Suggest Tournament</h1>
+        <p>Use our tournament search page to make sure this one hasn't been added yet.</p>
+        <form method="post" action="{% url 'reviews:tournament_entry' %}">
             {% csrf_token %}
             {% if form.errors %}
                 <div class="alert">
