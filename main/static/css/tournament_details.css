@@ -79,6 +79,7 @@
 }
 
 .review-wrapper {
+    clear: both;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -92,6 +93,21 @@
 .date-rating {
     display: flex;
     justify-content: space-between;
+}
+
+.add-button-wrapper {
+    margin-top: 1rem;
+    padding: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.add-button {
+    float: right;
+    padding: 20px;
+    background-color: darkgreen;
+    color: white;
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 1024px) {

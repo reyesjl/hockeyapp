@@ -22,6 +22,11 @@
         </div>
     </div>
 </section>
+
+<div class="add-button-wrapper">
+    <a class="add-button" href="{% url 'reviews:tournament_entry' %}">Add Tournament <i class="fa-solid fa-plus"></i></a>
+</div>
+
 <section class="search-results">
     {% if query %}
         <p>Searching: {{ query }} ({{ tournaments|length }} results)</p>
