@@ -32,7 +32,7 @@ def tournament_entry(request):
         if form.is_valid():
             form.save()
             # Redirect to a success page 
-            messages.success(request, "Your tournament was submitted successfully.")
+            messages.success(request, "Your tournament was submitted successfully. Please give our team time to review and process it.")
             return redirect('reviews:success')
     else:
         form = TournamentSubmissionForm()
@@ -41,6 +41,9 @@ def tournament_entry(request):
 
 def contact(request):
     return render(request, 'reviews/contact.html')
+
+def faq(request):
+    return render(request, 'reviews/faq.html')
 
 def review(request):
     if request.method == 'POST':

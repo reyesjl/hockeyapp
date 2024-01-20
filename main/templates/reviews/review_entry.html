@@ -12,8 +12,11 @@
 {% block content %}
 <section class="form-section">
     <div class="form-wrapper">
-        <h1>Your Review</h1>
-        <p>Honest feedback is priceless.</p>
+        <h1>Add Your Review</h1>
+        <p>Honest feedback is the best feedback.</p>
+        
+        <h2>Tournament missing?</h2>
+        <p>If you cannot find a tournament in the drop down, add one <a href="{% url 'reviews:tournament_entry' %}">here</a></p>
         <form method="post" action="{% url 'reviews:review' %}">
             {% csrf_token %}
             {% if form.errors %}

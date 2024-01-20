@@ -12,8 +12,8 @@
 {% block content %}
 <section class="form-section">
     <div class="form-wrapper">
-        <h1>Suggest Tournament</h1>
-        <p>Use our tournament search page to make sure this one hasn't been added yet.</p>
+        <h1>Add a Tournament</h1>
+        <p>Ensure you aren't adding a duplicate by visitng our tournament <a href="{% url 'reviews:home' %}">search</a> page.</p>
         <form method="post" action="{% url 'reviews:tournament_entry' %}">
             {% csrf_token %}
             {% if form.errors %}
