@@ -14,6 +14,7 @@
 <section class="jumbotron" style="background-image: url('{% static 'images/detail-bg.jpg' %}')">
     <div class="title-container">
         <h1 class="title">{{ tournament.name }}</h1>
+        <p class="location"><i class="fa-solid fa-map-pin"></i> {{ tournament.location }}</p>
         <div class="rating-likes">
             <div class="rating">
                 <p clas="stars"><i class="fa-solid fa-star"></i> {{ tournament.overall_rating }}</p>
