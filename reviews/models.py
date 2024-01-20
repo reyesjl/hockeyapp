@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 QUALITY_OPTIONS = [
@@ -15,6 +17,15 @@ QUALITY_MAPPING = {
     'Average': 'C',
     'Above Average': 'B',
     'Excellent': 'A',
+}
+
+# Add this mapping for letter grades to weight
+LETTER_TO_WEIGHT_MAPPING = {
+    'A': 4.0,
+    'B': 3.0,
+    'C': 2.0,
+    'D': 1.0,
+    'F': 0.0,
 }
 
 BOOL_LIST = [
@@ -36,8 +47,53 @@ class Tournament(models.Model):
     thumbs_up = models.IntegerField(default=0)
     thumbs_down = models.IntegerField(default=0)
 
+    reffing_quality_average = models.CharField(choices=QUALITY_OPTIONS, max_length=15, default='Excellent')
+    hotel_quality_average = models.CharField(choices=QUALITY_OPTIONS, max_length=15, default='Excellent')
+    director_communication_average = models.CharField(choices=QUALITY_OPTIONS, max_length=15, default='Excellent')
+    
+    def update_averages(self):
+        reviews = self.review_set.all()
+
+        if reviews:
+            reffing_sum = sum(LETTER_TO_WEIGHT_MAPPING[QUALITY_MAPPING[review.reffing_quality]] for review in reviews)
+            hotel_sum = sum(LETTER_TO_WEIGHT_MAPPING[QUALITY_MAPPING[review.hotel_quality]] for review in reviews)
+            director_sum = sum(LETTER_TO_WEIGHT_MAPPING[QUALITY_MAPPING[review.director_communication]] for review in reviews)
+
+            reffing_average = reffing_sum / len(reviews)
+            hotel_average = hotel_sum / len(reviews)
+            director_average = director_sum / len(reviews)
+
+            # Assign letter grades based on the averages
+            self.reffing_quality_average = get_letter_grade(reffing_average)
+            self.hotel_quality_average = get_letter_grade(hotel_average)
+            self.director_communication_average = get_letter_grade(director_average)
+
+            
+            # Calculate overall rating based on reviews.rating
+            overall_rating_sum = sum(review.rating for review in reviews)
+            overall_rating_average = overall_rating_sum / len(reviews)
+
+            # Directly set the overall_rating field to the decimal average
+            self.overall_rating = overall_rating_average
+
+            # Calculate the number of upvotes and downvotes
+            upvotes = sum(1 for review in reviews if review.thumbs_rating == 'Thumbs Up')
+            downvotes = sum(1 for review in reviews if review.thumbs_rating == 'Thumbs Down')
+
+            # Save the calculated values
+            self.thumbs_up = upvotes
+            self.thumbs_down = downvotes
+
+            self.save()
+    
     def __str__(self) -> str:
         return f"{self.name}"
+
+def get_letter_grade(average):
+    for letter, weight in LETTER_TO_WEIGHT_MAPPING.items():
+        if average >= weight:
+            return letter
+    return 'F'
 
 class TournamentSubmission(models.Model):
     STATUS_CHOICES = [
@@ -76,6 +132,14 @@ class Review(models.Model):
     stay_and_play = models.CharField(choices=BOOL_LIST, max_length=3, default='No')
     rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1,)
     thumbs_rating = models.CharField(choices=[('Thumbs Up', 'Thumbs Up'), ('Thumbs Down', 'Thumbs Down')], max_length=11, default='Thumbs Up')
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.tournament.update_averages
+
+@receiver(post_save, sender=Review)
+def update_tournament_averages(sender, instance, **kwargs):
+    instance.tournament.update_averages()
 
 class Hotel(models.Model):
     name = models.CharField(max_length=100)

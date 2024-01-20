@@ -32,7 +32,7 @@
         {% load custom_filters %}
         <div class="detail">
             <div class="grade">
-                {{ tournament.reffing_quality|quality_grade }}
+                {{ tournament.reffing_quality_average|quality_grade }}
             </div>
             <div class="grade-title">
                 REFEREEING
@@ -41,7 +41,7 @@
 
         <div class="detail">
             <div class="grade">
-                {{ tournament.hotel_quality|quality_grade }}
+                {{ tournament.hotel_quality_average|quality_grade }}
             </div>
             <div class="grade-title">
                 HOTELS
@@ -50,7 +50,7 @@
 
         <div class="detail">
             <div class="grade">
-                {{ tournament.director_communication|quality_grade }}
+                {{ tournament.director_communication_average|quality_grade }}
             </div>
             <div class="grade-title">
                 COMMUNICATION
