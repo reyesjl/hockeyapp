@@ -127,6 +127,7 @@
 }
 
 .add-button {
+    border-radius: 12px;
     padding: 20px;
     background-color: darkgreen;
     color: white;
