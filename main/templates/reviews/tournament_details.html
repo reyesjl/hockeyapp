@@ -63,18 +63,24 @@
         <a class="add-button" href="{% url 'reviews:review' %}">Add Review <i class="fa-solid fa-plus"></i></a>
     </div>
     <div class="review-wrapper">
+        {% for review in reviews %}
         <div class="review">
-            <h2>Review title</h2>
+            <h2>{{ review.title }}</h2>
             <div class="date-rating">
                 <div class="date">
-                    <i class="fa-regular fa-calendar-days"></i> January
+                    <i class="fa-regular fa-calendar-days"></i> {{ review.date|date:"F" }}
                 </div>
                 <div class="rating">
-                    <i class="fa-solid fa-star"></i> 4.7
+                    <i class="fa-solid fa-star"></i> {{ review.rating }}
                 </div>
             </div>
-            <p>This is an example review that someone submitted for this tournament. A parent can write some text, and give an overall rating between 1.0 - 5.0</p>
+            <p>{{ review.content }}</p>
         </div>
+        {% empty %}
+        <div class="empty-wrapper">
+            <p class="empty-notice">No reviews exist for this tournament.</p>
+        </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

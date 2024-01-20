@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Tournament
+from .models import Tournament, Review
 from django.db.models import Q
 from .forms import ReviewForm, TournamentSubmissionForm
 from django.contrib import messages
@@ -23,7 +23,8 @@ def tournaments(request):
 
 def tournament_details(request, tournament_id):
     tournament = get_object_or_404(Tournament, pk=tournament_id)
-    return render(request, 'reviews/tournament_details.html', {'tournament':tournament})
+    reviews = Review.objects.filter(tournament=tournament)
+    return render(request, 'reviews/tournament_details.html', {'tournament':tournament, 'reviews': reviews})
 
 def tournament_entry(request):
     if request.method == 'POST':
