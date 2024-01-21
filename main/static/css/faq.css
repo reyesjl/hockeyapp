@@ -1,3 +1,11 @@
 .faq-section {
     padding-top: 120px;
 }
+
+.faq-wrapper {
+    padding: 0 10%;
+}
+
+.answer {
+    padding-left: 2rem;
+}
