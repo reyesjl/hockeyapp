@@ -6,6 +6,18 @@
     padding: 0 10%;
 }
 
+.qa-group {
+    margin-bottom: 80px;
+}
+
 .answer {
     padding-left: 2rem;
+}
+
+.question {
+    font-weight: bold;
+}
+
+.group-name {
+    font-weight: normal;
 }

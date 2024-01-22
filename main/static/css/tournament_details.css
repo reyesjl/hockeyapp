@@ -93,6 +93,10 @@
     padding: 10px;
 }
 
+.review-title {
+    font-weight: normal;
+}
+
 .date-rating {
     display: flex;
     justify-content: space-between;

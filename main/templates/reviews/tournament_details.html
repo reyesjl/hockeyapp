@@ -66,7 +66,7 @@
     <div class="review-wrapper">
         {% for review in reviews %}
         <div class="review">
-            <h2>{{ review.title }}</h2>
+            <h2 class="review-title">{{ review.title }}</h2>
             <div class="date-rating">
                 <div class="date">
                     <i class="fa-regular fa-calendar-days"></i> {{ review.date_of_visit|date:"F" }}
