@@ -141,6 +141,126 @@ class Review(models.Model):
 def update_tournament_averages(sender, instance, **kwargs):
     instance.tournament.update_averages()
 
+class Restaurant(models.Model):
+    FOOD_TYPE_CHOICES = [
+        ('American', 'American'),
+        ('Italian', 'Italian'),
+        ('Mexican', 'Mexican'),
+        ('Chinese', 'Chinese'),
+        ('Korean', 'Korean'),
+        ('Japanese', 'Japanese'),
+        ('Indian', 'Indian'),
+        ('Mediterranean', 'Mediterranean'),
+        ('Thai', 'Thai'),
+    ]
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    type_of_food = models.CharField(max_length=13, choices=FOOD_TYPE_CHOICES)
+    rating = models.DecimalField(default=5.0, max_digits=3, decimal_places=1)
+
+class Entertainment(models.Model):
+    TYPE_PLACE_CHOICES = [
+        ('Arcade/Fun Zone', 'Arcade/Fun Zone'),
+        ('Pro Sport Event', 'Pro Sport Event'),
+        ('College Sport Event', 'College Sport Event'),
+        ('Festival', 'Festival'),
+    ]
+    FOOD_TYPE_CHOICES = [
+        ('No Food', 'No Food'),
+        ('American', 'American'),
+        ('Italian', 'Italian'),
+        ('Mexican', 'Mexican'),
+        ('Chinese', 'Chinese'),
+        ('Korean', 'Korean'),
+        ('Japanese', 'Japanese'),
+        ('Indian', 'Indian'),
+        ('Mediterranean', 'Mediterranean'),
+        ('Thai', 'Thai'),
+    ]
+    name = models.CharField(max_length=100)
+    type_of_entertainment = models.CharField(max_length=20, choices=TYPE_PLACE_CHOICES)
+    location = models.CharField(max_length=100)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    rating = models.DecimalField(default=5.0, max_digits=3, decimal_places=1) 
+
+class RestaurantReview(models.Model):
+    PARTY_SIZE_CHOICES = [
+        ('10-15', '10-15 people'),
+        ('15-25', '15-25 people'),
+        ('25-35', '25-35 people'),
+    ]
+    GRADE_LETTER_CHOICES = [
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+        ('D', 'D'),
+        ('F', 'F'),
+    ]
+    WAITING_TIME_CHOICES = [
+        ('15', '15 mins'),
+        ('30', '30 mins'),
+        ('40', '45 mins'),
+    ]
+    BILL_SPLIT_CHOICES = [
+        ('easy', 'easy'),
+        ('player_jersey', 'went by player jersey number'),
+        ('complicated', 'complicated'),
+    ]
+    DIET_TYPES_CHOICES = [
+        ('None', 'None'),
+        ('Gluten-Free', 'Gluten-Free'),
+        ('Vegan', 'Vegan'),
+        ('Vegetarian', 'Vegetarian'),
+    ]
+    PARKING_CHOICES = [
+        ('Small','Small'),
+        ('Medium','Medium'),
+        ('Large', 'Large'),
+    ]
+    title = models.CharField(max_length=100)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    diet_friendly = models.CharField(max_length=11, choices=DIET_TYPES_CHOICES)
+    party_size = models.CharField(max_length=10, choices=PARTY_SIZE_CHOICES)
+    customer_service = models.CharField(max_length=1, choices=GRADE_LETTER_CHOICES)
+    waiting_seat_time = models.IntegerField(choices=WAITING_TIME_CHOICES)
+    waiting_food_time = models.IntegerField(choices=WAITING_TIME_CHOICES)
+    food_quality = models.CharField(max_length=1, choices=GRADE_LETTER_CHOICES)
+    check_splitting = models.CharField(max_length=30, choices=BILL_SPLIT_CHOICES)
+    parking = models.CharField(max_length=6, choices=PARKING_CHOICES)
+    parking_notes = models.TextField(max_length=150)
+    rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1)
+
+
+class EntertainmentReview(models.Model):
+    PARTY_SIZE_CHOICES = [
+        ('10-15', '10-15 people'),
+        ('15-25', '15-25 people'),
+        ('25-35', '25-35 people'),
+    ]
+    GRADE_LETTER_CHOICES = [
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+        ('D', 'D'),
+        ('F', 'F'),
+    ]
+    PARKING_CHOICES = [
+        ('Small','Small'),
+        ('Medium','Medium'),
+        ('Large', 'Large'),
+    ]
+    title = models.CharField(max_length=100)
+    place = models.ForeignKey(Entertainment, on_delete=models.CASCADE)
+    activities = models.CharField(max_length=255, default='None')
+    party_size = models.CharField(max_length=10, choices=PARTY_SIZE_CHOICES)
+    customer_service = models.CharField(max_length=1, choices=GRADE_LETTER_CHOICES)
+    large_group_deals = models.BooleanField()
+    food_quality = models.CharField(max_length=1, choices=GRADE_LETTER_CHOICES)
+    parking = models.CharField(max_length=6, choices=PARKING_CHOICES)
+    parking_notes = models.TextField(max_length=150)
+    rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1)
+    
 class Hotel(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
