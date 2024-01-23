@@ -62,6 +62,8 @@
     <h1 class="section-title">User Reviews</h1> 
     <div class="add-button-wrapper">
         <a class="add-button" href="{% url 'reviews:review' %}">Add Review <i class="fa-solid fa-plus"></i></a>
+        <a class="add-button" href="{% url 'reviews:restaurant_entry' %}">Add Restaurant <i class="fa-solid fa-plus"></i></a>
+        <a class="add-button" href="{% url 'reviews:entertainment_entry' %}">Add Entertainment <i class="fa-solid fa-plus"></i></a>
     </div>
     <div class="review-wrapper">
         {% for review in reviews %}

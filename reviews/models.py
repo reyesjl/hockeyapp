@@ -159,6 +159,44 @@ class Restaurant(models.Model):
     type_of_food = models.CharField(max_length=13, choices=FOOD_TYPE_CHOICES)
     rating = models.DecimalField(default=5.0, max_digits=3, decimal_places=1)
 
+class RestaurantSubmission(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Reviewing', 'Reviewing'),
+        ('Approved', 'Approved'),
+        ('Archived', 'Archived'),
+    ]
+    name = models.CharField(max_length=100)
+    info = models.TextField(max_length=500)
+    location = models.CharField(max_length=100)
+    rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
+    status = models.CharField(choices=STATUS_CHOICES, default='Pending', max_length=15)
+
+    def __str__(self) -> str:
+        return f"{self.name}, Rating: {self.rating}, Status: {self.status}"
+    
+    class Meta:
+        ordering = ['status']
+
+class EntertainmentSubmission(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Reviewing', 'Reviewing'),
+        ('Approved', 'Approved'),
+        ('Archived', 'Archived'),
+    ]
+    name = models.CharField(max_length=100)
+    info = models.TextField(max_length=500)
+    location = models.CharField(max_length=100)
+    rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
+    status = models.CharField(choices=STATUS_CHOICES, default='Pending', max_length=15)
+
+    def __str__(self) -> str:
+        return f"{self.name}, Rating: {self.rating}, Status: {self.status}"
+    
+    class Meta:
+        ordering = ['status']
+
 class Entertainment(models.Model):
     TYPE_PLACE_CHOICES = [
         ('Arcade/Fun Zone', 'Arcade/Fun Zone'),
@@ -260,6 +298,7 @@ class EntertainmentReview(models.Model):
     parking = models.CharField(max_length=6, choices=PARKING_CHOICES)
     parking_notes = models.TextField(max_length=150)
     rating = models.DecimalField(default=1.0, max_digits=3, decimal_places=1)
+    status = models.Model
     
 class Hotel(models.Model):
     name = models.CharField(max_length=100)

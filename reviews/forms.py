@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review, TournamentSubmission
+from .models import Review, TournamentSubmission, RestaurantSubmission, EntertainmentSubmission
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class ReviewForm(forms.ModelForm):
@@ -49,4 +49,42 @@ class TournamentSubmissionForm(forms.ModelForm):
     )
     class Meta:
         model = TournamentSubmission
+        exclude = ['status']
+
+class RestaurantSubmissionForm(forms.ModelForm):
+    name = forms.CharField(
+        max_length=100,
+    )
+    location = forms.CharField(
+        max_length=150,
+        help_text='Example: 2634 Main St, Lake Placid, NY 12946'
+    )
+    rating = forms.DecimalField(
+        initial=1.0,
+        max_digits=3,
+        decimal_places=1,
+        validators=[MinValueValidator(1.0), MaxValueValidator(5.0)],
+        help_text='Enter a value between [1.0 - 5.0]',
+    )
+    class Meta:
+        model = RestaurantSubmission
+        exclude = ['status']
+
+class EntertainmentSubmissionForm(forms.ModelForm):
+    name = forms.CharField(
+        max_length=100,
+    )
+    location = forms.CharField(
+        max_length=150,
+        help_text='Example: 2634 Main St, Lake Placid, NY 12946'
+    )
+    rating = forms.DecimalField(
+        initial=1.0,
+        max_digits=3,
+        decimal_places=1,
+        validators=[MinValueValidator(1.0), MaxValueValidator(5.0)],
+        help_text='Enter a value between [1.0 - 5.0]',
+    )
+    class Meta:
+        model= EntertainmentSubmission
         exclude = ['status']

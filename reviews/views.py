@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tournament, Review
 from django.db.models import Q
-from .forms import ReviewForm, TournamentSubmissionForm
+from .forms import ReviewForm, TournamentSubmissionForm, RestaurantSubmissionForm, EntertainmentSubmissionForm
 from django.contrib import messages
 
 def home(request):
@@ -38,6 +38,32 @@ def tournament_entry(request):
         form = TournamentSubmissionForm()
 
     return render(request, 'reviews/tournament_entry.html', {'form':form})
+
+def restaurant_entry(request):
+    if request.method == 'POST':
+        form = RestaurantSubmissionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page
+            messages.success(request, "Your restuarant was submitted succesfully. Please give our team time to review and process it.")
+            return redirect('reviews:success')
+    else:
+        form = RestaurantSubmissionForm()
+    
+    return render(request, 'reviews/restaurant_entry.html', {'form':form})
+
+def entertainment_entry(request):
+    if request.method == 'POST':
+        form = EntertainmentSubmissionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect to a success page
+            messages.success(request, "Your entertainment location/option has been submittes successfully. Please give our team time to review and process it.")
+            return redirect('reviews.success')
+    else:
+        form = EntertainmentSubmissionForm
+
+    return render(request, 'reviews/entertainment_entry.html', {'form':form})
 
 def contact(request):
     return render(request, 'reviews/contact.html')
