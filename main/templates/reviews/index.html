@@ -12,16 +12,29 @@
 
 {% block content %}
 <section class="jumbotron" style="background-image: url('{% static 'images/background.jpg' %}')">
-    <div class="title-container">
-        <h1 class="title">Plan.</h1>
-        <h1 class="title">Connect.</h1>
-        <h1 id="review" class="title">Review.</h1>
-        <p class="subtitle">The ultimate hockey tournament review system.</p>
-    </div>
-    <div class="action-container">
-        <a class="action-link" href="{% url 'reviews:tournaments' %}"><i class="fa-solid fa-hockey-puck"></i> View Tournaments <i class="fa-solid fa-square-arrow-up-right"></i></a>
-        <a class="action-link" href="{% url 'reviews:review' %}"><i class="fa-solid fa-hockey-puck"></i> Add Review <i class="fa-solid fa-square-arrow-up-right"></i></a>
-        <a class="action-link" href="{% url 'reviews:faq' %}"><i class="fa-solid fa-hockey-puck"></i> Frequent Questions <i class="fa-regular fa-circle-question"></i></a>
+    <div class="container">
+        <div class="jumbotron-content-wrapper">
+            <div class="title-container">
+                <div class="title-wrapper">
+                    <h1 class="title">Plan.</h1>
+                    <h1 class="title">Connect.</h1>
+                    <h1 id="review" class="title">Review.</h1>
+                    <p class="subtitle">The ultimate hockey tournament review system.</p>
+                </div>
+                <div class="advertisement-wrapper">
+                    <p>Contact to purchase this ad space.</p>
+                    <p>Daily : $50</p>
+                    <p>3-days : $125</p>
+                    <p>7-days : $1000</p>
+                    <p>yht-ads@gmail.com</p>
+                </div>
+            </div>
+            <div class="action-container">
+                <a class="action-link" href="{% url 'reviews:tournaments' %}"><i class="fa-solid fa-hockey-puck"></i> View Tournaments <i class="fa-solid fa-square-arrow-up-right"></i></a>
+                <a class="action-link" href="{% url 'reviews:review' %}"><i class="fa-solid fa-hockey-puck"></i> Add Review <i class="fa-solid fa-square-arrow-up-right"></i></a>
+                <a class="action-link" href="{% url 'reviews:faq' %}"><i class="fa-solid fa-hockey-puck"></i> Frequent Questions <i class="fa-regular fa-circle-question"></i></a>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}
