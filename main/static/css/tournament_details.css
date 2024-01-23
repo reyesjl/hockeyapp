@@ -19,6 +19,32 @@
     text-align: center;
 }
 
+.action-container {
+    width: 90%;
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.user-action-title {
+    color: gray;
+}
+
+.button-container {  
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.button-wrapper .button {
+    width: fit-content;
+    padding: 10px;
+    background: green;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
 .location {
     text-align: left;
 }
@@ -49,8 +75,8 @@
 }
 
 .detail-section {
-    padding: 5% 10%;
-    margin-bottom: 3em;
+    width: 90%;
+    margin: 0 auto;    
 }
 
 .review-section {
@@ -100,20 +126,6 @@
 .date-rating {
     display: flex;
     justify-content: space-between;
-}
-
-.add-button-wrapper {
-    margin: 4rem auto;
-    padding-left: 5%;
-    max-width: 900px;
-}
-
-.add-button {
-    border-radius: 12px;
-    padding: 20px;
-    background-color: darkgreen;
-    color: white;
-    text-decoration: none;
 }
 
 @media only screen and (max-width: 1024px) {

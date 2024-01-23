@@ -57,14 +57,23 @@
             </div>
         </div>
     </div>
+    <div class="action-container">
+        <p class="user-action-title">User Actions</p>
+        <div class="button-container">
+            <div class="button-wrapper">
+                <a class="button" href="{% url 'reviews:review' %}">Add Tournament Review <i class="fa-solid fa-plus"></i></a>
+            </div>
+            <div class="button-wrapper">
+                <a class="button" href="{% url 'reviews:restaurant_entry' %}">Add Restaurant <i class="fa-solid fa-plus"></i></a>
+            </div>
+            <div class="button-wrapper">
+                <a class="button" href="{% url 'reviews:entertainment_entry' %}">Add Entertainment <i class="fa-solid fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
 </section>
 <section class="review-section">
     <h1 class="section-title">User Reviews</h1> 
-    <div class="add-button-wrapper">
-        <a class="add-button" href="{% url 'reviews:review' %}">Add Review <i class="fa-solid fa-plus"></i></a>
-        <a class="add-button" href="{% url 'reviews:restaurant_entry' %}">Add Restaurant <i class="fa-solid fa-plus"></i></a>
-        <a class="add-button" href="{% url 'reviews:entertainment_entry' %}">Add Entertainment <i class="fa-solid fa-plus"></i></a>
-    </div>
     <div class="review-wrapper">
         {% for review in reviews %}
         <div class="review">

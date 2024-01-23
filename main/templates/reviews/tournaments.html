@@ -13,18 +13,27 @@
 
 {% block content %}
 <section class="jumbotron" style="background-image: url('{% static 'images/tournament-bg.jpg' %}')">
-    <div class="title-container">
-        <h1 class="title">Tournaments</h1>
-        <p class="subtitle">Search by name or location.</p>
-        <div class="searchbar-wrapper">
-            <input type="text" id="search_input" name="query" aria-label="Search tournaments" />
-            <button type="submit" id="search_button" class="go-button">GO</button>
+    <div class="container">
+        <div class="jumbotron-content-wrapper">
+            <div class="title-container">
+                <h1 class="title">Tournaments</h1>
+                <p class="subtitle">Search by name or location.</p>
+            </div>
+            <div class="search-container">
+                <div class="searchbar-wrapper"><input type="text" id="search_input" name="query" aria-label="Search tournaments" /></div>
+                <div class="search-button-wrapper"><button type="submit" id="search_button" class="go-button">Search</button></div>
+            </div>
         </div>
     </div>
 </section>
 
-<div class="add-button-wrapper">
-    <a class="add-button" href="{% url 'reviews:tournament_entry' %}">Add Tournament <i class="fa-solid fa-plus"></i></a>
+<div class="action-container">
+    <p class="user-action-title">User Actions</p>
+    <div class="button-container">
+        <div class="button-wrapper">
+            <a class="button" href="{% url 'reviews:tournament_entry' %}">Add Tournament <i class="fa-solid fa-plus"></i></a>
+        </div>
+    </div>
 </div>
 
 <section class="search-results">

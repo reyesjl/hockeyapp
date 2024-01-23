@@ -1,21 +1,26 @@
 .jumbotron {
-    height: 50vh;
     background-size: cover; /* or "contain" depending on your preference */
     background-position: center center;
     background-repeat: no-repeat;
-    position: relative;
 }
 
-.title-container {
-    position: absolute;
-    top: 30%; /* Position the title container at the vertical center of the jumbotron */
-    left: 10%; /* Position the title container at the horizontal center of the jumbotron */
+.container {
+    max-width: 90%;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.jumbotron-content-wrapper {
+    padding: 15vh 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
 }
 
 .title {
     font-size: 4em;
     color: white;
-    margin: 1rem 0;
+    margin: 0;
 }
 
 .subtitle {
@@ -24,42 +29,53 @@
     color: white;
 }
 
-#search_input {
-    width: 100%;
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.searchbar-wrapper input {
     border: none;
     outline: none;
     padding: 10px;
-    padding-left: 20px;
     font-size: 1.1em;
     border-radius: 24px;
 }
 
-.searchbar-wrapper {
-    display: flex;
-    gap: 1rem;
-}
-
-.go-button {
-    background-color: white;
-    color: black;
-    border-radius: 24px;
-    padding: 0 15px;
+.search-button-wrapper button {
+    padding: 10px;
     border: none;
     outline: none;
-    cursor: pointer;
-    transition: color .2s;
-    font-weight: bold;
-}
-
-.go-button:hover {
-    background-color: darkgreen;
+    background: darkgreen;
     color: white;
-    transition: color .2s;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.search-results {
-    padding: 1rem;
-    height: 100vh;
+.action-container {
+    width: 90%;
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.user-action-title {
+    color: gray;
+}
+
+.button-container {  
+    display: flex;
+}
+
+.button-wrapper .button {
+    width: fit-content;
+    padding: 10px;
+    background: green;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
 }
 
 .tournaments-container {
@@ -120,32 +136,23 @@
     font-weight: normal;
 }
 
-.add-button-wrapper {
-    margin: 4rem auto;
-    padding-left: 5%;
-    max-width: 900px;
-}
-
-.add-button {
-    border-radius: 12px;
-    padding: 20px;
-    background-color: darkgreen;
-    color: white;
-    text-decoration: none;
-}
-
 @media only screen and (max-width: 768px) {
-    .jumbotron {
-        height: 60vh;
-    }
-
-    .searchbar-wrapper { 
-        margin-top: 20%;
-        max-width: 80%;
-    }
-
     .title {
-        font-size: 3em;
+        font-size: 2em;
+    }
+
+    .search-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-button-wrapper {
+        padding: 0 10px;
+        width: 100%;
+    }
+
+    .go-button {
+        width: 100%;
     }
 
     .tournaments-container {
