@@ -26,7 +26,8 @@
 
 .advertisement-wrapper {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.511);
+    background: rgb(255, 255, 255);
+    color: darkgreen;
     display: flex;
     flex-direction: column;
     justify-content: center;
