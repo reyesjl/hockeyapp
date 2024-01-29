@@ -6,38 +6,22 @@
 
 .container {
     max-width: 90%;
-    width: 70%;
+    width: 80%;
+    padding:0 20px;
     margin: 0 auto;
+    height: 100vh;
 }
 
-.jumbotron-content-wrapper {
-    padding-top: 15vh;
-    height: 85vh;
+.title-actions-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 50px;
 }
 
 .title-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-
-.advertisement-wrapper {
-    padding: 20px;
-    background: rgb(255, 255, 255);
-    color: darkgreen;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    height: fit-content;
-    border-radius: 12px;
-}
-
-.advertisement-wrapper p {
-    margin: 0;
+    margin-top: 150px;
 }
 
 .title {

@@ -6,14 +6,24 @@ body {
 }
 
 .navigation-bar {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
     position: fixed;
     z-index: 99;
     width: 100%;
     background: linear-gradient(180deg, black, transparent);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    color: white;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.nav-button {
+    cursor: pointer;
 }
 
 .navigation-link {
@@ -30,6 +40,6 @@ body {
 
 
 .logo-wrapper img {
-    width: 100px; 
+    width: 90px; 
     height: auto; 
 }
