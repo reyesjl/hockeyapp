@@ -15,8 +15,7 @@ class TournamentSubmission(BaseSubmissionModel):
     tournament_company = models.CharField(max_length=100, default='Idk')
 
 class RestaurantSubmission(BaseSubmissionModel):
-    restaurant = models.CharField
-    object_type = models.CharField(max_length=50, default='Restaurant')
+    restaurant = models.CharField(max_length=100, default='default')
     food_type = models.CharField(choices=FOOD_OPTIONS, max_length=20, default='American')
 
 class EntertainmentSubmission(BaseSubmissionModel):
