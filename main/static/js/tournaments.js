@@ -1,23 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Get the input and button elements
-    const searchInput = document.getElementById('search_input');
-    const searchButton = document.getElementById('search_button');
-
-    // Check if there's a query parameter in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const queryParam = urlParams.get('query');
-
-    // If there's a query parameter, set the input value
-    if (queryParam) {
-        searchInput.value = queryParam;
-    }
-
-    // Add an event listener to the button for the 'click' event
-    searchButton.addEventListener('click', function () {
-        // Get the value from the search input
-        const query = searchInput.value;
-
-        // Perform the search using the obtained query
-        window.location.href = `/tournaments/?query=${encodeURIComponent(query)}`;
-    });
+    handleSearch();
+    // Add event listener to handle search on input change
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', handleSearch);
 });
+
+function handleSearch() {
+    const searchInput = document.getElementById('search-input');
+    const cityList = document.querySelectorAll('.city-item');
+
+    const searchTerm = searchInput.value.toLowerCase();
+
+    cityList.forEach(function (cityItem) {
+        const city = cityItem.dataset.city.toLowerCase();
+        const state = cityItem.dataset.state.toLowerCase();
+
+        // Check if the search term matches either city or state
+        const match = city.includes(searchTerm) || state.includes(searchTerm);
+
+        // Show or hide the city item based on the match
+        cityItem.style.display = match ? 'block' : 'none';
+    });
+}

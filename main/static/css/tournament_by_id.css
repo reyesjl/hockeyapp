@@ -1,0 +1,154 @@
+.section {
+
+}
+
+.banner.top {
+    background: linear-gradient(black, darkblue);
+    padding-top: 120px;
+    padding-bottom: 40px;
+}
+
+.banner-title {
+    font-weight: normal;
+    color: white;
+    font-size: 2rem;
+}
+
+.tournament-location {
+    color: white;
+    display: block;
+    width: fit-content;
+}
+
+.tournament-rating {
+    color: white;
+    font-size: 1.1rem;
+    display: flex;
+}
+
+.tournament-rinks {
+    color: white;
+}
+
+.star-rating {
+    margin-right: 1rem;
+}
+
+.thumbs-wrapper {
+    margin-top: 40px;
+    color: white;
+    display: flex;
+    gap: .8rem;
+    justify-content: flex-end;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.metasection {
+    padding: 40px 0;
+    padding-bottom: 80px;
+}
+
+.metasection.ratings {
+    background: linear-gradient(darkblue, black);
+    color: white;
+}
+
+.metasection.parking {
+    background: black;
+    color: white;
+}
+
+.metasection-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.meta-item {
+    padding: 50px 0;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.meta-score {
+    font-size: 2rem;
+    font-style: italic;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.metasection.parking .meta-item {
+    background: whitesmoke;
+    color: black;
+}
+
+.metasection-wrapper.reviews {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.metasection.reviews {
+    background: whitesmoke;
+    color: black;
+}
+
+.metasection.reviews .meta-item.review {
+    border: 1px solid black;
+    padding: 10px;
+    color: black;
+    text-align: left;
+    text-decoration: none;
+    max-width: 20%;
+}
+
+.metasection.reviews .meta-item.review:hover {
+    background-color: black;
+    color: white;
+}
+
+.review-date-rating {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    font-style: italic;
+}
+
+.review-thumb {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.review-title {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+    .metasection-wrapper.reviews { 
+        flex-direction: row;
+    }
+
+    .metasection.reviews .meta-item.review { 
+        max-width: 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .metasection.reviews .meta-item.review { 
+        max-width: 100%;
+    }
+
+    .metasection-wrapper {
+        flex-direction: column;
+    }
+}
