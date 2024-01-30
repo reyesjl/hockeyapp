@@ -3,7 +3,7 @@ from reviews.choices import FOOD_OPTIONS, ENTERTAINMENT_OPTIONS
 from django.core.validators import MinValueValidator, MaxValueValidator, MaxLengthValidator
 
 class BaseSubmissionModel(models.Model):
-    location = models.CharField(max_length=150)
+    address = models.CharField(max_length=150)
     rating_overall = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     overview_text = models.TextField(validators=[MaxLengthValidator(1200)])
 
