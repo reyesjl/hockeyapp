@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: "Exo 2", sans-serif;
 }
 
 .navigation-bar {
@@ -87,6 +87,7 @@ body {
     display: block;
     padding: 20px 0;
     font-size: 1.4rem;
+    text-transform: uppercase;
 }
 
 .nav-list .nav-link:hover {

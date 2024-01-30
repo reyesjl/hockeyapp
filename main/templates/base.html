@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="{% static 'js/navmenu.js' %}"></script>
 
     {% block extra_head %}
@@ -21,7 +21,7 @@
     <nav class="navigation-bar">
         <div class="nav-container">
             <div class="logo-wrapper">
-                <a href="{% url 'reviews:home' %}"><img src="{% static 'images/yht-logo-left-aligned.png' %}" /></a>
+                <a href="{% url 'tournaments:landing' %}"><img src="{% static 'images/yht-logo-left-aligned.png' %}" /></a>
             </div>
             <div class="nav-button">
                 <i class="fa-solid fa-bars"></i>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="navlist-wrapper">
                     <ul class="nav-list">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'tournaments:landing' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'tournaments:index' %}">Tournaments</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Restaurants</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Entertainment</a></li>

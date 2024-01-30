@@ -11,21 +11,21 @@
 {% endblock %}
 
 {% block content %}
-<section class="jumbotron" style="background-image: url('{% static 'images/background.jpg' %}')">
-    <div class="container">
-        <div class="title-actions-wrapper">
-            <div class="title-container">
-                <div class="title-wrapper">
-                    <h1 class="title">Plan.</h1>
-                    <h1 class="title">Connect.</h1>
-                    <h1 id="review" class="title">Review.</h1>
-                    <p class="subtitle">The ultimate hockey tournament review system.</p>
-                </div>
-            </div>
-            <div class="action-container">
-                <a class="action-link" href="{% url 'tournaments:index' %}"><i class="fa-solid fa-hockey-puck"></i> Tournaments <i class="fa-solid fa-square-arrow-up-right"></i></a>
-            </div>
+<section class="section">
+    <div class="banner top">
+        <div class="container">
+            <h1 class="banner-title">Tournaments</h1>
         </div>
     </div>
 </section>
+<div class="container search-container">
+    <div class="search-wrapper">
+        <input id="search-input" type="text" />
+        <button class="button search" id="search-button">Search</button>
+    </div>
+</div>
+<div class="container filter-container">
+    <button class="button filter" id="filter-button">Filters <i class="fa-solid fa-filter"></i></button>
+</div>
+
 {% endblock %}

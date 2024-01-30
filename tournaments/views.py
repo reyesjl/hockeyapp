@@ -5,6 +5,18 @@
 """
 from django.shortcuts import render
 
+def landing(request):
+    """
+    Renders the landing page for the entire app.
+
+    Parameters:
+    - request: HttpRequest object
+
+    Returns:
+    - HttpResponse object rendering the 'main/index.html' template
+    """
+    return render(request, 'main/landing.html', {})
+
 def index(request):
     """
     Renders the index page for the tournaments app.
