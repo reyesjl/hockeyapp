@@ -58,6 +58,7 @@
     border: 1px solid black;
     color: black;
     background: white;
+    cursor: pointer;
 }
 
 .metasection {
@@ -142,6 +143,26 @@
     justify-content: flex-end;
 }
 
+.title-action-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.action-link {
+    padding: 8px;
+    text-decoration: none;
+    background: darkgreen;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.action-link:hover {
+    background: black;
+    color: white;
+}
+
 .review-title {
     font-weight: bold;
 }
@@ -163,5 +184,15 @@
 
     .metasection-wrapper {
         flex-direction: column;
+    }
+
+    .action-link {
+        text-align: center;
+        width: 100%;
+    }
+
+    .title-action-wrapper {
+        margin-bottom: 50px;
+        flex-wrap: wrap;
     }
 }
