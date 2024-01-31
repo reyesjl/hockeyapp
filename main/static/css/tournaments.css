@@ -33,6 +33,11 @@
     width: 100%;
 }
 
+input::placeholder {
+    color: rgb(203, 203, 203);
+    font-size: 1rem;
+}
+
 .button {
     padding: 13px;
     background: darkgreen;

@@ -47,6 +47,19 @@
     font-weight: normal;
 }
 
+.month-filter-wrapper {
+    padding-bottom: 20px;
+}
+
+.month-filter-wrapper select {
+    outline: none;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid black;
+    color: black;
+    background: white;
+}
+
 .metasection {
     padding: 40px 0;
     padding-bottom: 80px;
