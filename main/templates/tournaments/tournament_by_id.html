@@ -41,13 +41,19 @@
                 <i class="fa-solid fa-location-dot"></i> {{ tournament.location }}
             </a>
             <p class="tournament-rinks">Rinks Played In: {{ tournament_metadata.count_rinks }}</p>
-            <div class="thumbs-wrapper">
-                <span class="likes">
-                    <i class="fa-regular fa-thumbs-up"></i> {{ tournament_metadata.count_thumbs_up }}
-                </span>
-                <span class="dislikes">
-                    <i class="fa-regular fa-thumbs-down"></i> {{ tournament_metadata.count_thumbs_down }}
-                </span>
+            <div class="thumbs-actions-container">
+                <div class="thumbs-wrapper">
+                    <span class="likes">
+                        <i class="fa-regular fa-thumbs-up"></i> {{ tournament_metadata.count_thumbs_up }}
+                    </span>
+                    <span class="dislikes">
+                        <i class="fa-regular fa-thumbs-down"></i> {{ tournament_metadata.count_thumbs_down }}
+                    </span>
+                </div>
+                <div class="nearby-actions">
+                    <a class="nearby-link" href="#"><i class="fa-solid fa-utensils"></i> Nearby Restaurants</a>
+                    <a class="nearby-link" href="#"><i class="fa-regular fa-comments"></i> Nearby Entertainment</a>
+                </div>
             </div>
         </div>
     </div>

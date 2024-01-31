@@ -34,12 +34,34 @@
     margin-right: 1rem;
 }
 
-.thumbs-wrapper {
+.thumbs-actions-container {
     margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid gray;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.thumbs-wrapper {
     color: white;
     display: flex;
     gap: .8rem;
-    justify-content: flex-end;
+}
+
+.nearby-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.nearby-link {
+    color: goldenrod;
+}
+
+.nearby-link:hover {
+    color: gray;
 }
 
 .section-title {
