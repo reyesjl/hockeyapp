@@ -19,7 +19,7 @@ class TournamentReview(BaseReviewModel):
     rating_comms = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     runs_on_time = models.CharField(choices=choices.DELAY_OPTIONS, max_length=22, default='Runs Ontime')
     
-    parking_size = models.CharField(choices.PARKING_OPTIONS, max_length=6, default='Medium')
+    parking_size = models.CharField(choices=choices.PARKING_OPTIONS, max_length=6, default='Medium')
     parking_valet = models.CharField(choices=choices.BOOL_OPTIONS, max_length=3, default='No')
     parking_cost = models.CharField(choices=choices.PAID_OPTIONS, max_length=4, default='Free')
     parking_notes = models.TextField(max_length=250, default='empty')
