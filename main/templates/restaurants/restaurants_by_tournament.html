@@ -15,8 +15,11 @@
 <section class="section">
     <div class="banner top">
         <div class="container">
-            <h1 class="banner-title">Restaurants</h1>
-            <p>Nearby Tournament name</p>
+            <h1 class="banner-title">Nearby Restaurants</h1>
+            <div class="locale-wrapper">
+                <p class="locale-tournament"><i class="fa-solid fa-trophy"></i> {{ tournament.name }}</p>
+                <p class="locale-location"><i class="fa-solid fa-location-crosshairs"></i> {{ tournament.location }}</p>
+            </div>
         </div>
     </div>
 </section>
@@ -32,7 +35,18 @@
 </div>
 {% endcomment %}
 <div class="container restaurants-container">
-    
+    <ul class="restaurants-list">
+        {% for restaurant in restaurants %}
+            <li class="restaurant-item">
+                <a class="restaurant-link" href="#">{{ restaurant.name }}</a>
+            </li>
+            {% empty %}
+            <div class="empty-list">
+                <p>No restaurants found.</p>
+                <p><a class="add-link" href="#">Add a Restaurant</a></p>
+            </div>
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

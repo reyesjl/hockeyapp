@@ -1,0 +1,57 @@
+.section {
+
+}
+
+.banner.top {
+    background: linear-gradient(black, darkgreen);
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.search-container {
+    padding-top: 10px;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#search-input {
+    padding: 10px;
+    outline: none;
+    border: none;
+    background: rgb(123, 123, 123);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+input::placeholder {
+    color: rgb(203, 203, 203);
+    font-size: 1rem;
+}
+
+.banner-title {
+    font-weight: normal;
+    color: white;
+    font-size: 2rem;
+}
+
+.locale-wrapper {
+    color: white;
+}
+
+.locale-tournament {
+    font-weight: bold;
+}
+
+.locale-location {
+    font-style: italic;
+}
