@@ -1,0 +1,20 @@
+.section {
+
+}
+
+.banner.top {
+    background: linear-gradient(black, darkgreen);
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.banner-title {
+    font-weight: normal;
+    color: white;
+    font-size: 2rem;
+}
