@@ -44,22 +44,24 @@ def tournament_by_id(request, tournament_id):
         'half_star': half_star_list,
         'empty_stars': empty_stars_list,
     }
+    
     return render(request, 'tournaments/tournament_by_id.html', context)
 
 
 def tournaments_by_location(request, city, state):
     locations = Location.objects.filter(city=city, state=state)
     tournaments = Tournament.objects.filter(location__in=locations)
+    
     context = {
         'city': city,
         'state': state,
         'tournaments': tournaments,
     }
+
     return render(request, 'tournaments/tournaments_by_location.html', context)
 
 def add(request):
     pass
 
 def get(request, tournament_id):
-
     pass

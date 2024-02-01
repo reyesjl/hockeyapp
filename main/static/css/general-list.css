@@ -1,0 +1,23 @@
+.general-list {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    padding-top: 40px;
+    list-style-type: none;
+    gap: .35rem;
+    flex-wrap: wrap;
+}
+
+.general-link {
+    padding: 8px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.general-link:hover {
+    background-color: black;
+    color: white;
+}

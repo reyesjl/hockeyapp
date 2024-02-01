@@ -17,3 +17,15 @@ def restaurants_by_tournament(request, tournament_id):
     }
 
     return render(request, 'restaurants/restaurants_by_tournament.html', context)
+
+def restaurants_by_location(request, city, state):
+    locations = Location.objects.filter(city=city, state=state)
+    restaurants = Restaurant.objects.filter(location__in=locations)
+
+    context = {
+        'city': city,
+        'state': state,
+        'restaurants': restaurants,
+    }
+    
+    return render(request, 'restaurants/restaurants_by_location.html', context)
