@@ -3,7 +3,7 @@
 }
 
 .banner.top {
-    background: linear-gradient(black, steelblue);
+    background: linear-gradient(indigo, steelblue);
     padding-top: 120px;
     padding-bottom: 60px;
 }

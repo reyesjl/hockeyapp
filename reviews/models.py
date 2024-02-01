@@ -1,5 +1,7 @@
 from . import choices
 from django.db import models
+from tournaments.models import Tournament
+from restaurants.models import Restaurant
 from django.core.validators import MinValueValidator, MaxValueValidator, MaxLengthValidator
 
 class BaseReviewModel(models.Model):
@@ -11,6 +13,7 @@ class BaseReviewModel(models.Model):
         abstract = True
 
 class TournamentReview(BaseReviewModel):
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     thumb_updown = models.CharField(choices=choices.THUMB_OPTIONS, max_length=11, default='Thumbs Up')
     rating_reffing = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     rating_comms = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
