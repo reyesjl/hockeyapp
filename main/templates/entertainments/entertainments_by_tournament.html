@@ -8,6 +8,7 @@
     <meta name="description" content="Displays all entertainment options near a given tournament's location.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/entertainments_by_tournament.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general-list.css' %}">
     <script src="{% static 'js/entertainments_by_tournament.js' %}"></script>
 {% endblock %}
 
@@ -35,10 +36,10 @@
 </div>
 {% endcomment %}
 <div class="container entertainments-container">
-    <ul class="entertainments-list">
+    <ul class="general-list">
         {% for entertainment in entertainments %}
-            <li class="entertainment-item">
-                <a class="entertainment-link" href="#">{{ entertainment.name }}</a>
+            <li class="general-item">
+                <a class="general-link" href="#">{{ entertainment.name }}</a>
             </li>
             {% empty %}
             <div class="empty-list">
