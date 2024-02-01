@@ -11,6 +11,6 @@ def entertainments_by_tournament(request, tournament_id):
         'tournament': tournament,
     }
     
-    return render(request, '')
+    return render(request, 'entertainments/entertainments_by_tournament.html', context)
 
 
