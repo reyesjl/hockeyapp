@@ -1,0 +1,85 @@
+.section {
+
+}
+
+.banner.top {
+    background: linear-gradient(goldenrod, darkred);
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.search-container {
+    padding-top: 10px;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#search-input {
+    padding: 10px;
+    outline: none;
+    border: none;
+    background: rgb(123, 123, 123);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+input::placeholder {
+    color: rgb(203, 203, 203);
+    font-size: 1rem;
+}
+
+.banner-title {
+    font-weight: normal;
+    color: white;
+    font-size: 2rem;
+}
+
+.locale-wrapper {
+    color: white;
+}
+
+.locale-tournament {
+    font-weight: bold;
+}
+
+.locale-location {
+    font-style: italic;
+}
+
+.add-link {
+    color: darkgreen;
+}
+
+.city-list {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    padding-top: 40px;
+    list-style-type: none;
+    gap: .35rem;
+    flex-wrap: wrap;
+}
+
+.city-link {
+    padding: 8px;
+    color: black;
+    text-decoration: none;
+    display: block;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.city-link:hover {
+    background-color: black;
+    color: white;
+}
