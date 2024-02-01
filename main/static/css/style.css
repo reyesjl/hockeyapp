@@ -43,7 +43,7 @@ body {
 
 .hidden-navigation-bar {
     position: fixed;
-    top: -100%;
+    top: -120%;
     width: 100%;
     background-color: black;
     transition: top 0.3s ease;
