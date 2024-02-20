@@ -1,11 +1,12 @@
 from django.db import models
-from reviews.choices import PAID_OPTIONS, BOOL_OPTIONS, PARKING_OPTIONS
+from reviews.choices import PAID_OPTIONS, BOOL_OPTIONS, PARKING_OPTIONS, MONTH_OPTIONS
 from locations.models import Location, MajorCity
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Tournament(models.Model):
     name = models.CharField(max_length=100)
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True)
+    month = models.CharField(max_length=50, choices=MONTH_OPTIONS, default='')
     rating_overall = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     
     def calculate_star_counts(self):
