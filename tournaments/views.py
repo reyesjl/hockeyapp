@@ -32,7 +32,7 @@ def index(request):
     Returns:
     - HttpResponse object rendering the 'tournaments/index.html' template
     """
-    unique_states = MajorCity.objects.values('state').annotate(num_tournaments=Count('tournament'))
+    unique_states = MajorCity.objects.values('state').annotate(num_tournaments=Count('tournament')).order_by('state')
     return render(request, 'tournaments/index.html', {'states':unique_states})
 
 def tournament_by_id(request, tournament_id):
