@@ -71,6 +71,19 @@ def tournaments_by_state(request, state):
 
     return render(request, 'tournaments/tournaments_by_state.html', context)
 
+def tournaments_by_city(request, state, city):
+    # Filter tournaments by the selected city
+    city_tournaments = Tournament.objects.filter(majorcity__cityname=city).order_by('name')
+    
+    context = {
+        'city': city,
+        'state': state,
+        'city_tournaments': city_tournaments,
+    }
+
+    return render(request, 'tournaments/tournaments_by_city.html', context)
+
+
 def add(request):
     pass
 

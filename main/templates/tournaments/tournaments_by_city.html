@@ -7,7 +7,8 @@
 {% block extra_head %}
     <meta name="description" content="Displays all tournaments at a given city and state.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{% static 'css/tournaments_by_city.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tournaments_by_state.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general-list.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -15,21 +16,20 @@
     <div class="banner top">
         <div class="container">
             <p class="banner-subtitle">Tournaments in</p>
-            <h1 class="banner-title">{{ state }}</h1>
+            <h1 class="banner-title">{{ city }}</h1>
         </div>
     </div>
 </section>
 
 <div class="container section-container">
-    <h3 class="title">Select a City</h3>
+    <h3 class="title">Select a Tournament</h3>
     <div class="city-container">
-        {% for city_info in city_tournaments %}
-            <a class="city" href="{% url 'tournaments:tournaments_by_city' state city_info.city %}">
-                <p class="state_code">{{ city_info.city }}</p> 
-                <p>{{ city_info.num_tournaments }}</p>
+        {% for tournament in city_tournaments %}
+            <a class="city" href="#">
+                <p class="state_code">{{ tournament.name }}</p> 
             </a>
             {% empty %}
-            <p>No locations exist.</p>
+            <p>No tournaments at this location yet.</p>
         {% endfor %}
     </div>
 </div>
