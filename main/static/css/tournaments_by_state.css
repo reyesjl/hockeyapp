@@ -1,0 +1,76 @@
+.section {
+
+}
+
+.banner.top {
+    background: linear-gradient(indigo, steelblue);
+    padding-top: 120px;
+    padding-bottom: 60px;
+}
+
+.banner-title {
+    font-weight: normal;
+    color: white;
+    font-size: 2rem;
+}
+
+.banner-subtitle {
+    color: white;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.button {
+    padding: 13px;
+    background: darkgreen;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add-link {
+    color: darkgreen;
+}
+
+.section-container {
+    margin-top: 40px;
+}
+
+.city-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+.city {
+    width: 45%;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    transition: .3s all;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+}
+
+.city:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+@media screen and (max-width: 768px) {
+    .city {
+        width: 40%;
+    }
+}

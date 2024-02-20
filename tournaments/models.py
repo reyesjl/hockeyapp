@@ -1,11 +1,11 @@
 from django.db import models
 from reviews.choices import PAID_OPTIONS, BOOL_OPTIONS, PARKING_OPTIONS
-from locations.models import Location
+from locations.models import Location, MajorCity
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Tournament(models.Model):
     name = models.CharField(max_length=100)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True)
     rating_overall = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     
     def calculate_star_counts(self):
@@ -34,7 +34,7 @@ class Tournament(models.Model):
         return whole_stars_list, half_star_list, empty_stars_list
 
     def __str__(self):
-        return f'{self.name} - {self.location.city}'
+        return f'{self.name} - {self.majorcity}'
 
 class TournamentMetadata(models.Model):
     tournament = models.OneToOneField(Tournament, on_delete=models.CASCADE, unique=True)
@@ -57,4 +57,9 @@ class TournamentMetadata(models.Model):
 
     def __str__(self):
         return f'{self.tournament.name}, Company: {self.tournament_company}'
+
+class Rink(models.Model):
+    name = models.CharField(max_length=100, default='')
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    address = models.ForeignKey(Location, on_delete=models.CASCADE)
 

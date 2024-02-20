@@ -37,9 +37,13 @@
                 </div>
             </div>
             <h1 class="banner-title">{{ tournament.name }}</h1>
-            <a class="tournament-location" href="https://www.google.com/maps/search/?api=1&query={{ tournament.location|urlencode }}" target="_blank">
-                <i class="fa-solid fa-location-dot"></i> {{ tournament.location }}
-            </a>
+            <div class="rink_list">
+                {% for rink in rinks %}
+                    <a class="tournament-location" href="https://www.google.com/maps/search/?api=1&query={{ rink.address|urlencode }}" target="_blank">
+                        <i class="fa-solid fa-location-dot"></i> {{ rink.address }}
+                    </a>
+                {% endfor %}
+            </div>
             <p class="tournament-rinks">Rinks Played In: {{ tournament_metadata.count_rinks }}</p>
             <div class="thumbs-actions-container">
                 <div class="thumbs-wrapper">

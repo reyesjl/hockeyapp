@@ -64,3 +64,35 @@ input::placeholder {
     color: white;
     font-size: 2rem;
 }
+
+.section-container {
+    margin-top: 40px;
+}
+
+.state-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+.state {
+    width: 15%;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 10px;
+    transition: .3s all;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+}
+
+.state:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: .3s all;
+}

@@ -9,5 +9,5 @@ urlpatterns = [
     # Begin normally formatted routes for this app
     path('tournaments/', views.index, name='index'),
     path('tournaments/<int:tournament_id>/', views.tournament_by_id, name='tournament_by_id'),
-    path('tournaments/<str:city>/<str:state>/', views.tournaments_by_location, name='tournaments_by_location'),
+    path('tournaments/<str:state>/', views.tournaments_by_state, name='tournaments_by_state'),
 ]

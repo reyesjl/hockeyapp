@@ -16,3 +16,10 @@ class Location(models.Model):
 
     class Meta:
         unique_together = ('street', 'city', 'state')
+
+class MajorCity(models.Model):
+    cityname = models.CharField(max_length=100, default='')
+    state = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return f'{self.cityname}, {self.state}'
