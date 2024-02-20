@@ -72,3 +72,18 @@ ENTERTAINMENT_OPTIONS = [
     ('Parades or community gatherings', 'Parades or community gatherings'),
     ('Community sports events', 'Community sports events'),
 ]
+
+MONTH_OPTIONS = [
+    ("January", "January"),
+    ("February", "February"),
+    ("March", "March"),
+    ("April", "April"),
+    ("May", "May"),
+    ("June", "June"),
+    ("July", "July"),
+    ("August", "August"),
+    ("September", "September"),
+    ("October", "October"),
+    ("November", "November"),
+    ("December", "December"),
+]
