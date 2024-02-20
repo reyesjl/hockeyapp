@@ -100,7 +100,7 @@ def tournament_review(request, tournament_id):
             review = form.save(commit=False)
             review.tournament = tournament
             review.save()
-            return redirect('success_url')  # Redirect to a success page
+            return redirect('short_review_success')  # Redirect to a success page
     else:
         form = TournamentReviewForm()
     return render(request, 'tournaments/tournament_review.html', {'form': form})
@@ -113,11 +113,13 @@ def tournament_short_review(request, tournament_id):
             review = form.save(commit=False)
             review.tournament = tournament
             review.save()
-            return redirect('success_url')  # Redirect to a success page
+            return redirect('short_review_success')  # Redirect to a success page
     else:
         form = TournamentShortReviewForm()
     return render(request, 'tournaments/tournament_short_review.html', {'form': form})
 
+def short_review_success(request):
+    return render(request, 'tournaments/short_review_success.html')
 
 def add(request):
     pass

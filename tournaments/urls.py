@@ -13,4 +13,5 @@ urlpatterns = [
     path('tournaments/<str:state>/<str:city>/', views.tournaments_by_city, name='tournaments_by_city'),
     path('tournaments/review/<int:tournament_id>/', views.tournament_review, name='tournament_review'),
     path('tournaments/review/short/<int:tournament_id>/', views.tournament_short_review, name='tournament_short_review'),
+    path('short-review/success/', views.short_review_success, name='short_review_success'),
 ]
