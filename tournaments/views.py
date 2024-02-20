@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
 from locations.models import Location, MajorCity
 from .models import Tournament, TournamentMetadata, Rink
-from reviews.models import TournamentReview
+from reviews.models import TournamentReview, TournamentShortReview
 from reviews.forms import TournamentReviewForm, TournamentShortReviewForm
 
 def landing(request):
@@ -39,7 +39,11 @@ def tournament_by_id(request, tournament_id):
     tournament = get_object_or_404(Tournament, id=tournament_id)
     whole_stars_list, half_star_list, empty_stars_list = tournament.calculate_star_counts()
     tournament_metadata = TournamentMetadata.objects.filter(tournament=tournament).first()
-    tournament_reviews = TournamentReview.objects.filter(tournament_id=tournament_id)
+
+    # Fetch both short and detailed reviews
+    detailed_reviews = TournamentReview.objects.filter(tournament_id=tournament_id)
+    short_reviews = TournamentShortReview.objects.filter(tournament_id=tournament_id)
+
     rinks = Rink.objects.filter(tournament=tournament)
 
     context = {

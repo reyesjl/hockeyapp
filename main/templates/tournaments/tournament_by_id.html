@@ -140,23 +140,23 @@
                     </select>
                 </div>
                 <div class="metasection-wrapper reviews">
-                    {% for review in reviews %}
-                    <a class="meta-item review" data-month="{{ review.date_of_review|date:'F' }}" href="">
-                        <div class="review-data">
-                            <div class="review-date-rating">
-                                <span class="month">{{ review.date_of_review|date:'F' }}</span>
-                                <span class="rating-score">{{ review.rating_reffing }} <i class="fa-solid fa-star"></i></span>
+                    {% for review in short_reviews %}
+                        <a class="meta-item review" data-month="{{ review.date_of_review|date:'F' }}" href="">
+                            <div class="review-data">
+                                <div class="review-date-rating">
+                                    <span class="month">{{ review.date_of_review|date:'F' }}</span>
+                                    <span class="rating-score">{{ review.overall_rating }} <i class="fa-solid fa-star"></i></span>
+                                </div>
+                                <h4 class="review-title">{{ review.title }}</h4>
+                                <p>{{ review.review_text|truncatechars:200 }}</p>
+                                <!-- You can customize the display of thumb up/down here if needed -->
+                                <div class="review-thumb">
+                                    <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
+                                </div>
                             </div>
-                            
-                            <h4 class="review-title">{{ review.title }}</h4>
-                            <p>{{ review.review_text|truncatechars:200 }}</p>
-                            <div class="review-thumb">
-                                <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
                     {% empty %}
-                    <p>No reviews found for this tournament.</p>
+                        <p>No short reviews found for this tournament.</p>
                     {% endfor %}
                 </div>
             </div>
