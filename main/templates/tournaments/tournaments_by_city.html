@@ -25,7 +25,7 @@
     <h3 class="title">Select a Tournament</h3>
     <div class="city-container">
         {% for tournament in city_tournaments %}
-            <a class="city" href="#">
+            <a class="city" href="{% url 'tournaments:tournament_by_id' tournament.id %}">
                 <p class="state_code">{{ tournament.name }}</p> 
             </a>
             {% empty %}
