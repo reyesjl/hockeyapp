@@ -53,7 +53,7 @@ def tournament_by_id(request, tournament_id):
         'half_star': half_star_list,
         'empty_stars': empty_stars_list,
         'short_reviews': short_reviews,
-        'long_reviews': long_reviews,
+        'detailed_reviews': detailed_reviews,
         'rinks': rinks,
     }
     
