@@ -96,3 +96,7 @@ input::placeholder {
     cursor: pointer;
     transition: .3s all;
 }
+
+#map {
+    height: 400px;
+}
