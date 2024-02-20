@@ -57,11 +57,13 @@
 }
 
 .nearby-link {
-    color: goldenrod;
+    color: gray;
+    pointer-events: none;
 }
 
 .nearby-link:hover {
     color: gray;
+    cursor: none;
 }
 
 .section-title {

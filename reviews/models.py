@@ -29,3 +29,7 @@ class TournamentReview(BaseReviewModel):
     stay_and_play = models.CharField(choices=choices.BOOL_OPTIONS, max_length=3, default='No')
     rating_hotels = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     extended_checkout = models.CharField(choices=choices.BOOL_OPTIONS, max_length=3, default='Idk')
+
+class TournamentShortReview(BaseReviewModel):
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    overall_rating = models.DecimalField(max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])

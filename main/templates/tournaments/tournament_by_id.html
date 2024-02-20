@@ -119,7 +119,7 @@
             <div class="container ratings">
                 <div class="title-action-wrapper">
                     <h4 class="section-title">User Reviews</h4>
-                    <a class="action-link" href="#">Add Review +</a>
+                    <a class="action-link" href="{% url 'tournaments:tournament_short_review' tournament.id %}">Add Review +</a>
                 </div>
                 <div class="month-filter-wrapper">
                     <label for="monthSelect">Filter: </label>
@@ -140,48 +140,24 @@
                     </select>
                 </div>
                 <div class="metasection-wrapper reviews">
-                    <a class="meta-item review" data-month="January" href="">
+                    {% for review in reviews %}
+                    <a class="meta-item review" data-month="{{ review.date_of_review|date:'F' }}" href="">
                         <div class="review-data">
                             <div class="review-date-rating">
-                                <span class="month">January</span>
-                                <span class="rating-score">4.8 <i class="fa-solid fa-star"></i></span>
+                                <span class="month">{{ review.date_of_review|date:'F' }}</span>
+                                <span class="rating-score">{{ review.rating_reffing }} <i class="fa-solid fa-star"></i></span>
                             </div>
                             
-                            <h4 class="review-title">Subject of the review</h4>
-                            <p>This is a text user review trimmed to about 50-90 chars ...</p>
+                            <h4 class="review-title">{{ review.title }}</h4>
+                            <p>{{ review.review_text|truncatechars:200 }}</p>
                             <div class="review-thumb">
                                 <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
                             </div>
                         </div>
                     </a>
-                    <a class="meta-item review" data-month="January" href="">
-                        <div class="review-data">
-                            <div class="review-date-rating">
-                                <span class="month">January</span>
-                                <span class="rating-score">4.8 <i class="fa-solid fa-star"></i></span>
-                            </div>
-                            
-                            <h4 class="review-title">Subject of the review</h4>
-                            <p>This is a text user review trimmed to about 50-90 chars ...</p>
-                            <div class="review-thumb">
-                                <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                    <a class="meta-item review" data-month="March" href="">
-                        <div class="review-data">
-                            <div class="review-date-rating">
-                                <span class="month">March</span>
-                                <span class="rating-score">4.8 <i class="fa-solid fa-star"></i></span>
-                            </div>
-                            
-                            <h4 class="review-title">Subject of the review</h4>
-                            <p>This is a text user review trimmed to about 50-90 chars ...</p>
-                            <div class="review-thumb">
-                                <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
-                            </div>
-                        </div>
-                    </a>
+                    {% empty %}
+                    <p>No reviews found for this tournament.</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
