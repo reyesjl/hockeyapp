@@ -66,9 +66,3 @@
     cursor: pointer;
     transition: .3s all;
 }
-
-@media screen and (max-width: 768px) {
-    .city {
-        width: 40%;
-    }
-}
