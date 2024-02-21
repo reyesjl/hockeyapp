@@ -22,6 +22,7 @@
 
 <div class="container section-container">
     <h3 class="title">Select a City</h3>
+    <p>Choose a city from the list below.</p>
     <div class="city-container">
         {% for city_info in city_tournaments %}
             <a class="city" href="{% url 'tournaments:tournaments_by_city' state city_info.city %}">
