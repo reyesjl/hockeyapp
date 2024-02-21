@@ -74,14 +74,12 @@ input::placeholder {
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
-    margin-bottom: 40px;
-    gap: 10px;
+    margin-bottom: 100px;
 }
 
 .state {
-    width: 15%;
-    border: 1px solid black;
-    border-radius: 4px;
+    width: 100%;
+    border-bottom: 1px solid black;
     padding: 10px;
     transition: .3s all;
     display: flex;
@@ -97,6 +95,13 @@ input::placeholder {
     transition: .3s all;
 }
 
+.map-container {
+    max-width: 90%;
+    width: 80%;
+    margin: 40px auto;
+}
+
 #map {
     height: 300px;
+    z-index: 0;
 }

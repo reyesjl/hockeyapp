@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     var map = L.map('map').setView([38.01,-95.84], 3);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
     }).addTo(map);
-
+    
     // Define your data
     var data = [
         { name: 'Alabama', code: 'AL', lat: 32.806671, lng: -86.791130 },

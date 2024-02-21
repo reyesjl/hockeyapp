@@ -44,6 +44,7 @@ def tournament_by_id(request, tournament_id):
     detailed_reviews = TournamentReview.objects.filter(tournament_id=tournament_id)
     short_reviews = TournamentShortReview.objects.filter(tournament_id=tournament_id)
 
+    # Fetch all rinks
     rinks = Rink.objects.filter(tournament=tournament)
 
     context = {
