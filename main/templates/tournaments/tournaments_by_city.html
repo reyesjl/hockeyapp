@@ -22,7 +22,7 @@
 
 <div class="container section-container">
     <h3 class="title">Select a Tournament</h3>
-    <p>Select a tournament from the list to view its details, read reviews, and find nearby restaurants and entertainment.</p>
+    <p>Choose a tournament to view its details, read reviews, and find nearby restaurants and entertainment.</p>
     <div class="city-container">
         {% for tournament in city_tournaments %}
             <a class="city" href="{% url 'tournaments:tournament_by_id' tournament.id %}">
