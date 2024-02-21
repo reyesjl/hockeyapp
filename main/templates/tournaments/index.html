@@ -32,6 +32,15 @@
 <div class="container section-container">
     <h3 class="title">Select a State</h3>
     <p>Find the state in the list below or use the map above.</p>
+
+    <div class="table-labels">
+        <div class="state-label">
+            State
+        </div>
+        <div class="count-label">
+            Tournaments
+        </div>
+    </div>
     <div class="state-container">
         {% for state in states %}
             <a class="state" href="{% url 'tournaments:tournaments_by_state' state.state %}">

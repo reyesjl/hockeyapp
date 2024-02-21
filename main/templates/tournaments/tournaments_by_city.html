@@ -23,10 +23,19 @@
 <div class="container section-container">
     <h3 class="title">Select a Tournament</h3>
     <p>Choose a tournament to view its details, read reviews, and find nearby restaurants and entertainment.</p>
-    <div class="city-container">
+    <div class="table-labels">
+        <div class="state-label">
+            Tournament
+        </div>
+        <div class="count-label">
+            Rating
+        </div>
+    </div>
+    <div class="tournaments-container">
         {% for tournament in city_tournaments %}
-            <a class="city" href="{% url 'tournaments:tournament_by_id' tournament.id %}">
-                <p class="state_code">{{ tournament.name }}</p> 
+            <a class="tournament" href="{% url 'tournaments:tournament_by_id' tournament.id %}">
+                <p class="tournament-name">{{ tournament.name }}</p>
+                <p class="tournament-rating">{{ tournament.rating_overall }}</p> 
             </a>
             {% empty %}
             <p>No tournaments at this location yet.</p>

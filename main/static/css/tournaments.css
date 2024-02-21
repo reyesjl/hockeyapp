@@ -73,7 +73,6 @@ input::placeholder {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
     margin-bottom: 100px;
 }
 
@@ -104,4 +103,13 @@ input::placeholder {
 #map {
     height: 300px;
     z-index: 0;
+}
+
+.table-labels {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 40px;
+    padding: 10px;
+    border-bottom: 1px solid gray;
 }
