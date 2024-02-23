@@ -177,8 +177,8 @@
     justify-content: space-between;
 }
 
-.rink-list {
-
+.rink-list a {
+    color: black;
 }
 
 .month-slider {
