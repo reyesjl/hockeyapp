@@ -10,7 +10,7 @@ class Entertainment(models.Model):
     rating_overall = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
 
     def __str__(self):
-        return f'{self.name} - {self.majorcity.city}, {self.majorcity.state}'
+        return f'{self.name} - {self.majorcity}'
 
 class EntertainmentMetadata(models.Model):
     entertainment = models.OneToOneField(Entertainment, on_delete=models.CASCADE, unique=True)
