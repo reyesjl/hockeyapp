@@ -36,15 +36,18 @@
                     <span>({{tournament.rating_overall}})</span>
                 </div>
             </div>
+            <a class="favorite-link" href="">+ Add To Favorites</a>
             <h1 class="banner-title">{{ tournament.name }}</h1>
-            <div class="rink_list">
+            <div class="rink-list">
+                <p>Rinks:</p>
                 {% for rink in rinks %}
                     <a class="tournament-location" href="https://www.google.com/maps/search/?api=1&query={{ rink.address|urlencode }}" target="_blank">
                         <i class="fa-solid fa-location-dot"></i> {{ rink.address }}
                     </a>
+                    {% empty %}
+                    <p>No rinks have been added.</p>
                 {% endfor %}
             </div>
-            <p class="tournament-rinks">Rinks Played In: {{ tournament_metadata.count_rinks }}</p>
             <div class="thumbs-actions-container">
                 <div class="thumbs-wrapper">
                     <span class="likes">
@@ -62,105 +65,70 @@
         </div>
     </div>
 </section>
-<div class="metadata-container">
-    {% if tournament_metadata %}
-        <!-- Ratings Section -->
-        <div class="metasection ratings">
-            <div class="container ratings">
-                <h4 class="section-title">Average Ratings</h4>
-                <div class="metasection-wrapper">
-                    <div class="meta-item">
-                        <div class="meta-score">{{ tournament_metadata.rating_reffing }}</div>
-                        <div class="meta-label">Reffing Quality</div> 
+<div class="tournament-details">
+    <div class="container">
+        <h4 class="details-title">Tournament Details</h4>
+        <div class="details-wrapper">
+            <div class="detail-section">
+                <div class="detail-item">
+                    <div class="label">Reffing quality</div>
+                    <div class="value">{{ tournament_metadata.rating_reffing }}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">Communication quality</div>
+                    <div class="value">{{ tournament_metadata.rating_comms }}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">Hotels quality</div> 
+                    <div class="value">{{ tournament_metadata.rating_hotels }}</div>
+                </div>
+            </div>
+            <div class="detail-section">
+                <div class="detail-item">
+                    <div class="label">Parking cost</div>
+                    <div class="value">{{ tournament_metadata.parking_cost }}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">Parking valet</div>
+                    <div class="value">
+                        {% if tournament_metadata.parking_valet %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
                     </div>
-                    <div class="meta-item">
-                        <div class="meta-score">{{ tournament_metadata.rating_comms }}</div>
-                        <div class="meta-label">Communication Quality</div> 
-                    </div>
-
-                    <div class="meta-item">
-                        <div class="meta-score">{{ tournament_metadata.rating_hotels }}</div>
-                        <div class="meta-label">Hotel Quality</div>
-                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="label">Parking size</div>
+                    <div class="value">{{ tournament_metadata.parking_size }}</div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="tournament-reviews">
+    <div class="container">
+        <h4 class="reviews-title">Tournament Reviews</h4>
+        <div class="reviews-wrapper">
+            {% for review in short_reviews %}
+                <a class="review" data-month="{{ review.date_of_review|date:'F' }}" href="">
+                    <div class="review-data">
+                        <div class="review-title">{{ review.title }}</div>
+                        <div class="review-text">{{ review.review_text|truncatechars:200 }}</div>
 
-        <!-- Parking Section -->
-        <div class="metasection parking">
-            <div class="container ratings">
-                <h4 class="section-title">Average Parking</h4>
-                <div class="metasection-wrapper parking">
-                    <div class="meta-item">
-                        <div class="meta-score">{{ tournament_metadata.parking_size }}</div>
-                        <div class="meta-label">Parking Size</div> 
-                    </div>
-                    <div class="meta-item">
-                        <div class="meta-score">{{ tournament_metadata.parking_cost }}</div>
-                        <div class="meta-label">Parking Type</div> 
-                    </div>
-
-                    <div class="meta-item">
-                        <div class="meta-score">
-                            {% if tournament_metadata.parking_valet %}
-                                Yes
-                            {% else %}
-                                No
-                            {% endif %}
-                        </div>
-                        <div class="meta-label">Parking Valet</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Review Section -->
-        <div class="metasection reviews">
-            <div class="container ratings">
-                <div class="title-action-wrapper">
-                    <h4 class="section-title">User Reviews</h4>
-                    <a class="action-link" href="{% url 'tournaments:tournament_short_review' tournament.id %}">Add Review +</a>
-                </div>
-                <div class="month-filter-wrapper">
-                    <label for="monthSelect">Filter: </label>
-                    <select id="monthSelect" name="month">
-                        <option value="all">All</option>
-                        <option value="january">January</option>
-                        <option value="february">February</option>
-                        <option value="march">March</option>
-                        <option value="april">April</option>
-                        <option value="may">May</option>
-                        <option value="june">June</option>
-                        <option value="july">July</option>
-                        <option value="august">August</option>
-                        <option value="september">September</option>
-                        <option value="october">October</option>
-                        <option value="november">November</option>
-                        <option value="december">December</option>
-                    </select>
-                </div>
-                <div class="metasection-wrapper reviews">
-                    {% for review in short_reviews %}
-                        <a class="meta-item review" data-month="{{ review.date_of_review|date:'F' }}" href="">
-                            <div class="review-data">
-                                <div class="review-date-rating">
-                                    <span class="month">{{ review.date_of_review|date:'F' }}</span>
-                                    <span class="rating-score">{{ review.overall_rating }} <i class="fa-solid fa-star"></i></span>
-                                </div>
-                                <h4 class="review-title">{{ review.title }}</h4>
-                                <p>{{ review.review_text|truncatechars:200 }}</p>
-                                <!-- You can customize the display of thumb up/down here if needed -->
-                                <div class="review-thumb">
-                                    <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
-                                </div>
+                        <div class="review-meta">
+                            <div class="review-rating">{{ review.overall_rating }} <i class="fa-solid fa-star"></i></div>
+                            <div class="review-date">{{ review.date_of_review|date:'F' }}</div>
+                            <div class="review-thumb">
+                                <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
                             </div>
-                        </a>
-                    {% empty %}
-                        <p>No short reviews found for this tournament.</p>
-                    {% endfor %}
-                </div>
-            </div>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <p>No short reviews found for this tournament.</p>
+            {% endfor %}
         </div>
-    {% endif %}
+    </div>
 </div>
 {% endblock %}

@@ -3,31 +3,31 @@
 }
 
 .banner.top {
-    background: linear-gradient(black, darkblue);
     padding-top: 120px;
-    padding-bottom: 40px;
 }
 
 .banner-title {
     font-weight: normal;
-    color: white;
     font-size: 2rem;
 }
 
 .tournament-location {
-    color: white;
     display: block;
     width: fit-content;
 }
 
+.favorite-link {
+    display: block;
+    padding: 10px 0;
+}
+
 .tournament-rating {
-    color: white;
-    font-size: 1.1rem;
+    font-size: .9rem;
     display: flex;
 }
 
 .tournament-rinks {
-    color: white;
+
 }
 
 .star-rating {
@@ -45,7 +45,6 @@
 }
 
 .thumbs-wrapper {
-    color: white;
     display: flex;
     gap: .8rem;
 }
@@ -71,100 +70,26 @@
     font-weight: normal;
 }
 
-.month-filter-wrapper {
-    padding-bottom: 20px;
-}
-
-.month-filter-wrapper select {
-    outline: none;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid black;
-    color: black;
-    background: white;
-    cursor: pointer;
-}
-
-.metasection {
-    padding: 40px 0;
-    padding-bottom: 80px;
-}
-
-.metasection.ratings {
-    background: linear-gradient(darkblue, black);
-    color: white;
-}
-
-.metasection.parking {
-    background: black;
-    color: white;
-}
-
-.metasection-wrapper {
+.details-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
 }
 
-.meta-item {
-    padding: 50px 0;
-    text-align: center;
-    width: 100%;
-    border-radius: 8px;
+.detail-section {
+    padding: 0 10px;
+    width: 50%;
+    margin-bottom: 10px;
 }
 
-.meta-score {
-    font-size: 2rem;
-    font-style: italic;
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid gray;
 }
 
 .container {
-    max-width: 80%;
+    width: 70%;
     margin: 0 auto;
-}
-
-.metasection.parking .meta-item {
-    background: whitesmoke;
-    color: black;
-}
-
-.metasection-wrapper.reviews {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-.metasection.reviews {
-    background: whitesmoke;
-    color: black;
-}
-
-.metasection.reviews .meta-item.review {
-    border: 1px solid black;
-    padding: 10px;
-    color: black;
-    text-align: left;
-    text-decoration: none;
-    max-width: 20%;
-}
-
-.metasection.reviews .meta-item.review:hover {
-    background-color: black;
-    color: white;
-}
-
-.review-date-rating {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 10px;
-    font-style: italic;
-}
-
-.review-thumb {
-    display: flex;
-    justify-content: flex-end;
 }
 
 .title-action-wrapper {
@@ -187,29 +112,44 @@
     color: white;
 }
 
+.review {
+    display: block;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+.review:hover {
+    background: black;
+    color: white;
+}
+
 .review-title {
     font-weight: bold;
 }
+.review-data {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rink-list {
+
+}
 
 @media screen and (max-width: 960px) {
-    .metasection-wrapper.reviews { 
-        flex-direction: row;
-    }
-
-    .metasection.reviews .meta-item.review { 
-        max-width: 40%;
+    .container {
+        width: 90%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .metasection.reviews .meta-item.review { 
-        max-width: 100%;
-    }
-
-    .metasection-wrapper {
-        flex-direction: column;
-    }
-
     .action-link {
         text-align: center;
         width: 100%;
@@ -218,5 +158,13 @@
     .title-action-wrapper {
         margin-bottom: 50px;
         flex-wrap: wrap;
+    }
+
+    .details-wrapper {
+        flex-direction: column;
+    }
+
+    .detail-section {
+        width: auto;
     }
 }
