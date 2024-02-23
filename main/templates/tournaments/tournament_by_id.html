@@ -15,28 +15,30 @@
 <section class="section">
     <div class="banner top">
         <div class="container">
-            <div class="tournament-rating">
-                <div class="star-rating">
-                    <!-- Display whole stars -->
-                    {% for _ in whole_stars %}
-                        <i class="fa-solid fa-star"></i>
-                    {% endfor %}
+            <div class="rating-favorite-wrapper">
+                <div class="tournament-rating">
+                    <div class="star-rating">
+                        <!-- Display whole stars -->
+                        {% for _ in whole_stars %}
+                            <i class="fa-solid fa-star"></i>
+                        {% endfor %}
 
-                    <!-- Display half star -->
-                    {% for _ in half_star %}
-                        <i class="fa-regular fa-star-half-stroke"></i>
-                    {% endfor %}
+                        <!-- Display half star -->
+                        {% for _ in half_star %}
+                            <i class="fa-regular fa-star-half-stroke"></i>
+                        {% endfor %}
 
-                    <!-- Display empty stars -->
-                    {% for _ in empty_stars %}
-                        <i class="fa-regular fa-star"></i>
-                    {% endfor %}
+                        <!-- Display empty stars -->
+                        {% for _ in empty_stars %}
+                            <i class="fa-regular fa-star"></i>
+                        {% endfor %}
+                    </div>
+                    <div class="number-rating">
+                        <span>({{tournament.rating_overall}})</span>
+                    </div>
                 </div>
-                <div class="number-rating">
-                    <span>({{tournament.rating_overall}})</span>
-                </div>
+                <a class="favorite-link" href="">+ Add To Favorites</a>
             </div>
-            <a class="favorite-link" href="">+ Add To Favorites</a>
             <h1 class="banner-title">{{ tournament.name }}</h1>
             <div class="rink-list">
                 <p>Rinks:</p>
@@ -109,6 +111,17 @@
 <div class="tournament-reviews">
     <div class="container">
         <h4 class="reviews-title">Tournament Reviews</h4>
+        <div class="month-slider">
+            <div class="slide-button slide-left"><i class="fa-solid fa-caret-left"></i></div>
+            <div class="month-list">
+                <div class="month active">All</div>
+                <div class="month">January-March</div>
+                <div class="month">April-June</div>
+                <div class="month">July-September</div>
+                <div class="month">October-December</div>
+            </div>
+            <div class="slide-button slide-right"><i class="fa-solid fa-caret-right"></i></div>
+        </div>
         <div class="reviews-wrapper">
             {% for review in short_reviews %}
                 <a class="review" data-month="{{ review.date_of_review|date:'F' }}" href="">
@@ -117,11 +130,8 @@
                         <div class="review-text">{{ review.review_text|truncatechars:200 }}</div>
 
                         <div class="review-meta">
-                            <div class="review-rating">{{ review.overall_rating }} <i class="fa-solid fa-star"></i></div>
                             <div class="review-date">{{ review.date_of_review|date:'F' }}</div>
-                            <div class="review-thumb">
-                                <span class="thumb"><i class="fa-regular fa-thumbs-up"></i></span>
-                            </div>
+                            <div class="review-rating">{{ review.overall_rating }} <i class="fa-solid fa-star"></i></div>
                         </div>
                     </div>
                 </a>

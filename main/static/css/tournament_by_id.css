@@ -16,9 +16,25 @@
     width: fit-content;
 }
 
+.rating-favorite-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .favorite-link {
+    margin-top: 10px;
     display: block;
-    padding: 10px 0;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    width: fit-content;
+    border: 1px solid black;
+    background: darkgreen;
+}
+
+.favorite-link:hover {
+    background: black;
 }
 
 .tournament-rating {
@@ -112,13 +128,23 @@
     color: white;
 }
 
+.tournament-details {
+    margin-bottom: 50px;
+}
+
+.tournament-reviews {
+    margin-bottom: 50px;
+}
+
 .review {
     display: block;
+    opacity: 0;
     color: black;
     text-decoration: none;
     border: 1px solid black;
     padding: 10px;
     margin-bottom: 1rem;
+    transition: opacity 0.5s ease;
 }
 
 .review:hover {
@@ -126,14 +152,24 @@
     color: white;
 }
 
+.active-review {
+    opacity: 1;
+}
+
 .review-title {
     font-weight: bold;
 }
+
 .review-data {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
+.review-date {
+    color: gray;
+}
+
 .review-meta {
     display: flex;
     justify-content: space-between;
@@ -141,6 +177,57 @@
 
 .rink-list {
 
+}
+
+.month-slider {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slide-button {
+    border: 1px solid black;
+    background: darkgreen;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.slide-button:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+.slide-right {
+    text-align: right;
+}
+
+
+.month-list {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 151px;
+    height: 20px;
+    overflow: hidden; /* Added overflow to hide overflowing content */
+}
+
+.month {
+    position: absolute;
+    width: fit-content;
+    transition: transform 0.5s ease;
+    white-space: nowrap; 
+    transform: translateX(-1000%);
+}
+
+.month.active {
+    transform: translateX(0); /* Initially set active month at center */
 }
 
 @media screen and (max-width: 960px) {
