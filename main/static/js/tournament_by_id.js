@@ -4,46 +4,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const leftButton = document.querySelector(".slide-left");
     const rightButton = document.querySelector(".slide-right");
 
+    const monthRanges = [
+        ["All"], // Index 0 corresponds to "All" months
+        ["January", "February", "March"],
+        ["April", "May", "June"],
+        ["July", "August", "September"],
+        ["October", "November", "December"]
+    ];
+
     let currentIndex = 0;
 
     function filterReviews() {
-        const selectedMonth = months[currentIndex].textContent;
+        const selectedMonths = monthRanges[currentIndex];
         reviews.forEach(review => {
-            const reviewMonth = review.dataset.month;
-            if (selectedMonth === "All" || reviewMonth === selectedMonth) {
-                review.classList.add("active-review");
-            } else {
-                review.classList.remove("active-review");
-            }
+            const reviewMonth = review.dataset.month.trim();
+            const isActive = selectedMonths.includes(reviewMonth) || currentIndex === 0;
+            review.classList.toggle("active-review", isActive);
         });
     }
 
     function updateActiveMonth() {
         months.forEach((month, index) => {
-            if (index === currentIndex) {
-                month.classList.add("active");
-            } else {
-                month.classList.remove("active");
-            }
+            const isActive = index === currentIndex;
+            month.classList.toggle("active", isActive);
         });
     }
 
     leftButton.addEventListener("click", function () {
-        if (currentIndex === 0) {
-            currentIndex = months.length - 1;
-        } else {
-            currentIndex--;
-        }
+        currentIndex = (currentIndex === 0) ? monthRanges.length - 1 : currentIndex - 1;
         filterReviews();
         updateActiveMonth();
     });
 
     rightButton.addEventListener("click", function () {
-        if (currentIndex === months.length - 1) {
-            currentIndex = 0;
-        } else {
-            currentIndex++;
-        }
+        currentIndex = (currentIndex === monthRanges.length - 1) ? 0 : currentIndex + 1;
         filterReviews();
         updateActiveMonth();
     });
