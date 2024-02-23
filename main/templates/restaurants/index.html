@@ -37,14 +37,14 @@
             State
         </div>
         <div class="count-label">
-            Tournaments
+            Restaurants
         </div>
     </div>
     <div class="state-container">
         {% for state in states %}
-            <a class="state" href="{% url 'tournaments:tournaments_by_state' state.state %}">
+            <a class="state" href="{% url 'restaurants:restaurants_by_state' state.state %}">
                 <p class="state_code">{{ state.state }}</p> 
-                <p>{{ state.num_tournaments }}</p>
+                <p>{{ state.num_restaurants }}</p>
             </a>
             {% empty %}
             <p>No locations exist.</p>

@@ -1,29 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %} Nearby Restaurants {% endblock %}
+{% block title %} Location Page {% endblock %}
 
 {% load static %}
 
 {% block extra_head %}
-    <meta name="description" content="Displays all restaurants near a given tournament's location.">
+    <meta name="description" content="Displays all restaurants in a given city and state.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{% static 'css/restaurants_by_tournament.css' %}">
-    <link rel="stylesheet" href="{% static 'css/general-list.css' %}">
-    <script src="{% static 'js/restaurants_by_tournament.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/restaurants_by_city.css' %}">
 {% endblock %}
 
 {% block content %}
 <section class="section">
     <div class="banner top">
         <div class="container">
-            <h1 class="banner-title">Nearby Restaurants</h1>
-            <div class="locale-wrapper">
-                <p class="locale-tournament"><i class="fa-solid fa-trophy"></i> {{ tournament.name }}</p>
-                <p class="locale-location"><i class="fa-solid fa-location-crosshairs"></i> {{ tournament.majorcity }}</p>
-            </div>
+            <p class="banner-subtitle">Restaurants in</p>
+            <h1 class="banner-title">{{ city }}</h1>
         </div>
     </div>
 </section>
+
 <div class="container section-container">
     <h3 class="title">Select a Restaurant</h3>
     <p>Choose a restaurant to view its details and read reviews.</p>
@@ -36,13 +32,13 @@
         </div>
     </div>
     <div class="restaurants-container">
-        {% for restaurant in tournament_restaurants %}
+        {% for restaurant in city_restaurants %}
             <a class="restaurant" href="{% url 'restaurants:restaurant_by_id' restaurant.id %}">
                 <p class="restaurant-name">{{ restaurant.name }}</p>
                 <p class="restaurant-rating">{{ restaurant.rating_overall }}</p> 
             </a>
             {% empty %}
-            <p>No restaurants near this location yet.</p>
+            <p>No restaurants at this location yet.</p>
         {% endfor %}
     </div>
 </div>

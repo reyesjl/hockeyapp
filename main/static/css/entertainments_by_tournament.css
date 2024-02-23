@@ -59,3 +59,37 @@ input::placeholder {
 .add-link {
     color: darkgreen;
 }
+
+.entertainments-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.entertainment {
+    width: 100%;
+    border-bottom: 1px solid black;
+    padding: 10px;
+    transition: .3s all;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+}
+
+.entertainment:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: .3s all;
+}
+
+.table-labels {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 40px;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}

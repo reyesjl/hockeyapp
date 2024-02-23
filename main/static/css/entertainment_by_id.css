@@ -11,7 +11,7 @@
     font-size: 2rem;
 }
 
-.tournament-location {
+.entertainment-location {
     display: block;
     width: fit-content;
 }
@@ -37,13 +37,9 @@
     background: black;
 }
 
-.tournament-rating {
+.entertainment-rating {
     font-size: .9rem;
     display: flex;
-}
-
-.tournament-rinks {
-
 }
 
 .star-rating {
@@ -126,11 +122,11 @@
     color: white;
 }
 
-.tournament-details {
+.entertainment-details {
     margin-bottom: 50px;
 }
 
-.tournament-reviews {
+.entertainment-reviews {
     margin-bottom: 50px;
 }
 

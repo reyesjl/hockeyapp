@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Loop through the data and add markers to the map
     for (var i = 0; i < data.length; i++) {
         var marker = L.marker([data[i].lat, data[i].lng]).addTo(map);
-        var link = '<a href="' + data[i].code + '/">See State Tournaments</a>'; // Define the link
+        var link = '<a href="' + data[i].code + '/">See State Entertainment</a>'; // Define the link
         var popupContent = '<b>' + data[i].code + '</b><br>' + link; // Popup content with the link
         marker.bindPopup(popupContent); // Add a popup with the link
     }

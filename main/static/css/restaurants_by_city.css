@@ -3,39 +3,9 @@
 }
 
 .banner.top {
-    background: linear-gradient(goldenrod, darkred);
+    background: linear-gradient(indigo, steelblue);
     padding-top: 120px;
     padding-bottom: 60px;
-}
-
-.container {
-    max-width: 90%;
-    margin: 0 auto;
-}
-
-.search-container {
-    padding-top: 10px;
-}
-
-.search-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-#search-input {
-    padding: 10px;
-    outline: none;
-    border: none;
-    background: rgb(123, 123, 123);
-    border-radius: 12px;
-    color: white;
-    font-size: 1.2rem;
-    width: 100%;
-}
-
-input::placeholder {
-    color: rgb(203, 203, 203);
-    font-size: 1rem;
 }
 
 .banner-title {
@@ -44,20 +14,31 @@ input::placeholder {
     font-size: 2rem;
 }
 
-.locale-wrapper {
+.banner-subtitle {
     color: white;
 }
 
-.locale-tournament {
-    font-weight: bold;
+.container {
+    max-width: 90%;
+    margin: 0 auto;
 }
 
-.locale-location {
-    font-style: italic;
+.button {
+    padding: 13px;
+    background: darkgreen;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .add-link {
     color: darkgreen;
+}
+
+.section-container {
+    margin-top: 40px;
 }
 
 .restaurants-container {

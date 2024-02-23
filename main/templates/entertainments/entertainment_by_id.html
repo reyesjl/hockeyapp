@@ -5,10 +5,10 @@
 {% load static %}
 
 {% block extra_head %}
-    <meta name="description" content="Displays the information for a given tournament.">
+    <meta name="description" content="Displays the information for a given entertainment.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{% static 'css/tournament_by_id.css' %}">
-    <script src="{% static 'js/tournament_by_id.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/entertainment_by_id.css' %}">
+    <script src="{% static 'js/entertainment_by_id.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
     <div class="banner top">
         <div class="container">
             <div class="rating-favorite-wrapper">
-                <div class="tournament-rating">
+                <div class="entertainment-rating">
                     <div class="star-rating">
                         <!-- Display whole stars -->
                         {% for _ in whole_stars %}
@@ -34,85 +34,53 @@
                         {% endfor %}
                     </div>
                     <div class="number-rating">
-                        <span>({{tournament.rating_overall}})</span>
+                        <span>({{entertainment.rating_overall}})</span>
                     </div>
                 </div>
                 <a class="favorite-link" href="">+ Add To Favorites</a>
             </div>
-            <h1 class="banner-title">{{ tournament.name }}</h1>
-            <div class="rink-list">
-                <h4 class="rinks-title">Tournament Rinks [{{ rinks|length }}]</h4>
-                {% for rink in rinks %}
-                    <div class="rink">
-                        <a class="rink-location" href="https://www.google.com/maps/search/?api=1&query={{ rink.address|urlencode }}" target="_blank">
-                            <i class="fa-solid fa-location-dot"></i> {{ rink.name }}
-                        </a>
-                    </div>
-                    {% empty %}
-                    <p>No rinks exist for this tournament yet.</p>
-                {% endfor %}
-            </div>
-            <div class="thumbs-actions-container">
-                <div class="thumbs-wrapper">
-                    <span class="likes">
-                        <i class="fa-regular fa-thumbs-up"></i> {{ tournament_metadata.count_thumbs_up }}
-                    </span>
-                    <span class="dislikes">
-                        <i class="fa-regular fa-thumbs-down"></i> {{ tournament_metadata.count_thumbs_down }}
-                    </span>
-                </div>
-                <div class="nearby-actions">
-                    <a class="nearby-link" href="{% url 'restaurants:restaurants_by_tournament' tournament.id %}"><i class="fa-solid fa-utensils"></i> Nearby Restaurants</a>
-                    <a class="nearby-link" href="{% url 'entertainments:entertainments_by_tournament' tournament.id %}"><i class="fa-solid fa-circle-nodes"></i> Nearby Entertainment</a>
-                </div>
-            </div>
+            <h1 class="banner-title">{{ entertainment.name }}</h1>
         </div>
     </div>
 </section>
-<div class="tournament-details">
+<div class="entertainment-details">
     <div class="container">
-        <h4 class="details-title">Tournament Details</h4>
+        <h4 class="details-title">Entertainment Details</h4>
         <div class="details-wrapper">
             <div class="detail-section">
                 <div class="detail-item">
-                    <div class="label">Reffing quality</div>
-                    <div class="value">{{ tournament_metadata.rating_reffing }}</div>
+                    <div class="label">Activity type</div>
+                    <div class="value"></div>
                 </div>
                 <div class="detail-item">
-                    <div class="label">Communication quality</div>
-                    <div class="value">{{ tournament_metadata.rating_comms }}</div>
+                    <div class="label">Fun level</div>
+                    <div class="value"></div>
                 </div>
                 <div class="detail-item">
-                    <div class="label">Hotels quality</div> 
-                    <div class="value">{{ tournament_metadata.rating_hotels }}</div>
+                    <div class="label">Service quality</div>
+                    <div class="value"></div>
                 </div>
             </div>
             <div class="detail-section">
                 <div class="detail-item">
-                    <div class="label">Parking cost</div>
-                    <div class="value">{{ tournament_metadata.parking_cost }}</div>
+                    <div class="label">Activity length</div>
+                    <div class="value"></div>
                 </div>
                 <div class="detail-item">
-                    <div class="label">Parking valet</div>
-                    <div class="value">
-                        {% if tournament_metadata.parking_valet %}
-                            Yes
-                        {% else %}
-                            No
-                        {% endif %}
-                    </div>
+                    <div class="label">Payment process</div> 
+                    <div class="value"></div>
                 </div>
                 <div class="detail-item">
                     <div class="label">Parking size</div>
-                    <div class="value">{{ tournament_metadata.parking_size }}</div>
+                    <div class="value"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="tournament-reviews">
+<div class="entertainment-reviews">
     <div class="container">
-        <h4 class="reviews-title">Tournament Reviews</h4>
+        <h4 class="reviews-title">Entertainment Reviews</h4>
         <div class="month-slider">
             <div class="slide-button slide-left"><i class="fa-solid fa-caret-left"></i></div>
             <div class="month-list">
@@ -138,7 +106,7 @@
                     </div>
                 </a>
             {% empty %}
-                <p>No short reviews found for this tournament.</p>
+                <p>No short reviews found for this entertainment.</p>
             {% endfor %}
         </div>
     </div>
