@@ -20,10 +20,14 @@ def index(request):
 def entertainment_by_id(request, entertainment_id):
     entertainment = get_object_or_404(Entertainment, id=entertainment_id)
     entertainment_metadata = EntertainmentMetadata.objects.filter(entertainment=entertainment).first()
+    whole_stars_list, half_star_list, empty_stars_list = entertainment.calculate_star_counts()
 
     context = {
         'entertainment': entertainment,
         'entertainment_metadata': entertainment_metadata,
+        'whole_stars': whole_stars_list,
+        'half_star': half_star_list,
+        'empty_stars': empty_stars_list,
     }
 
     return render(request, 'entertainments/entertainment_by_id.html', context)
