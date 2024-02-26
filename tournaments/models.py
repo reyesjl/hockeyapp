@@ -11,6 +11,7 @@ class Company(models.Model):
 
 class Tournament(models.Model):
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
+    url = models.CharField(max_length=100, null=True)
     name = models.CharField(max_length=100)
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True)
     month = models.CharField(max_length=50, choices=MONTH_OPTIONS, default='')
