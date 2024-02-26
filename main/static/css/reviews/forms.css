@@ -1,0 +1,48 @@
+/* Base styles for form container */
+.form.container {
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+/* Styles for form labels */
+.form.container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styles for form labels */
+.form.container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styles for textareas */
+.form.container textarea {
+    width: 100%;
+}
+
+/* Remove outline from input fields */
+.form.container input,
+.form.container select,
+.form.container textarea {
+    outline: none;
+}
+
+/* Styles for submit button */
+.submit-button {
+    margin-top: 10px;
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    width: fit-content;
+    border: 1px solid black;
+    background: darkgreen;
+    cursor: pointer; /* Add pointer cursor on hover */
+    transition: background 0.3s ease; /* Smooth transition for background color change */
+}
+
+/* Hover effect for submit button */
+.submit-button:hover {
+    background: green;
+}

@@ -90,25 +90,3 @@ def tournaments_by_city(request, state, city):
     }
 
     return render(request, 'tournaments/tournaments_by_city.html', context)
-
-def tournament_review(request, tournament_id):
-    tournament = get_object_or_404(Tournament, pk=tournament_id)
-    if request.method == 'POST':
-        form = TournamentReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.tournament = tournament
-            review.save()
-            return redirect('tournaments:review_success')  # Redirect to a success page
-    else:
-        form = TournamentReviewForm()
-    return render(request, 'tournaments/tournament_review.html', {'form': form})
-
-def review_success(request):
-    return render(request, 'tournaments/review_success.html')
-
-def add(request):
-    pass
-
-def get(request, tournament_id):
-    pass
