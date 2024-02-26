@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tournament, TournamentMetadata, Rink
+from .models import Tournament, TournamentMetadata, Rink, Company
 
 admin.site.register(Company)
 admin.site.register(Tournament)
