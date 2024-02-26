@@ -3,8 +3,14 @@ from reviews.choices import PAID_OPTIONS, BOOL_OPTIONS, PARKING_OPTIONS, MONTH_O
 from locations.models import Location, MajorCity
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+class Company(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
 class Tournament(models.Model):
-    company = models.CharField(max_length=100, null=True)
+    company = models.OneToOneField(Company, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100)
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True)
     month = models.CharField(max_length=50, choices=MONTH_OPTIONS, default='')
@@ -36,7 +42,7 @@ class Tournament(models.Model):
         return whole_stars_list, half_star_list, empty_stars_list
 
     def __str__(self):
-        return f'{self.name} - {self.majorcity}'
+        return f'{self.company} - {self.name} - {self.majorcity}'
 
 class TournamentMetadata(models.Model):
     tournament = models.OneToOneField(Tournament, on_delete=models.CASCADE, unique=True)
@@ -51,14 +57,13 @@ class TournamentMetadata(models.Model):
     parking_size = models.CharField(choices=PARKING_OPTIONS, max_length=6, default='Medium')
     parking_valet = models.BooleanField()
     parking_cost = models.CharField(choices=PAID_OPTIONS, max_length=4, default='Free')
-    tournament_company = models.CharField(max_length=100, default='Idk')
     stay_and_play = models.CharField(choices=BOOL_OPTIONS, max_length=3, default='Idk')
 
     class Meta:
         unique_together = ('tournament',)
 
     def __str__(self):
-        return f'{self.tournament.name}, Company: {self.tournament_company}'
+        return f'{self.tournament.name}, Company: {self.tournament.company.name}'
 
 class Rink(models.Model):
     name = models.CharField(max_length=100, default='')
