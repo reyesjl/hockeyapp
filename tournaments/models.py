@@ -4,6 +4,7 @@ from locations.models import Location, MajorCity
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Tournament(models.Model):
+    company = models.CharField(max_length=100, null=True)
     name = models.CharField(max_length=100)
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True)
     month = models.CharField(max_length=50, choices=MONTH_OPTIONS, default='')
