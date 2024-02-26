@@ -7,8 +7,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
 from locations.models import Location, MajorCity
 from .models import Tournament, TournamentMetadata, Rink
-from reviews.models import TournamentReview, TournamentShortReview
-from reviews.forms import TournamentReviewForm, TournamentShortReviewForm
+from reviews.models import TournamentReview
+from reviews.forms import TournamentReviewForm
 
 def landing(request):
     """
@@ -42,7 +42,6 @@ def tournament_by_id(request, tournament_id):
 
     # Fetch both short and detailed reviews
     detailed_reviews = TournamentReview.objects.filter(tournament_id=tournament_id)
-    short_reviews = TournamentShortReview.objects.filter(tournament_id=tournament_id)
 
     # Fetch all rinks
     rinks = Rink.objects.filter(tournament=tournament)
@@ -53,7 +52,6 @@ def tournament_by_id(request, tournament_id):
         'whole_stars': whole_stars_list,
         'half_star': half_star_list,
         'empty_stars': empty_stars_list,
-        'short_reviews': short_reviews,
         'detailed_reviews': detailed_reviews,
         'rinks': rinks,
     }
@@ -101,26 +99,13 @@ def tournament_review(request, tournament_id):
             review = form.save(commit=False)
             review.tournament = tournament
             review.save()
-            return redirect('tournaments:short_review_success')  # Redirect to a success page
+            return redirect('tournaments:review_success')  # Redirect to a success page
     else:
         form = TournamentReviewForm()
     return render(request, 'tournaments/tournament_review.html', {'form': form})
 
-def tournament_short_review(request, tournament_id):
-    tournament = get_object_or_404(Tournament, pk=tournament_id)
-    if request.method == 'POST':
-        form = TournamentShortReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.tournament = tournament
-            review.save()
-            return redirect('tournaments:short_review_success')  # Redirect to a success page
-    else:
-        form = TournamentShortReviewForm()
-    return render(request, 'tournaments/tournament_short_review.html', {'form': form})
-
-def short_review_success(request):
-    return render(request, 'tournaments/short_review_success.html')
+def review_success(request):
+    return render(request, 'tournaments/review_success.html')
 
 def add(request):
     pass

@@ -59,6 +59,7 @@ class TournamentMetadata(models.Model):
     parking_valet = models.BooleanField()
     parking_cost = models.CharField(choices=PAID_OPTIONS, max_length=4, default='Free')
     stay_and_play = models.CharField(choices=BOOL_OPTIONS, max_length=3, default='Idk')
+    extended_checkout = models.CharField(choices=BOOL_OPTIONS, max_length=3, default='Idk')
 
     class Meta:
         unique_together = ('tournament',)

@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import TournamentReview, TournamentShortReview
+from .models import TournamentReview
 
 admin.site.register(TournamentReview)
-admin.site.register(TournamentShortReview)
