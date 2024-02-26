@@ -10,7 +10,7 @@ class Company(models.Model):
         return f'{self.name}'
 
 class Tournament(models.Model):
-    company = models.ManyToOneField(Company, on_delete=models.SET_NULL, null=True)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100)
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True)
     month = models.CharField(max_length=50, choices=MONTH_OPTIONS, default='')
