@@ -50,29 +50,29 @@
             <div class="detail-section">
                 <div class="detail-item">
                     <div class="label">Activity type</div>
-                    <div class="value"></div>
+                    <div class="value">{{ entertainment_metadata.activity_type }}</div>
                 </div>
                 <div class="detail-item">
-                    <div class="label">Fun level</div>
-                    <div class="value"></div>
+                    <div class="label">Age range</div>
+                    <div class="value">{{ entertainment_metadata.age_range }}</div>
                 </div>
                 <div class="detail-item">
                     <div class="label">Service quality</div>
-                    <div class="value"></div>
+                    <div class="value">{{ entertainment_metadata.service_quality_rating }}</div>
                 </div>
             </div>
             <div class="detail-section">
                 <div class="detail-item">
-                    <div class="label">Activity length</div>
-                    <div class="value"></div>
+                    <div class="label">Serving alcohol</div>
+                    <div class="value">{{ entertainment_metadata.serving_alcohol }}</div>
                 </div>
                 <div class="detail-item">
-                    <div class="label">Payment process</div> 
-                    <div class="value"></div>
+                    <div class="label">Payment method</div>
+                    <div class="value">{{ entertainment_metadata.payment_method }}</div>
                 </div>
                 <div class="detail-item">
                     <div class="label">Parking size</div>
-                    <div class="value"></div>
+                    <div class="value">{{ entertainment_metadata.parking_size }}</div>
                 </div>
             </div>
         </div>
@@ -81,6 +81,7 @@
 <div class="entertainment-reviews">
     <div class="container">
         <h4 class="reviews-title">Entertainment Reviews</h4>
+        <a class="favorite-link" href="{% url 'reviews:add_entertainment_review' entertainment.id %}">+ Add Review</a>
         <div class="month-slider">
             <div class="slide-button slide-left"><i class="fa-solid fa-caret-left"></i></div>
             <div class="month-list">
@@ -106,7 +107,7 @@
                     </div>
                 </a>
             {% empty %}
-                <p>No short reviews found for this entertainment.</p>
+                <p>No reviews exist for this activity yet.</p>
             {% endfor %}
         </div>
     </div>

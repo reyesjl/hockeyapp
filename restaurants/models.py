@@ -41,7 +41,7 @@ class Restaurant(models.Model):
 
 class RestaurantMetadata(models.Model):
     restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, unique=True)
-    food_type = models.CharField(max_length=100, choices=FOOD_OPTIONS, default='American')
+    food_type = models.CharField(max_length=100, choices=FOOD_OPTIONS, default='Other')
     meal_quality_rating = models.DecimalField(default=5.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     service_quality_rating = models.DecimalField(default=5.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     seating_time = models.PositiveIntegerField(default=30, choices=RESTAURANT_SEATING_TIME_OPTIONS)

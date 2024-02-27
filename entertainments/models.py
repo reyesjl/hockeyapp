@@ -40,7 +40,7 @@ class Entertainment(models.Model):
 
 class EntertainmentMetadata(models.Model):
     entertainment = models.OneToOneField(Entertainment, on_delete=models.CASCADE, unique=True)
-    activity_type = models.CharField(max_length=100, choices=ENTERTAINMENT_OPTIONS, default='Amusement parks')
+    activity_type = models.CharField(max_length=100, choices=ENTERTAINMENT_OPTIONS, default='Other')
     age_range = models.CharField(max_length=4, choices=AGE_RANGE_CHOICES, default='8u')
     service_quality_rating = models.CharField(max_length=4, choices=SERVICE_QUALITY_CHOICES, default='Good')
     serving_alcohol = models.CharField(max_length=10, choices=ALCOHOL_OPTIONS, default='None')

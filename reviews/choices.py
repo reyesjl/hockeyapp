@@ -47,6 +47,7 @@ PAID_OPTIONS = [
 
 # Restaurant Lists
 FOOD_OPTIONS = [
+    ('Other', 'Other'),
     ('American', 'American'),
     ('Buffet', 'Buffet'),
     ('Chinese', 'Chinese'),
@@ -79,6 +80,7 @@ RESTAURANT_SEATING_TIME_OPTIONS = [
 
 # Entertianment Lists
 ENTERTAINMENT_OPTIONS = [
+    ('Other', 'Other'),
     ('Amusement parks', 'Amusement parks'),
     ('Arcades with kid-friendly games', 'Arcades with kid-friendly games'),
     ('Beaches or lakes for water activities', 'Beaches or lakes for water activities'),

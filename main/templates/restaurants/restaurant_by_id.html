@@ -81,6 +81,7 @@
 <div class="restaurant-reviews">
     <div class="container">
         <h4 class="reviews-title">Restaurant Reviews</h4>
+        <a class="favorite-link" href="{% url 'reviews:add_restaurant_review' restaurant.id %}">+ Add Review</a>
         <div class="month-slider">
             <div class="slide-button slide-left"><i class="fa-solid fa-caret-left"></i></div>
             <div class="month-list">
