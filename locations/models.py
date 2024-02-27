@@ -9,10 +9,6 @@ class Location(models.Model):
 
     def __str__(self):
         return f'{self.street}, {self.city}, {self.state}, {self.postal_code}'
-    
-    @classmethod
-    def get_unique_city_state_combinations(cls):
-        return cls.objects.values('city', 'state').distinct()
 
     class Meta:
         unique_together = ('street', 'city', 'state')
