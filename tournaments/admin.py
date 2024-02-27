@@ -11,9 +11,13 @@ class TournamentMetadataAdmin(admin.ModelAdmin):
                     'parking_cost', 'stay_and_play']  
     list_filter = ['tournament__company__name']  # Enable filtering by company name
 
-admin.site.register(Rink)
+class RinkAdmin(admin.ModelAdmin):
+    list_display = ('name', 'tournament', 'address')
+    list_filter = ('tournament__company__name',)  # Assuming you have a ForeignKey relationship from Tournament to Company
+
 admin.site.register(Hotel)
 admin.site.register(Company)
+admin.site.register(Rink, RinkAdmin)
 admin.site.register(Tournament, TournamentAdmin)
 admin.site.register(TournamentMetadata, TournamentMetadataAdmin)
 

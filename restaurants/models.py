@@ -1,12 +1,13 @@
 from django.db import models
 from tournaments.models import Tournament
-from locations.models import MajorCity
+from locations.models import Location, MajorCity
 from django.core.validators import MinValueValidator, MaxValueValidator
 from reviews.choices import FOOD_OPTIONS, RESTAURANT_PAYMENT_OPTIONS, RESTAURANT_SEATING_TIME_OPTIONS, PARKING_OPTIONS
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    address = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True)
     rating_overall = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
 
