@@ -2,6 +2,7 @@ from django.db import models
 from tournaments.models import Tournament
 from locations.models import MajorCity
 from django.core.validators import MinValueValidator, MaxValueValidator
+from reviews.choices import ENTERTAINMENT_OPTIONS, AGE_RANGE_CHOICES, SERVICE_QUALITY_CHOICES, ALCOHOL_OPTIONS, PAYMENT_METHOD_OPTIONS, PARKING_OPTIONS
 
 class Entertainment(models.Model):
     name = models.CharField(max_length=100)
@@ -39,6 +40,12 @@ class Entertainment(models.Model):
 
 class EntertainmentMetadata(models.Model):
     entertainment = models.OneToOneField(Entertainment, on_delete=models.CASCADE, unique=True)
+    activity_type = models.CharField(max_length=100, choices=ENTERTAINMENT_OPTIONS, default='Amusement parks')
+    age_range = models.CharField(max_length=4, choices=AGE_RANGE_CHOICES, default='8u')
+    service_quality_rating = models.CharField(max_length=4, choices=SERVICE_QUALITY_CHOICES, default='Good')
+    serving_alcohol = models.CharField(max_length=10, choices=ALCOHOL_OPTIONS, default='None')
+    payment_method = models.CharField(max_length=22, choices=PAYMENT_METHOD_OPTIONS, default='None')
+    parking_size = models.CharField(max_length=6, choices=PARKING_OPTIONS, default='Medium')
 
     def __str__(self):
         return f'{self.entertainment.name} - {self.entertainment.tournament}'
