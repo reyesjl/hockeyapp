@@ -18,7 +18,7 @@
 
 /* Styles for textareas */
 .form.container textarea {
-    width: 100%;
+    width: 99%;
 }
 
 /* Remove outline from input fields */
@@ -26,13 +26,36 @@
 .form.container select,
 .form.container textarea {
     outline: none;
+    background-color: aliceblue;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 1em;
+}
+
+.errorlist {
+    padding: 0;
+    border: 1px solid black;
+    list-style-type: none;
+    color: white;
+    background: darkred;
+    padding: 2px;
+}
+
+/* Styles for help text */
+.helptext {
+    display: block;
+    margin-top: 5px; /* Add space between input and help text */
+    font-size: 0.8em; /* Adjust font size of help text */
+    color: #666; /* Adjust color of help text */
 }
 
 /* Styles for submit button */
 .submit-button {
+    font-size: .9em;
     margin-top: 10px;
     display: block;
-    padding: 5px;
+    padding: 10px;
     text-decoration: none;
     color: white;
     width: fit-content;

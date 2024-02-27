@@ -11,16 +11,18 @@
 {% endblock %}
 
 {% block content %}
-<section class="section">
-    <div class="banner top">
-        <div class="container">
-            <h1 class="banner-title">SUCCESS!</h1>
-        </div>
+<div class="nav-spacer">
+</div>
+
+<div class="banner top">
+    <div class="container">
+        <h1 class="banner-title">SUCCESS!</h1>
     </div>
-</section>
+</div>
 
 <div class="container section-container">
-    <h3 class="title">Your form has been submitted.</h3>
+    <h3 class="title">Your review has been submitted.</h3>
+    <a href="{% url 'tournaments:index' %}">Go to Tournaments</a>
 </div>
 
 {% endblock %}

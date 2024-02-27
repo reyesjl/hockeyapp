@@ -1,3 +1,14 @@
-.banner.top {
-    margin-top: 40px;
+.nav-spacer {
+    padding-top: 70px;
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
 }

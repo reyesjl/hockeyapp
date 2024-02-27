@@ -42,10 +42,6 @@
     display: flex;
 }
 
-.tournament-rinks {
-
-}
-
 .star-rating {
     margin-right: 1rem;
 }
@@ -176,6 +172,10 @@
 }
 
 .rink-list a {
+    color: black;
+}
+
+.hotel-list a {
     color: black;
 }
 

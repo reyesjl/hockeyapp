@@ -47,17 +47,15 @@ class Tournament(models.Model):
 
 class TournamentMetadata(models.Model):
     tournament = models.OneToOneField(Tournament, on_delete=models.CASCADE, unique=True)
-    count_rinks = models.IntegerField(default=1)
-    count_thumbs_up = models.IntegerField(default=0)
+    count_thumbs_up = models.IntegerField(default=3)
     count_thumbs_down = models.IntegerField(default=0)
     
-    rating_reffing = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
-    rating_comms = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
-    rating_hotels = models.DecimalField(default=1.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
+    rating_reffing = models.DecimalField(default=5.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
+    rating_comms = models.DecimalField(default=5.0, max_digits=3, decimal_places=1, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     
     parking_size = models.CharField(choices=PARKING_OPTIONS, max_length=6, default='Medium')
-    parking_valet = models.BooleanField()
-    parking_cost = models.CharField(choices=PAID_OPTIONS, max_length=4, default='Free')
+    parking_valet = models.BooleanField(default=False)
+    parking_cost = models.CharField(choices=PAID_OPTIONS, max_length=4, default='Paid')
     stay_and_play = models.CharField(choices=BOOL_OPTIONS, max_length=3, default='Idk')
     extended_checkout = models.CharField(choices=BOOL_OPTIONS, max_length=3, default='Idk')
 
@@ -68,6 +66,11 @@ class TournamentMetadata(models.Model):
         return f'{self.tournament.name}, Company: {self.tournament.company.name}'
 
 class Rink(models.Model):
+    name = models.CharField(max_length=100, default='')
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    address = models.ForeignKey(Location, on_delete=models.CASCADE)
+
+class Hotel(models.Model):
     name = models.CharField(max_length=100, default='')
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     address = models.ForeignKey(Location, on_delete=models.CASCADE)

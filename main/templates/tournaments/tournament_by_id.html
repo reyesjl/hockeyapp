@@ -52,6 +52,18 @@
                     <p>No rinks exist for this tournament yet.</p>
                 {% endfor %}
             </div>
+            <div class="hotel-list">
+                <h4 class="hotels-title">Tournament Hotels [{{ rinks|length }}]</h4>
+                {% for rink in rinks %}
+                    <div class="hotel">
+                        <a class="hotel-location" href="https://www.google.com/maps/search/?api=1&query={{ rink.address|urlencode }}" target="_blank">
+                            <i class="fa-solid fa-location-dot"></i> placeholder hotel
+                        </a>
+                    </div>
+                    {% empty %}
+                    <p>No hotels exist for this tournament yet.</p>
+                {% endfor %}
+            </div>
             <div class="thumbs-actions-container">
                 <div class="thumbs-wrapper">
                     <span class="likes">
