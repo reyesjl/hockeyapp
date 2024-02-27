@@ -107,7 +107,7 @@ ENTERTAINMENT_OPTIONS = [
     ('Picnic areas', 'Picnic areas'),
     ('Planetariums', 'Planetariums'),
     ('Professional Sporting Event', 'Professional Sporting Event'),
-    ('Rental service', 'Rental service')
+    ('Rental service', 'Rental service'),
     ('Shopping centers with kid-friendly stores', 'Shopping centers with kid-friendly stores'),
     ('Sports complexes (for other sports)', 'Sports complexes (for other sports)'),
     ('Swimming pools or water parks', 'Swimming pools or water parks'),

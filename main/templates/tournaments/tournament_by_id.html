@@ -37,7 +37,7 @@
                         <span>({{tournament.rating_overall}})</span>
                     </div>
                 </div>
-                <a class="favorite-link" href="">+ Add To Favorites</a>
+                <a class="button-link" href="">+ Add To Favorites</a>
             </div>
             <h1 class="banner-title">{{ tournament.name }}</h1>
             <div class="rink-list">
@@ -126,7 +126,7 @@
     <div class="container">
         <div class="reviews-title-add-wrapper">
             <h4 class="reviews-title">Tournament Reviews</h4>
-            <a class="favorite-link" href="{% url 'reviews:add_tournament_review' tournament.id %}">+ Add Review</a>
+            <a class="button-link" href="{% url 'reviews:add_tournament_review' tournament.id %}">+ Add Review</a>
         </div>
         
         <div class="month-slider">

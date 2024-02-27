@@ -37,7 +37,7 @@
                         <span>({{entertainment.rating_overall}})</span>
                     </div>
                 </div>
-                <a class="favorite-link" href="">+ Add To Favorites</a>
+                <a class="button-link" href="">+ Add To Favorites</a>
             </div>
             <h1 class="banner-title">{{ entertainment.name }}</h1>
         </div>
@@ -81,7 +81,7 @@
 <div class="entertainment-reviews">
     <div class="container">
         <h4 class="reviews-title">Entertainment Reviews</h4>
-        <a class="favorite-link" href="{% url 'reviews:add_entertainment_review' entertainment.id %}">+ Add Review</a>
+        <a class="button-link" href="{% url 'reviews:add_entertainment_review' entertainment.id %}">+ Add Review</a>
         <div class="month-slider">
             <div class="slide-button slide-left"><i class="fa-solid fa-caret-left"></i></div>
             <div class="month-list">

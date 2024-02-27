@@ -5,11 +5,14 @@
 """
 from django.shortcuts import render
 
-def index(request):
-    return render(request, 'submissions/index.html', {})
-
-def submit_tournament(request):
+def add_tournament_submission(request, city, state):
     pass
 
-def submit_restaurant(request):
+def add_restaurant_submission(request, city, state):
+    pass
+
+def add_entertainment_submission(request, city, state):
+    pass
+
+def submission_success(request):
     pass

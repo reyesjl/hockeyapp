@@ -22,7 +22,7 @@
     align-items: center;
 }
 
-.favorite-link {
+.button-link {
     margin-top: 10px;
     display: block;
     padding: 5px;
@@ -33,7 +33,7 @@
     background: darkgreen;
 }
 
-.favorite-link:hover {
+.button-link:hover {
     background: black;
 }
 
