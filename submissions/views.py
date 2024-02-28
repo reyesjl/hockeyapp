@@ -8,7 +8,8 @@ def add_tournament_submission(request, city, state):
             form.save()
             return redirect('submission_success')
     else:
-        form = TournamentSubmissionForm()
+        # Prefill city and state fields in the form with values from the request
+        form = TournamentSubmissionForm(initial={'city': city, 'state': state})
 
     context = {
         'object_type': 'Tournament',
@@ -23,7 +24,8 @@ def add_restaurant_submission(request, city, state):
             form.save()
             return redirect('submission_success')
     else:
-        form = RestaurantSubmissionForm()
+        # Prefill city and state fields in the form with values from the request
+        form = RestaurantSubmissionForm(initial={'city': city, 'state': state})
 
     context = {
         'object_type': 'Restaurant',
@@ -38,7 +40,8 @@ def add_entertainment_submission(request, city, state):
             form.save()
             return redirect('submission_success')
     else:
-        form = EntertainmentSubmissionForm()
+        # Prefill city and state fields in the form with values from the request
+        form = EntertainmentSubmissionForm(initial={'city': city, 'state': state})
 
     context = {
         'object_type': 'Entertainment',
