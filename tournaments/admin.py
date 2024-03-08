@@ -9,7 +9,7 @@ class TournamentMetadataAdmin(admin.ModelAdmin):
     list_display = ['tournament', 'count_thumbs_up', 'count_thumbs_down',
                     'rating_reffing', 'rating_comms', 'parking_size', 'parking_valet', 
                     'parking_cost', 'stay_and_play']  
-    list_filter = ['tournament__company__name']  # Enable filtering by company name
+    list_filter = ['tournament__company__name', 'tournament__majorcity__state']  # Enable filtering by company name
 
 class RinkAdmin(admin.ModelAdmin):
     list_display = ('name', 'tournament', 'address')
