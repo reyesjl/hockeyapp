@@ -1,0 +1,27 @@
+{% load static %}
+<nav class="navigation-bar">
+    <div class="nav-container">
+        <div class="logo-wrapper">
+            <a href="{% url 'tournament:tournament_home' %}"><img src="{% static 'images/yht-logo-left-aligned.png' %}" /></a>
+        </div>
+        <div class="nav-button">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+    <div class="hidden-navigation-bar">
+        <div class="nav-close-container">
+            <div class="close-button">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="navlist-wrapper">
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'tournament:tournament_home' %}">Tournaments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Entertainment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Questions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

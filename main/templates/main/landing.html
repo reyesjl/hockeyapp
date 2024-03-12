@@ -1,17 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'base_home.html' %}
 
 {% block title %} Home page {% endblock %}
 
 {% load static %}
 
 {% block extra_head %}
-    <meta name="description" content="Discover the hockey tournament review platform.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="Discover the hockey tournament review platform.">  
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/accordion.css' %}">
+    <script src="{% static 'js/main/landing.js' %}"></script>
+    <script src="{% static 'js/main/accordion.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<section class="jumbotron" style="background-image: url('{% static 'images/background.jpg' %}')">
+<div class="jumbotron" style="background-image: url('{% static 'images/background.jpg' %}')">
     <div class="container">
         <div class="title-actions-wrapper">
             <div class="title-container">
@@ -22,11 +24,113 @@
                     <p class="subtitle">The ultimate hockey tournament review system.</p>
                 </div>
             </div>
-            <div class="action-container">
-                <a class="action-link" href="{% url 'tournaments:index' %}"><i class="fa-solid fa-hockey-puck"></i> View Tournaments <i class="fa-solid fa-square-arrow-up-right"></i></a>
-                <a class="action-link" href=""><i class="fa-solid fa-hockey-puck"></i> Frequent Questions <i class="fa-regular fa-circle-question"></i></a>
+        </div>
+    </div>
+</div>
+<div class="section tournaments light-theme">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Review Platform</h1>
+            <p class="hero-subtitle">We provide reliable and truthful tournament evaluations to assist hockey families in planning, ensuring safety, and maintaining enjoyment throughout their experience.</p>   
+        </div>
+        <div class="accordion-wrapper">
+            <div class="accordion">
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        Transparency and Accountability
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Accurate and honest reviews promote transparency within the hockey community, holding organizers accountable for the quality of their events.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Quality Assurance
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Detailed reviews ensure the quality of tournaments, incentivizing organizers to maintain high standards and encouraging the adoption of best practices within the organizing community.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Improvement Opportunities
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Constructive feedback from reviews offers organizers opportunities for improvement, fostering a culture of continuous enhancement.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        Community Engagement
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <p>The platform fosters community engagement by allowing participants to share experiences and serves as an educational resource for newcomers to the hockey scene.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="header-title">Continuous Feedback Loop</div>
+                        <div class="status-dot"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Access to comprehensive reviews empowers individuals to make informed decisions, while the platform establishes a continuous feedback loop between organizers and participants, ensuring ongoing improvement and collaboration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+</div>
+
+<div class="section location light-theme">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Location System</h1>
+            <p class="hero-subtitle">Using your current location, we provide personalized suggestions for nearby restaurants, hotels, and activities, ensuring your hockey tournament travels are seamless and enjoyable.</p>
+            <div class="current-location-wrapper">
+                <div class="location-content">
+                    <div class="location-label">Detected Location</div>
+                    <div class="location-address">1234 Test St, TT USA 65231</div>
+                </div>
+                <button class="location button dark-theme">Sign-In to Update</button>
+            </div>
+        </div>
+        <div class="location columns">
+            <div class="column">
+                <h1 class="column-title">Restaurants</h1>
+                <div class="column-image"><img src="{% static 'images/restaurants.jpg' %}" alt="" /></div>
+                <div class="column-content">Enjoy delicious meals that cater to all tastes and preferences, ensuring a memorable culinary experience   during your hockey tournament travels.
+                </div>
+            </div>
+            <div class="column">
+                <h1 class="column-title">Hotels</h1>
+                <div class="column-image"><img src="{% static 'images/hotels.jpg' %}" alt="" /></div>
+                <div class="column-content">Rest and rejuvenate in well-appointed rooms and enjoy convenient amenities, ensuring a relaxing stay throughout your hockey tournament journey.</div>
+            </div>
+            <div class="column">
+                <h1 class="column-title">Activities</h1>
+                <div class="column-image"><img src="{% static 'images/entertainment.jpg' %}" alt="" /></div>
+                <div class="column-content">From outdoor adventures to cultural experiences, there's something for everyone to enjoy. Make the most of your hockey tournament travels.</div>
             </div>
         </div>
     </div>
-</section>
+</div>
+<div class="section call-to-action dark-theme">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Contribute</h1>
+            <p class="hero-subtitle">Your voice matters! Help us grow and improve by adding new tournaments, restaurants, hotels, activities, and leaving valuable feedback.</p>
+        </div>
+        <div class="contribute-actions-wrapper">
+            <button class="button light-theme">Add Tournament</button>
+            <button class="button light-theme">Add Restaurant</button>
+            <button class="button light-theme">Add Activity</button>
+            <button class="button light-theme">Leave Review</button>
+            <button class="button light-theme">Give us Feedback</button>
+        </div>
+    </div>
+</div>
 {% endblock %}

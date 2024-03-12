@@ -23,12 +23,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tournaments',
-    'restaurants',
-    'entertainments',
-    'submissions',
-    'locations',
-    'reviews',
+    #'tournaments',
+    #'restaurants',
+    #'entertainments',
+    #'submissions',
+    #'locations',
+    #'reviews',
 ]
 
 MIDDLEWARE = [

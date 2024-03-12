@@ -5,21 +5,6 @@ body {
     font-family: "Exo 2", sans-serif;
 }
 
-.button-link {
-    margin-top: 10px;
-    display: block;
-    padding: 5px;
-    text-decoration: none;
-    color: white;
-    width: fit-content;
-    border: 1px solid black;
-    background: darkgreen;
-}
-
-.button-link:hover {
-    background: black;
-}
-
 .navigation-bar {
     position: fixed;
     z-index: 99;
@@ -33,7 +18,7 @@ body {
     justify-content: space-between;
     padding: 20px 0;
     color: white;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -52,7 +37,7 @@ body {
 }
 
 .logo-wrapper img {
-    width: 90px; 
+    width: 60px; 
     height: auto; 
 }
 
@@ -91,7 +76,7 @@ body {
 
 .nav-close-container {
     height: 100vh;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -107,4 +92,86 @@ body {
 
 .nav-list .nav-link:hover {
     color: rgb(127, 127, 127);
+}
+
+.nav-spacer {
+    padding-top: 40px;
+}
+
+/* Theme related */
+.dark-theme {
+    color: #f6f6f6;
+    background: black;
+}
+
+.light-theme {
+    color: #333;
+    background: #f5f5f6;
+}
+
+.medium-theme {
+    color: whitesmoke;
+    background: rgb(81, 81, 81);
+}
+
+/* Typography */
+.small-text {
+    font-size: 12px;
+}
+
+.gray-text {
+    color: lightgray;
+}
+
+.dark-text {
+    color: #333;
+}
+
+.warning-text {
+    color: darkred;
+}
+
+.special-text {
+    color: aquamarine;
+}
+
+/* Footer */
+.section.footer {
+    padding: 100px 0 70px 0;
+}
+
+.footer-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.footer-hero {
+    margin-bottom: 50px;
+}
+
+.footer-link-wrapper {
+    display: flex;
+}
+
+.section-label h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.link-section {
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+
+.link-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .footer-link-wrapper {
+        flex-direction: column;
+    }
 }

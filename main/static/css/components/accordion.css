@@ -1,0 +1,31 @@
+.accordion {
+    background: black;
+    border-radius: 16px;
+    max-width: 900px;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+}
+
+.accordion-header {
+  color: #f5f5f6;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-dot {
+    background: gray;
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
+}
+
+
+.accordion-content {
+    color: gray;
+    display: none;
+}

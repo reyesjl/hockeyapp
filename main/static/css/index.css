@@ -5,23 +5,20 @@
 }
 
 .container {
-    max-width: 90%;
-    width: 80%;
-    padding:0 20px;
+    width: 900px;
     margin: 0 auto;
-    height: 100vh;
 }
 
 .title-actions-wrapper {
     display: flex;
     flex-direction: column;
     gap: 50px;
+    padding: 100px 0 100px 0;
 }
 
 .title-container {
     display: flex;
     align-items: center;
-    margin-top: 150px;
 }
 
 .title {
@@ -36,27 +33,81 @@
     color: white;
 }
 
-.action-container {
+.section {
+    padding: 40px 0 60px 0;
+}
+
+/* tournament section */
+.hero-wrapper {
+    margin-bottom: 30px;
+}
+
+/* Location */
+.current-location-wrapper {
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 16px;
+}
+
+.location-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.location-content {
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 8px 12px;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 16px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.columns {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
 }
 
-.action-link {
-    color: white;
-    font-size: 1.2em;
-    text-decoration: none;
-    transition: color 0.2s;
+.column {
+    padding: 20px;
+    flex: 1;
 }
 
-.action-link:hover {
-    color: darkgreen;
-    transition: color 0.2s;
+.column-title {
+    font-size: 17px;
+    text-align: center;
 }
 
-#review {
-    font-style: italic;
-    font-weight: normal;
+.column-image {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.column-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+}
+
+.column-content {
+    text-align: center;
+}
+
+/* Contribute section */
+.contribute-actions-wrapper .button {
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 960px) {
+    .container {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -67,5 +118,34 @@
 
     .title {
         font-size: 2.5em;
+    }
+    
+    .hero-wrapper {
+        width: auto;
+    }
+
+    .hero-list {
+        width: auto;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .columns {
+        flex-direction: column;
+    }
+
+    .column {
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .column-image {
+        height: 200px;
+        overflow: hidden;
+        border-radius: 16px;
+        margin: 0 auto;
+        margin-bottom: 10px;
     }
 }
