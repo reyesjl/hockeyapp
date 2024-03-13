@@ -117,6 +117,11 @@ body {
     background: rgb(81, 81, 81);
 }
 
+.red-theme {
+    color: white;
+    background: darkred;
+}
+
 /* Typography */
 .small-text {
     font-size: 12px;

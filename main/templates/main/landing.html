@@ -94,9 +94,18 @@
             <div class="current-location-wrapper">
                 <div class="location-content">
                     <div class="location-label">Detected Location</div>
-                    <div class="location-address"><span id="user-location"></span></div>
+                    <div class="location-address">
+                        <span id="user-location">
+                        {% if latitude and longitude %}
+                            Latitude: {{ latitude }}, Longitude: {{ longitude }}
+                        {% else %}
+                            No location yet.
+                        {% endif %}
+                        </span>
+                    </div>
                 </div>
                 <button onclick="getLocation()" class="location button dark-theme">Get Location</button>
+                <button onclick="clearAddress()" class="location button red-theme">Clear</button>
             </div>
         </div>
         <div class="location columns">

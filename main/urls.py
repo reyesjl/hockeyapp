@@ -1,12 +1,13 @@
+from . import views
 from django.contrib import admin
 from django.urls import path, include
-from . import views
 
 app_name = 'main'
 urlpatterns = [
     # admin and landing
     path('admin/', admin.site.urls),
     path('', views.landing_page, name="landing"),
+    path('save-location/', views.save_location, name="save_location"),
 
     # all other apps
     path('tournament/', include('tournament.urls')),
