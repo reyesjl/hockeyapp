@@ -1,4 +1,7 @@
 function getLocation() {
+    var locationElement = document.getElementById("user-location");
+    locationElement.innerHTML = "loading...";
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
