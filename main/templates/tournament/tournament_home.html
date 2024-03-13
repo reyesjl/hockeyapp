@@ -32,17 +32,35 @@
             <div class="tournament-list">
             {% for tournament in upcoming_tournaments %}
                 <div class="tournament">
-                    <div class="tournament-content">
+                    <div class="tournament-hero">
                         <div class="tournament-name">{{ tournament.name }}</div>
+                        <div class="share-like-wrapper">
+                            <div><button class="button purple-theme"><i class="fa-solid fa-arrow-up-from-bracket"></i> Share</button></div>
+                            <div><button class="button red-theme"><i class="fa-regular fa-heart"></i> Save</button></div>
+                        </div>
+                    </div>
+                    <div class="tournament-runner-details">
+                        <div class="runner-detail">{{tournament.date|date:"F"}}</div>
+                        {% if tournament.stay_and_play %}
+                            <div class="spacer-dot">&#x2022;</div>
+                            <div class="runner-detail"> 
+                                Stay & Play
+                            </div>
+                        {% else %}
+                                
+                        {% endif %}     
+                        <div class="spacer-dot">&#x2022;</div>
+                            <div class="runner-detail"> 
+                                {{tournament.parking_cost}} Parking
+                            </div>        
+                    </div>
+                    <div class="tournament-content">
                         <div class="tournament-address">{{ tournament.address }}</div>
                         <div class="tournament-website">
                             <a href="{{ tournament.website }}" target="_blank">{{ tournament.website }}</a>
                         </div>
-                        <div class="tournament-location">{{ tournament.location }}</div>
-                        <div class="tournament-upvotes">Upvotes: {{ tournament.upvotes }}</div>
-                        <div class="tournament-downvotes">Downvotes: {{ tournament.downvotes }}</div>
-                        <div class="tournament-reff-rating">Referee Rating: {{ tournament.reff_rating }}</div>
-                        <div class="tournament-comms-rating">Communications Rating: {{ tournament.comms_rating }}</div>
+                        <div class="tournament-reff-rating">Refereeing: {{ tournament.reff_rating }}</div>
+                        <div class="tournament-comms-rating">Communication: {{ tournament.comms_rating }}</div>
                         <div class="tournament-parking-size">Parking Size: {{ tournament.parking_size }}</div>
                         <div class="tournament-parking-valet">Valet Parking: {{ tournament.parking_valet }}</div>
                         <div class="tournament-parking-cost">Parking Cost: {{ tournament.parking_cost }}</div>

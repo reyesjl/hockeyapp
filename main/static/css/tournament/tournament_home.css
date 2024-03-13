@@ -12,7 +12,38 @@
     border-radius: 16px;
 }
 
+.share-like-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.share-like-wrapper .button {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.tournament-hero {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 .tournament-name {
     text-transform: capitalize;
     font-size: 20px;
+    font-weight: bold;
+}
+
+.tournament-runner-details {
+    color: gray;
+    display: flex;
+}
+
+.runner-detail {
+    text-transform: capitalize;
+}
+
+.spacer-dot {
+    padding: 0 5px;
 }
