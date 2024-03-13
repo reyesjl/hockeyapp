@@ -2,10 +2,43 @@
 
 {% block title %}Tournament Home{% endblock %}
 
+{% load static %}
+
 {% block extra_head %}
-    <!-- Add any additional CSS or JavaScript specific to the tournament home page here -->
+    <meta name="description" content="Main tournaments page.">  
+    <link rel="stylesheet" href="{% static 'css/tournament/tournament_home.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
 {% endblock %}
 
 {% block content %}
-    <h1>Welcome to the Tournament Home Page!</h1>
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1>Upcoming Tournaments</h1>
+            {% include 'components/tournament_filter.html' %}
+            
+        </div>
+
+        {% if selected_months %}
+        <div class="showing-for">
+            Showing results for month(s): 
+            {% for month in selected_months %}
+                <span>{{month}},</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="results-wrapper">
+            <div class="tournament-list">
+            {% for tournament in upcoming_tournaments %}
+                <div class="tournament-wrapper">
+                    <div class="tournament-name">{{ tournament.name }}</div>
+                </div>
+                {% empty %}
+                <p>No tournaments to show here.</p>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

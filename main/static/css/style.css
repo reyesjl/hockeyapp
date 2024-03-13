@@ -95,11 +95,26 @@ body {
 }
 
 .nav-spacer {
-    padding-top: 40px;
+    padding-top: 80px;
+}
+
+/* Spacing & Structure */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* Buttons & Links */
+.button {
+    padding: 8px 12px;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 16px;
+}
 
+.button:hover {
+    cursor: pointer;
+}
 
 /* Theme related */
 .dark-theme {
@@ -209,6 +224,9 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
     .footer-link-wrapper {
         flex-direction: column;
     }

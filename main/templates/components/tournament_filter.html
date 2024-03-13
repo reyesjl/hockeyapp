@@ -1,0 +1,129 @@
+<style>
+    .form-wrapper {
+        padding: 20px;
+        border-radius: 16px;
+        display: none;
+        margin-bottom: 20px;
+    }
+
+    .filter-sections-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .filter-section-title {
+       margin-bottom: 10px;
+       color: whitesmoke; 
+       font-weight: bold;
+    }
+
+    .display-filters-label {
+        margin-bottom: 20px;
+    }
+
+    .month-filter-options {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .month-option {
+        display: flex;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .form-actions-wrapper {
+        display: flex;
+    }
+
+    .form-actions-wrapper .button {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="display-filters-label">
+    <button id="toggleFilters" onclick="toggleFilters()" class="button filter light-theme">Display Filters</button>
+    <button id="nearMeButton" onclick="getNearbyTournaments()" class="button filter green-theme">All Near Me</button>
+</div>
+<div id="formWrapper" style="display: none;" class="form-wrapper dark-theme">
+    <form action="{% url 'tournament:tournament_home' %}" method="GET">
+        <div class="filter-sections-wrapper">
+            <div class="filter-section">
+                <div class="filter-section-title">
+                    Select Months
+                </div>
+                <div class="month-filter-options">
+                    <!-- Month selection checkboxes -->
+                    <div class="month-option">
+                        <input type="checkbox" id="month1" name="months" value="1">
+                        <label for="month1">January</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month2" name="months" value="2">
+                        <label for="month2">February</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month3" name="months" value="3">
+                        <label for="month3">March</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month4" name="months" value="4">
+                        <label for="month4">April</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month5" name="months" value="5">
+                        <label for="month5">May</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month6" name="months" value="6">
+                        <label for="month6">June</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month7" name="months" value="7">
+                        <label for="month7">July</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month8" name="months" value="8">
+                        <label for="month8">August</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month9" name="months" value="9">
+                        <label for="month9">September</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month10" name="months" value="10">
+                        <label for="month10">October</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month11" name="months" value="11">
+                        <label for="month11">November</label><br>
+                    </div>
+                    <div class="month-option">
+                        <input type="checkbox" id="month12" name="months" value="12">
+                        <label for="month12">December</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-actions-wrapper">
+            <button class="button teal-theme" type="submit">Apply Filters</button>
+            <button class="button red-theme">Clear Filters</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function toggleFilters() {
+        var filterWrapper = document.getElementById('formWrapper');
+        var displayButton = document.getElementById('toggleFilters');
+
+        if (filterWrapper.style.display === 'block') {
+            filterWrapper.style.display = 'none';
+            displayButton.innerText = 'Display Filters';
+        } else {
+            filterWrapper.style.display = 'block';
+            displayButton.innerText = 'Close Filters';
+        }
+    }
+</script>

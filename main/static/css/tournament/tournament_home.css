@@ -1,0 +1,17 @@
+.showing-for {
+    margin-bottom: 20px;
+}
+
+.tournament-list {
+    margin-bottom: 50px;
+}
+
+.tournament-wrapper {
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 16px;
+}
+
+.tournament-name {
+    text-transform: capitalize;
+}
