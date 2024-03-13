@@ -223,10 +223,13 @@ body {
     font-size: 16px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
     .container {
         max-width: 90%;
     }
+}
+
+@media screen and (max-width: 768px) {
     .footer-link-wrapper {
         flex-direction: column;
     }
