@@ -122,6 +122,36 @@ body {
     background: darkred;
 }
 
+.blue-theme {
+    background: #00008B; /* Dark Blue */
+    color: #F5F5F5; /* Whitesmoke */
+}
+
+.green-theme {
+    background: #006400; /* Dark Green */
+    color: #F5F5F5; /* Whitesmoke */
+}
+
+.gold-theme {
+    background: #B8860B; /* Dark Goldenrod */
+    color: black;
+}
+
+.purple-theme {
+    background: #4B0082; /* Dark Purple */
+    color: white;
+}
+
+.teal-theme {
+    background: #008080; /* Dark Teal */
+    color: #F5F5F5; /* Whitesmoke */
+}
+
+.slate-gray-theme {
+    background: #2F4F4F; /* Dark Slate Gray */
+    color: #F5F5F5; /* Whitesmoke */
+}
+
 /* Typography */
 .small-text {
     font-size: 12px;
