@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/components/accordion.css' %}">
     <script src="{% static 'js/main/landing.js' %}"></script>
     <script src="{% static 'js/main/accordion.js' %}"></script>
+    <script src="{% static 'js/main/location.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -93,9 +94,9 @@
             <div class="current-location-wrapper">
                 <div class="location-content">
                     <div class="location-label">Detected Location</div>
-                    <div class="location-address">1234 Test St, TT USA 65231</div>
+                    <div class="location-address"><span id="user-location">Loading...</span></div>
                 </div>
-                <button class="location button dark-theme">Sign-In to Update</button>
+                <button onclick="getLocation()" class="location button dark-theme">Get Location</button>
             </div>
         </div>
         <div class="location columns">
@@ -128,9 +129,9 @@
             <p class="hero-subtitle">Your voice matters! Help us grow and improve by adding new tournaments, restaurants, hotels, activities, and leaving valuable feedback.</p>
         </div>
         <div class="contribute-actions-wrapper">
-            <button class="button light-theme">Add Tournament</button>
-            <button class="button light-theme">Add Restaurant</button>
-            <button class="button light-theme">Add Activity</button>
+            <button class="button primary-button">Add Tournament</button>
+            <button class="button secondary-button">Add Restaurant</button>
+            <button class="button tertiary-button">Add Activity</button>
             <button class="button light-theme">Leave Review</button>
             <button class="button light-theme">Give us Feedback</button>
         </div>
