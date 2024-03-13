@@ -1,85 +1,43 @@
 function getLocation() {
-    var locationElement = document.getElementById("user-location");
-    locationElement.innerHTML = "Loading...";
-
+    // Check if geolocation is supported by the browser
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(saveLocation, handleGeolocationError);
+        navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         alert("Geolocation is not supported by this browser.");
     }
 }
 
-function clearAddress() {
-    var locationElement = document.getElementById("user-location");
-    locationElement.innerHTML = "";
-}
-
-function saveLocation(position) {
+function showPosition(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    // Send coordinates to Django view using AJAX
-    sendCoordinatesToServer(latitude, longitude);
+    // Display loading and call the async address conversion
+    document.getElementById("user-location").innerText = "loading...";
+    getAddress(latitude, longitude)
 }
 
-function handleGeolocationError(error) {
-    console.error('Geolocation error:', error);
-    var locationElement = document.getElementById("user-location");
-    locationElement.innerHTML = "Unable to retrieve location";
-}
+function getAddress(latitude, longitude) {
+    var xhr = new XMLHttpRequest();
+    var url = "https://nominatim.openstreetmap.org/reverse?format=json&lat=" + latitude + "&lon=" + longitude + "&zoom=18&addressdetails=1";
 
-function sendCoordinatesToServer(latitude, longitude) {
-    fetch('/save-location/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': getCookie('csrftoken') // Include CSRF token if using CSRF protection
-        },
-        body: 'latitude=' + latitude + '&longitude=' + longitude
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            fetchAddress(latitude, longitude);
-        } else {
-            var locationElement = document.getElementById("user-location");
-            locationElement.innerHTML = "Unable to save location";
-        }
-    })
-    .catch(error => {
-        console.error('Error saving location:', error);
-        var locationElement = document.getElementById("user-location");
-        locationElement.innerHTML = "Unable to save location";
-    });
-}
-
-function fetchAddress(latitude, longitude) {
-    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
-        .then(response => response.json())
-        .then(data => {
-            var address = data.display_name || 'Unknown';
-            var locationElement = document.getElementById("user-location");
-            locationElement.innerHTML = `${address}`;
-        })
-        .catch(error => {
-            console.error('Error fetching address:', error);
-            var locationElement = document.getElementById("user-location");
-            locationElement.innerHTML = "Unable to fetch address";
-        });
-}
-
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            // Check if the cookie contains the specified name
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                var address = response.display_name;
+                // Display the address
+                document.getElementById("user-location").innerText = address;
+            } else {
+                alert("Error fetching address: " + xhr.status);
             }
         }
-    }
-    return cookieValue;
+    };
+
+    xhr.open("GET", url, true);
+    xhr.send();
+}
+
+function clearLocation() {
+    // Clear the displayed location
+    document.getElementById("user-location").innerText = "";
 }
