@@ -31,8 +31,25 @@
         <div class="results-wrapper">
             <div class="tournament-list">
             {% for tournament in upcoming_tournaments %}
-                <div class="tournament-wrapper">
-                    <div class="tournament-name">{{ tournament.name }}</div>
+                <div class="tournament">
+                    <div class="tournament-content">
+                        <div class="tournament-name">{{ tournament.name }}</div>
+                        <div class="tournament-address">{{ tournament.address }}</div>
+                        <div class="tournament-website">
+                            <a href="{{ tournament.website }}" target="_blank">{{ tournament.website }}</a>
+                        </div>
+                        <div class="tournament-location">{{ tournament.location }}</div>
+                        <div class="tournament-upvotes">Upvotes: {{ tournament.upvotes }}</div>
+                        <div class="tournament-downvotes">Downvotes: {{ tournament.downvotes }}</div>
+                        <div class="tournament-reff-rating">Referee Rating: {{ tournament.reff_rating }}</div>
+                        <div class="tournament-comms-rating">Communications Rating: {{ tournament.comms_rating }}</div>
+                        <div class="tournament-parking-size">Parking Size: {{ tournament.parking_size }}</div>
+                        <div class="tournament-parking-valet">Valet Parking: {{ tournament.parking_valet }}</div>
+                        <div class="tournament-parking-cost">Parking Cost: {{ tournament.parking_cost }}</div>
+                        <div class="tournament-stay-and-play">Stay and Play: {{ tournament.stay_and_play }}</div>
+                        <div class="tournament-extended-checkout">Extended Checkout: {{ tournament.extended_checkout }}</div>
+                        <div class="tournament-draft-status">Draft Status: {{ tournament.draft_status }}</div>
+                    </div>
                 </div>
                 {% empty %}
                 <p>No tournaments to show here.</p>
