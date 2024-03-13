@@ -14,12 +14,13 @@
 
 .share-like-wrapper {
     display: flex;
+    width: auto;
     justify-content: flex-end;
 }
 
 .share-like-wrapper .button {
     margin-right: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .tournament-hero {
@@ -31,8 +32,9 @@
 
 .tournament-name {
     text-transform: capitalize;
-    font-size: 20px;
     font-weight: bold;
+    width: 60%;
+    margin-bottom: 10px;
 }
 
 .tournament-runner-details {
@@ -46,4 +48,14 @@
 
 .spacer-dot {
     padding: 0 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .share-like-wrapper {
+        width: 100%;
+    }
+
+    .tournament-name {
+        width: 80%;
+    }
 }

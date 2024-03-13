@@ -128,8 +128,8 @@ body {
 }
 
 .medium-theme {
-    color: whitesmoke;
-    background: rgb(81, 81, 81);
+    color: black;
+    background: rgb(224, 224, 224);
 }
 
 .red-theme {
@@ -165,6 +165,11 @@ body {
 .slate-gray-theme {
     background: #2F4F4F; /* Dark Slate Gray */
     color: #F5F5F5; /* Whitesmoke */
+}
+
+.gray-theme {
+    background: rgb(69, 69, 69);
+    color: white;
 }
 
 /* Typography */

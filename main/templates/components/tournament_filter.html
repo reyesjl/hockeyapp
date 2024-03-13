@@ -12,7 +12,7 @@
 
     .filter-section-title {
        margin-bottom: 10px;
-       color: whitesmoke; 
+       color: #333; 
        font-weight: bold;
     }
 
@@ -45,7 +45,7 @@
     <button id="toggleFilters" onclick="toggleFilters()" class="button filter light-theme">Display Filters</button>
     <button id="nearMeButton" onclick="getNearbyTournaments()" class="button filter green-theme">All Near Me</button>
 </div>
-<div id="formWrapper" style="display: none;" class="form-wrapper dark-theme">
+<div id="formWrapper" style="display: none;" class="form-wrapper medium-theme">
     <form action="{% url 'tournament:tournament_home' %}" method="GET">
         <div class="filter-sections-wrapper">
             <div class="filter-section">
