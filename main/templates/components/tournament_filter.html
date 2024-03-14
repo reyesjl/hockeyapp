@@ -43,9 +43,9 @@
 
 <div class="display-filters-label">
     <button id="toggleFilters" onclick="toggleFilters()" class="button filter light-theme">Display Filters</button>
-    <button id="nearMeButton" onclick="getNearbyTournaments()" class="button filter green-theme">All Near Me</button>
+    <button id="nearMeButton" onclick="getNearbyTournaments()" class="button filter dark-theme">All Near Me</button>
 </div>
-<div id="formWrapper" style="display: none;" class="form-wrapper medium-theme">
+<div id="formWrapper" {% if selected_months %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
     <form action="{% url 'tournament:tournament_home' %}" method="GET">
         <div class="filter-sections-wrapper">
             <div class="filter-section">
@@ -53,62 +53,62 @@
                     Select Months
                 </div>
                 <div class="month-filter-options">
-                    <!-- Month selection checkboxes -->
-                    <div class="month-option">
-                        <input type="checkbox" id="month1" name="months" value="1">
-                        <label for="month1">January</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month2" name="months" value="2">
-                        <label for="month2">February</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month3" name="months" value="3">
-                        <label for="month3">March</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month4" name="months" value="4">
-                        <label for="month4">April</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month5" name="months" value="5">
-                        <label for="month5">May</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month6" name="months" value="6">
-                        <label for="month6">June</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month7" name="months" value="7">
-                        <label for="month7">July</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month8" name="months" value="8">
-                        <label for="month8">August</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month9" name="months" value="9">
-                        <label for="month9">September</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month10" name="months" value="10">
-                        <label for="month10">October</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month11" name="months" value="11">
-                        <label for="month11">November</label><br>
-                    </div>
-                    <div class="month-option">
-                        <input type="checkbox" id="month12" name="months" value="12">
-                        <label for="month12">December</label><br>
-                    </div>
+                <!-- Month selection checkboxes -->
+                <div class="month-option">
+                    <input type="checkbox" id="month1" name="months" value="1" {% if '1' in selected_months %} checked {% endif %}>
+                    <label for="month1">January</label><br>
                 </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month2" name="months" value="2" {% if '2' in selected_months %} checked {% endif %}>
+                    <label for="month2">February</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month3" name="months" value="3" {% if '3' in selected_months %} checked {% endif %}>
+                    <label for="month3">March</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month4" name="months" value="4" {% if '4' in selected_months %} checked {% endif %}>
+                    <label for="month4">April</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month5" name="months" value="5" {% if '5' in selected_months %} checked {% endif %}>
+                    <label for="month5">May</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month6" name="months" value="6" {% if '6' in selected_months %} checked {% endif %}>
+                    <label for="month6">June</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month7" name="months" value="7" {% if '7' in selected_months %} checked {% endif %}>
+                    <label for="month7">July</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month8" name="months" value="8" {% if '8' in selected_months %} checked {% endif %}>
+                    <label for="month8">August</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month9" name="months" value="9" {% if '9' in selected_months %} checked {% endif %}>
+                    <label for="month9">September</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month10" name="months" value="10" {% if '10' in selected_months %} checked {% endif %}>
+                    <label for="month10">October</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month11" name="months" value="11" {% if '11' in selected_months %} checked {% endif %}>
+                    <label for="month11">November</label><br>
+                </div>
+                <div class="month-option">
+                    <input type="checkbox" id="month12" name="months" value="12" {% if '12' in selected_months %} checked {% endif %}>
+                    <label for="month12">December</label><br>
+                </div>
+            </div>
             </div>
         </div>
         
         <div class="form-actions-wrapper">
             <button class="button teal-theme" type="submit">Apply Filters</button>
-            <button class="button red-theme">Clear Filters</button>
+            <button class="button red-theme" onclick="clearFilters()">Clear Filters</button>
         </div>
     </form>
 </div>
@@ -125,5 +125,13 @@
             filterWrapper.style.display = 'block';
             displayButton.innerText = 'Close Filters';
         }
+    }
+
+    function clearFilters() {
+        var checkboxes = document.querySelectorAll('input[name="months"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        document.getElementById('filterForm').submit();
     }
 </script>

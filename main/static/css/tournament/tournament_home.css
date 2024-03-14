@@ -24,17 +24,15 @@
 }
 
 .tournament-hero {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
 }
 
 .tournament-name {
     text-transform: capitalize;
     font-weight: bold;
-    width: 60%;
     margin-bottom: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    font-size: 23px;
 }
 
 .tournament-runner-details {
