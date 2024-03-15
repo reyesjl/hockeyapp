@@ -19,19 +19,23 @@ def tournament_home(request):
     selected_months_int = [int(month) for month in selected_months]
     # Get month names from integers
     selected_months_str = [calendar.month_name[month] for month in selected_months_int]
+
+    open_filters = False  # Default value for open_filters
+
     if selected_months:
         # Add filter for selected months
         tournament_filter &= Q(date__month__in=selected_months_int)
         status_line += f" Filtered by months: {', '.join(selected_months_str)}."
+        open_filters = True  # Set open_filters to True if selected months exist
 
     if user_latitude and user_longitude:
         # Define the maximum distance (in degrees) for nearby tournaments
-        max_distance = .2  # Adjust as needed
+        max_distance = .5  # Adjust as needed
 
         # Filter tournaments within the maximum distance from the user
         tournament_filter &= Q(location__latitude__lte=float(user_latitude) + max_distance) & Q(location__latitude__gte=float(user_latitude) - max_distance) & Q(location__longitude__lte=float(user_longitude) + max_distance) & Q(location__longitude__gte=float(user_longitude) - max_distance)
 
-        status_line += " Showing tournaments nearby your location."
+        status_line += " Showing tournaments within 35 miles."
 
     else:
         # Filter upcoming tournaments without considering distance
@@ -41,6 +45,7 @@ def tournament_home(request):
     if selected_region and selected_region != 'All':
         tournament_filter &= Q(location__region=selected_region)
         status_line += f" Filtered by region: {selected_region}."
+        open_filters = True  # Set open_filters to True if selected region exists
 
     # Query tournaments using the built filter
     tournament_listings = Tournament.objects.filter(tournament_filter, draft_status='published').order_by('date')
@@ -50,5 +55,6 @@ def tournament_home(request):
         'selected_months': selected_months_int,
         'tournament_listings': tournament_listings,
         'status_line': status_line,
+        'open_filters': open_filters,  # Pass open_filters to the context
     }
     return render(request, 'tournament/tournament_home.html', context)

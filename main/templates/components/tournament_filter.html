@@ -62,7 +62,7 @@
     <button id="nearMeButton" onclick="getNearbyTournaments()" class="button filter dark-theme">All Near Me</button>
             <button class="button red-theme" type="button" onclick="clearFilters()">Clear Filters</button>
 </div>
-<div id="formWrapper" {% if selected_months or selected_region != 'All' %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
+<div id="formWrapper" {% if open_filters %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
     <form id="filterForm" action="{% url 'tournament:tournament_home' %}" method="GET">
 
         <!-- Hidden location fields -->
