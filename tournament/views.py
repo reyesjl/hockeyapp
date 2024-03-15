@@ -35,7 +35,7 @@ def tournament_home(request):
         # Filter tournaments within the maximum distance from the user
         tournament_filter &= Q(location__latitude__lte=float(user_latitude) + max_distance) & Q(location__latitude__gte=float(user_latitude) - max_distance) & Q(location__longitude__lte=float(user_longitude) + max_distance) & Q(location__longitude__gte=float(user_longitude) - max_distance)
 
-        status_line += " Showing tournaments within 20-25 miles."
+        status_line += " Within 20-25 miles of your Location."
 
     else:
         # Filter upcoming tournaments without considering distance
