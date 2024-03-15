@@ -14,17 +14,25 @@
 <div class="section">
     <div class="container">
         <div class="hero-wrapper">
-            <h1>Upcoming Tournaments</h1>
+            <h1>Tournament Listings</h1>
+            
+            <!-- Filter Component -->
             {% include 'components/tournament_filter.html' %}
             
         </div>
 
-        {% if selected_months %}
+        {% if selected_months or selected_region != 'all' %}
+        <p>Showing results for:</p>
         <div class="showing-for">
-            Showing results for month(s): 
-            {% for month in selected_months %}
-                <span>{{month}},</span>
-            {% endfor %}
+            <div class="results-region">
+                Regions: {{ selected_region }}
+            </div>
+            <div class="results-months">
+                Month(s): 
+                {% for month in selected_months %}
+                    <span>{{month}},</span>
+                {% endfor %}
+            </div>
         </div>
         {% endif %}
 

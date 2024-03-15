@@ -39,15 +39,53 @@
         margin-right: 5px;
         margin-bottom: 5px;
     }
+
+    .region-select {
+        margin-bottom: 20px;
+    }
+
+    .region-select-box {
+        padding: 8px 12px;
+        border: 1px solid black;
+        outline: none;
+        border-radius: 16px;
+    }
+
 </style>
 
 <div class="display-filters-label">
     <button id="toggleFilters" onclick="toggleFilters()" class="button filter light-theme">Display Filters</button>
     <button id="nearMeButton" onclick="getNearbyTournaments()" class="button filter dark-theme">All Near Me</button>
 </div>
-<div id="formWrapper" {% if selected_months %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
-    <form action="{% url 'tournament:tournament_home' %}" method="GET">
+<div id="formWrapper" {% if selected_months or selected_region != 'all' %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
+    <form id="filterForm" action="{% url 'tournament:tournament_home' %}" method="GET">
+
         <div class="filter-sections-wrapper">
+            <div class="filter-section">
+                <div class="filter-section-title">
+                    Select Region
+                </div>
+                <div class="region-select">
+                    <select id="regionSelect" name="region" class="region-select-box">
+                        <option value="all" {% if selected_region == 'all' %} selected {% endif %}>All Regions</option>
+                        <option value="international" {% if selected_region == 'international' %} selected {% endif %}>International</option>
+                        <option value="usa" {% if selected_region == 'usa' %} selected {% endif %}>USA</option>
+                        <optgroup label="USA Regions">
+                            <option value="north_east" {% if selected_region == 'north_east' %} selected {% endif %}>North East</option>
+                            <option value="south_east" {% if selected_region == 'south_east' %} selected {% endif %}>South East</option>
+                            <option value="midwest" {% if selected_region == 'midwest' %} selected {% endif %}>Midwest</option>
+                            <option value="south_west" {% if selected_region == 'south_west' %} selected {% endif %}>South West</option>
+                            <option value="north_west" {% if selected_region == 'north_west' %} selected {% endif %}>North West</option>
+                            <!-- Add more regions for USA here -->
+                        </optgroup>
+                        <optgroup label="Canada">
+                            <option value="eastern" {% if selected_region == 'eastern' %} selected {% endif %}>Eastern</option>
+                            <option value="western" {% if selected_region == 'western' %} selected {% endif %}>Western</option>
+                            <!-- Add more regions for Canada here -->
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
             <div class="filter-section">
                 <div class="filter-section-title">
                     Select Months
@@ -55,51 +93,51 @@
                 <div class="month-filter-options">
                 <!-- Month selection checkboxes -->
                 <div class="month-option">
-                    <input type="checkbox" id="month1" name="months" value="1" {% if '1' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month1" name="months" value="1" {% if 1 in selected_months %} checked {% endif %}>
                     <label for="month1">January</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month2" name="months" value="2" {% if '2' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month2" name="months" value="2" {% if 2 in selected_months %} checked {% endif %}>
                     <label for="month2">February</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month3" name="months" value="3" {% if '3' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month3" name="months" value="3" {% if 3 in selected_months %} checked {% endif %}>
                     <label for="month3">March</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month4" name="months" value="4" {% if '4' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month4" name="months" value="4" {% if 4 in selected_months %} checked {% endif %}>
                     <label for="month4">April</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month5" name="months" value="5" {% if '5' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month5" name="months" value="5" {% if 5 in selected_months %} checked {% endif %}>
                     <label for="month5">May</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month6" name="months" value="6" {% if '6' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month6" name="months" value="6" {% if 6 in selected_months %} checked {% endif %}>
                     <label for="month6">June</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month7" name="months" value="7" {% if '7' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month7" name="months" value="7" {% if 7 in selected_months %} checked {% endif %}>
                     <label for="month7">July</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month8" name="months" value="8" {% if '8' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month8" name="months" value="8" {% if 8 in selected_months %} checked {% endif %}>
                     <label for="month8">August</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month9" name="months" value="9" {% if '9' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month9" name="months" value="9" {% if 9 in selected_months %} checked {% endif %}>
                     <label for="month9">September</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month10" name="months" value="10" {% if '10' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month10" name="months" value="10" {% if 10 in selected_months %} checked {% endif %}>
                     <label for="month10">October</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month11" name="months" value="11" {% if '11' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month11" name="months" value="11" {% if 11 in selected_months %} checked {% endif %}>
                     <label for="month11">November</label><br>
                 </div>
                 <div class="month-option">
-                    <input type="checkbox" id="month12" name="months" value="12" {% if '12' in selected_months %} checked {% endif %}>
+                    <input type="checkbox" id="month12" name="months" value="12" {% if 12 in selected_months %} checked {% endif %}>
                     <label for="month12">December</label><br>
                 </div>
             </div>
@@ -107,24 +145,28 @@
         </div>
         
         <div class="form-actions-wrapper">
-            <button class="button teal-theme" type="submit">Apply Filters</button>
-            <button class="button red-theme" onclick="clearFilters()">Clear Filters</button>
+            <button class="button teal-theme" type="button" onclick="applyFilters()">Apply Filters</button>
+            <button class="button red-theme" type="button" onclick="clearFilters()">Clear Filters</button>
         </div>
     </form>
 </div>
 
 <script>
     function toggleFilters() {
-        var filterWrapper = document.getElementById('formWrapper');
+        var formWrapper = document.getElementById('formWrapper');
         var displayButton = document.getElementById('toggleFilters');
 
-        if (filterWrapper.style.display === 'block') {
-            filterWrapper.style.display = 'none';
+        if (formWrapper.style.display === 'block') {
+            formWrapper.style.display = 'none';
             displayButton.innerText = 'Display Filters';
         } else {
-            filterWrapper.style.display = 'block';
+            formWrapper.style.display = 'block';
             displayButton.innerText = 'Close Filters';
         }
+    }
+
+    function applyFilters() {
+        document.getElementById('filterForm').submit();
     }
 
     function clearFilters() {

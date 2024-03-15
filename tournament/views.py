@@ -3,8 +3,8 @@ from .models import Tournament
 from django.shortcuts import render
 
 def tournament_home(request):
-    selected_months_string = request.GET.getlist('months')
     selected_months = request.GET.getlist('months')  # Use getlist() to handle multiple selected months
+    selected_region = request.GET.get('region')
 
     if selected_months:
         # Convert selected months to integers
@@ -17,7 +17,8 @@ def tournament_home(request):
         upcoming_tournaments = Tournament.objects.filter(date__gte=datetime.now(), draft_status='published').order_by('date')
 
     context = {
-        'selected_months': selected_months_string,  # Pass selected months to the template
+        'selected_region': selected_region,
+        'selected_months': selected_months,  # Pass selected months to the template
         'upcoming_tournaments': upcoming_tournaments,
     }
     return render(request, 'tournament/tournament_home.html', context)
