@@ -46,9 +46,13 @@
 
     .region-select-box {
         padding: 8px 12px;
-        border: 1px solid black;
+        border: 1px solid gray;
         outline: none;
         border-radius: 16px;
+    }
+
+    .region-select-box:hover {
+        cursor: pointer;
     }
 
 </style>
@@ -56,9 +60,14 @@
 <div class="display-filters-label">
     <button id="toggleFilters" onclick="toggleFilters()" class="button filter light-theme">Display Filters</button>
     <button id="nearMeButton" onclick="getNearbyTournaments()" class="button filter dark-theme">All Near Me</button>
+            <button class="button red-theme" type="button" onclick="clearFilters()">Clear Filters</button>
 </div>
-<div id="formWrapper" {% if selected_months or selected_region != 'all' %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
+<div id="formWrapper" {% if selected_months or selected_region != 'All' %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
     <form id="filterForm" action="{% url 'tournament:tournament_home' %}" method="GET">
+
+        <!-- Hidden location fields -->
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
 
         <div class="filter-sections-wrapper">
             <div class="filter-section">
@@ -67,20 +76,18 @@
                 </div>
                 <div class="region-select">
                     <select id="regionSelect" name="region" class="region-select-box">
-                        <option value="all" {% if selected_region == 'all' %} selected {% endif %}>All Regions</option>
-                        <option value="international" {% if selected_region == 'international' %} selected {% endif %}>International</option>
-                        <option value="usa" {% if selected_region == 'usa' %} selected {% endif %}>USA</option>
+                        <option value="All" {% if selected_region == 'All' %} selected {% endif %}>All Regions</option>
                         <optgroup label="USA Regions">
-                            <option value="north_east" {% if selected_region == 'north_east' %} selected {% endif %}>North East</option>
-                            <option value="south_east" {% if selected_region == 'south_east' %} selected {% endif %}>South East</option>
-                            <option value="midwest" {% if selected_region == 'midwest' %} selected {% endif %}>Midwest</option>
-                            <option value="south_west" {% if selected_region == 'south_west' %} selected {% endif %}>South West</option>
-                            <option value="north_west" {% if selected_region == 'north_west' %} selected {% endif %}>North West</option>
+                            <option value="North East" {% if selected_region == 'North East' %} selected {% endif %}>North East</option>
+                            <option value="South East" {% if selected_region == 'South East' %} selected {% endif %}>South East</option>
+                            <option value="Midwest" {% if selected_region == 'Midwest' %} selected {% endif %}>Midwest</option>
+                            <option value="West" {% if selected_region == 'West' %} selected {% endif %}>West</option>
+                            <option value="South West" {% if selected_region == 'South West' %} selected {% endif %}>South West</option>
                             <!-- Add more regions for USA here -->
                         </optgroup>
                         <optgroup label="Canada">
-                            <option value="eastern" {% if selected_region == 'eastern' %} selected {% endif %}>Eastern</option>
-                            <option value="western" {% if selected_region == 'western' %} selected {% endif %}>Western</option>
+                            <option value="Eastern Canada" {% if selected_region == 'Eastern Canada' %} selected {% endif %}>Eastern</option>
+                            <option value="Western Canada" {% if selected_region == 'Western Canada' %} selected {% endif %}>Western</option>
                             <!-- Add more regions for Canada here -->
                         </optgroup>
                     </select>
@@ -146,7 +153,6 @@
         
         <div class="form-actions-wrapper">
             <button class="button teal-theme" type="button" onclick="applyFilters()">Apply Filters</button>
-            <button class="button red-theme" type="button" onclick="clearFilters()">Clear Filters</button>
         </div>
     </form>
 </div>
@@ -169,11 +175,35 @@
         document.getElementById('filterForm').submit();
     }
 
+    function getNearbyTournaments() {
+        // Check if geolocation is supported by the browser
+        if (navigator.geolocation) {
+            // Get user's current location
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                // Set the hidden fields in the form with user's coordinates
+                document.getElementById('latitude').value = latitude;
+                document.getElementById('longitude').value = longitude;
+
+                // Submit the form to fetch nearby tournaments
+                document.getElementById('filterForm').submit();
+            });
+        } else {
+            alert("Geolocation is not supported by your browser.");
+        }
+    }
+
     function clearFilters() {
         var checkboxes = document.querySelectorAll('input[name="months"]');
         checkboxes.forEach(function(checkbox) {
             checkbox.checked = false;
         });
+
+        document.getElementById('latitude').value = '';
+        document.getElementById('longitude').value = '';
+        document.getElementById('regionSelect').value = 'All';
         document.getElementById('filterForm').submit();
     }
 </script>

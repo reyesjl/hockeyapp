@@ -1,3 +1,8 @@
+.hero-title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+}
+
 .showing-for {
     margin-bottom: 20px;
 }
@@ -10,6 +15,7 @@
     padding: 20px;
     border: 1px solid gray;
     border-radius: 16px;
+    margin-bottom: 10px;
 }
 
 .share-like-wrapper {
@@ -21,10 +27,6 @@
 .share-like-wrapper .button {
     margin-right: 5px;
     margin-bottom: 10px;
-}
-
-.tournament-hero {
-    
 }
 
 .tournament-name {

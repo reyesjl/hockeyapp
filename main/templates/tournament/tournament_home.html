@@ -14,31 +14,19 @@
 <div class="section">
     <div class="container">
         <div class="hero-wrapper">
-            <h1>Tournament Listings</h1>
+            <h1 class="hero-title">Tournament Listings</h1>
             
             <!-- Filter Component -->
             {% include 'components/tournament_filter.html' %}
             
         </div>
 
-        {% if selected_months or selected_region != 'all' %}
-        <p>Showing results for:</p>
-        <div class="showing-for">
-            <div class="results-region">
-                Regions: {{ selected_region }}
-            </div>
-            <div class="results-months">
-                Month(s): 
-                {% for month in selected_months %}
-                    <span>{{month}},</span>
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
+        <!-- Results for: etc... -->
+       <p>{{ status_line }}</p> 
 
         <div class="results-wrapper">
             <div class="tournament-list">
-            {% for tournament in upcoming_tournaments %}
+            {% for tournament in tournament_listings %}
                 <div class="tournament">
                     <div class="share-like-wrapper">
                         <div><button class="button light-theme"><i class="fa-solid fa-arrow-up-from-bracket"></i> Share</button></div>
@@ -67,7 +55,7 @@
                     </div>
                 </div>
                 {% empty %}
-                <p>No tournaments to show here.</p>
+                <p class="section">No tournaments for the selected filters.</p>
             {% endfor %}
             </div>
         </div>

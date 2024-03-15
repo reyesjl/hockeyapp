@@ -1,14 +1,20 @@
 from django.db import models
-from django.utils import timezone
 from main.choices import PARKING_SIZE_CHOICES, PARKING_COST_CHOICES, DRAFT_STATUS_CHOICES, TOURNAMENT_COMPANY_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
+from main.regions import nearest_region
 
 class Location(models.Model):
     latitude = models.FloatField(default='0.0')
     longitude = models.FloatField(default='0.0')
+    region = models.CharField(max_length=50, default="All")  # Add region field
+
+    def save(self, *args, **kwargs):
+        self.region = nearest_region(self.latitude, self.longitude)
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
-        return f"Latitude: {self.latitude}, Longitude: {self.longitude}"
+        return f"Region: {self.region}, Latitude: {self.latitude}, Longitude: {self.longitude}"
     
 class Tournament(models.Model):
     name = models.CharField(max_length=100, default='yht tournament')
