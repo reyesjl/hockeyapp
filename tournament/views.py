@@ -26,7 +26,7 @@ def tournament_home(request):
 
     if user_latitude and user_longitude:
         # Define the maximum distance (in degrees) for nearby tournaments
-        max_distance = 0.1  # Adjust as needed
+        max_distance = .2  # Adjust as needed
 
         # Filter tournaments within the maximum distance from the user
         tournament_filter &= Q(location__latitude__lte=float(user_latitude) + max_distance) & Q(location__latitude__gte=float(user_latitude) - max_distance) & Q(location__longitude__lte=float(user_longitude) + max_distance) & Q(location__longitude__gte=float(user_longitude) - max_distance)

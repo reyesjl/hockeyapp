@@ -21,12 +21,12 @@ class Tournament(models.Model):
     date = models.DateField(null=True, blank=True)
     company = models.CharField(max_length=100, choices=TOURNAMENT_COMPANY_CHOICES, default='yht')
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
-    address = models.CharField(max_length=255) # physical address
+    address = models.CharField(max_length=255, default='5555 default address, DF 1234 USA') # physical address
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)      
-    reff_rating = models.FloatField(default=0.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # referee
-    comms_rating = models.FloatField(default=0.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # director of communications
+    reff_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # referee
+    comms_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # director of communications
     parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
     parking_valet = models.BooleanField(default=False)
     parking_cost = models.CharField(max_length=10, choices=PARKING_COST_CHOICES, default='free')
