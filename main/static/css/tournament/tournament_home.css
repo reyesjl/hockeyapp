@@ -18,15 +18,24 @@
     margin-bottom: 10px;
 }
 
-.share-like-wrapper {
+.region-with-buttons {
     display: flex;
     width: auto;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.share-like-wrapper .button {
+.region-label {
+    color: teal;
+}
+
+.region-with-buttons .button {
     margin-right: 5px;
     margin-bottom: 10px;
+}
+
+.share-like-buttons {
+    display: flex;
 }
 
 .tournament-name {

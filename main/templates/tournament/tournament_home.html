@@ -28,9 +28,14 @@
             <div class="tournament-list">
             {% for tournament in tournament_listings %}
                 <div class="tournament">
-                    <div class="share-like-wrapper">
-                        <div><button class="button light-theme"><i class="fa-solid fa-arrow-up-from-bracket"></i> Share</button></div>
-                        <div><button class="button red-theme"><i class="fa-regular fa-heart"></i> Save</button></div>
+                    <div class="region-with-buttons">
+                        <div class="region-label">
+                            {{tournament.location.region}}
+                        </div>
+                        <div class="share-like-buttons">
+                            <div><button class="button light-theme"><i class="fa-solid fa-arrow-up-from-bracket"></i> Share</button></div>
+                            <div><button class="button red-theme"><i class="fa-regular fa-heart"></i> Save</button></div>
+                        </div>
                     </div>
                     <div class="tournament-hero">
                         <div class="tournament-name">{{ tournament.name }}</div>
@@ -48,10 +53,6 @@
                         <div class="spacer-dot">&#x2022;</div>
                         <div class="runner-detail"> 
                             {{tournament.parking_cost}} Parking
-                        </div>        
-                        <div class="spacer-dot">&#x2022;</div>
-                        <div class="runner-detail"> 
-                            {{tournament.location.region}}
                         </div>
                     </div>
                     <div class="tournament-content">
