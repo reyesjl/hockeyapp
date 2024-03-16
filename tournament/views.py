@@ -1,8 +1,9 @@
 from django.db.models import Q
 from django.utils import timezone
-from .models import Tournament
-from django.shortcuts import render
+from .models import Tournament, Location
+from django.shortcuts import render, redirect
 import calendar
+from .forms import TournamentForm
 
 def tournament_home(request):
     selected_region = request.GET.get('region')
@@ -58,3 +59,18 @@ def tournament_home(request):
         'open_filters': open_filters,  # Pass open_filters to the context
     }
     return render(request, 'tournament/tournament_home.html', context)
+
+def add_tournament(request):
+    if request.method == 'POST':
+        form = TournamentForm(request.POST)
+        if form.is_valid():
+            location = Location.objects.create(latitude=0.0, longitude=0.0, region="All")
+            tournament = form.save(commit=False)
+            tournament.location = location  # Assign the location to the tournament
+            tournament.draft_status = 'draft'
+            tournament.save()
+            return redirect('tournament:tournament_home')
+    else:
+        form = TournamentForm()
+    return render(request, 'tournament/add_tournament.html', {'form': form})
+

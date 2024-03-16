@@ -18,6 +18,10 @@
     margin-bottom: 10px;
 }
 
+.tournament-name-link {
+    color: rgb(21, 21, 21);
+}
+
 .region-with-buttons {
     display: flex;
     width: auto;
@@ -45,6 +49,13 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 100;
     font-size: 23px;
+}
+
+.split-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .add-listing-link {

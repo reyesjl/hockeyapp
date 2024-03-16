@@ -110,10 +110,20 @@ body {
     outline: none;
     border: 1px solid gray;
     border-radius: 16px;
+    font-size: 14px;
 }
 
 .button:hover {
     cursor: pointer;
+}
+
+.button-link {
+    padding: 8px 12px;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 16px;
+    font-size: 14px;
+    text-decoration: none;
 }
 
 /* Theme related */

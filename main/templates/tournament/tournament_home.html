@@ -22,8 +22,11 @@
         </div>
 
         <!-- Results for: etc... -->
-        <p><a class="add-listing-link" href="#">+ Add New Listing</a></p>
-        <p>{{ status_line }}</p> 
+        <div class="split-wrapper">
+            <div class="status-line">{{ status_line }}</div>
+            <div class="listing-link"><a class="add-listing-link" href="{% url 'tournament:add_tournament' %}">+ Add New Listing</a></div>
+        </div>
+        
 
         <div class="results-wrapper">
             <div class="tournament-list">
@@ -39,7 +42,7 @@
                         </div>
                     </div>
                     <div class="tournament-hero">
-                        <div class="tournament-name">{{ tournament.name }}</div>
+                        <div class="tournament-name"><a class="tournament-name-link" href="#">{{ tournament.name }}</a></div>
                     </div>
                     <div class="tournament-runner-details">
                         <div class="runner-detail">{{tournament.date|date:"F"}}</div>

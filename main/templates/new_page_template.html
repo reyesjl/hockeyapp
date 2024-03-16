@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Tournament Home{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Page for adding a tournament listing.">  
+    <link rel="stylesheet" href="{% static 'css/tournament/add_listing.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Add Listing</h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
