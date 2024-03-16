@@ -47,6 +47,12 @@
     font-size: 23px;
 }
 
+.add-listing-link {
+    color: gray;
+    font-size: .9em;
+    text-decoration: underline;
+}
+
 .tournament-runner-details {
     color: gray;
     display: flex;
