@@ -1,11 +1,23 @@
+# This module handles views related to tournaments.
+
+import calendar
 from django.db.models import Q
 from django.utils import timezone
-from .models import Tournament, Location
-from django.shortcuts import render, redirect
-import calendar
 from .forms import TournamentForm
+from .models import Tournament, Location
+from django.shortcuts import render, redirect, get_object_or_404
 
 def tournament_home(request):
+    """
+    Renders the home page for tournaments, allowing users to filter and view tournament listings.
+
+    Args:
+        request: HttpRequest object.
+
+    Returns:
+        HttpResponse object rendering the tournament home page.
+    """
+    # Retrieve filter parameters from the request
     selected_region = request.GET.get('region')
     selected_months = request.GET.getlist('months')
     user_latitude = request.GET.get('latitude')
@@ -61,9 +73,19 @@ def tournament_home(request):
     return render(request, 'tournament/tournament_home.html', context)
 
 def add_tournament(request):
+    """
+    Renders the form to add a new tournament and processes form submission.
+
+    Args:
+        request: HttpRequest object.
+
+    Returns:
+        HttpResponse object rendering the add tournament page or redirecting to tournament home.
+    """
     if request.method == 'POST':
         form = TournamentForm(request.POST)
         if form.is_valid():
+            # Create a default location for the tournament
             location = Location.objects.create(latitude=0.0, longitude=0.0, region="All")
             tournament = form.save(commit=False)
             tournament.location = location  # Assign the location to the tournament
@@ -73,4 +95,19 @@ def add_tournament(request):
     else:
         form = TournamentForm()
     return render(request, 'tournament/add_tournament.html', {'form': form})
+
+def get_tournament(request, tournament_id):
+    """
+    Renders the details of a specific tournament.
+
+    Args:
+        request: HttpRequest object.
+        tournament_id: ID of the tournament to retrieve.
+
+    Returns:
+        HttpResponse object rendering the tournament details page.
+    """
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+    context = {'tournament': tournament}
+    return render(request, 'tournament/get_tournament.html', context)
 
