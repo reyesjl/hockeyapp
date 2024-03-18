@@ -1,71 +1,44 @@
-/* Base styles for form container */
-.form.container {
-    margin: 0 auto;
-    padding-bottom: 80px;
+.form-wrapper {
+    padding-bottom: 100px;
+    min-height: 100vh;
 }
 
-/* Styles for form labels */
-.form.container label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Styles for form labels */
-.form.container label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Styles for textareas */
-.form.container textarea {
-    width: 99%;
-}
-
-/* Remove outline from input fields */
-.form.container input,
-.form.container select,
-.form.container textarea {
-    outline: none;
-    background-color: aliceblue;
-    border: 1px solid lightgray;
-    border-radius: 4px;
-    padding: 5px;
-    font-size: 1em;
-}
-
-.errorlist {
-    padding: 0;
+form {
+    padding: 20px;
     border: 1px solid black;
-    list-style-type: none;
-    color: white;
-    background: darkred;
-    padding: 2px;
+    border-radius: 16px;
 }
 
-/* Styles for help text */
+input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 16px;
+    outline: none;
+    border: 1px solid black;
+}
+
+select {
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid black;
+}
+
+.form-wrapper form p {
+    margin-bottom: 40px; /* Add some space between each field */
+}
+
+.form-wrapper form label {
+    display: block; /* Display labels as block elements */
+    margin-bottom: 10px;
+}
+
 .helptext {
     display: block;
-    margin-top: 5px; /* Add space between input and help text */
-    font-size: 0.8em; /* Adjust font size of help text */
-    color: #666; /* Adjust color of help text */
-}
-
-/* Styles for submit button */
-.submit-button {
-    font-size: .9em;
-    margin-top: 10px;
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-    width: fit-content;
-    border: 1px solid black;
-    background: darkgreen;
-    cursor: pointer; /* Add pointer cursor on hover */
-    transition: background 0.3s ease; /* Smooth transition for background color change */
-}
-
-/* Hover effect for submit button */
-.submit-button:hover {
-    background: green;
+    font-size: .8em;
+    color: gray;
+    padding-top: 5px;
 }
