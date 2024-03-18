@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="tournament-hero">
-                        <div class="tournament-name"><a class="tournament-name-link" href="#">{{ tournament.name }}</a></div>
+                        <div class="tournament-name"><a class="tournament-name-link" href="{% url 'tournament:get_tournament' tournament.id %}">{{ tournament.name }}</a></div>
                     </div>
                     <div class="tournament-runner-details">
                         <div class="runner-detail">{{tournament.date|date:"F"}}</div>
