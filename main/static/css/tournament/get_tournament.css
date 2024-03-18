@@ -83,6 +83,7 @@
 /* Reviews */
 .review-section-title {
     font-weight: normal;
+    margin: 10px 0 0 0;
 }
 
 .section.reviews {
@@ -105,12 +106,20 @@
     margin-bottom: 10px;
 }
 
-.empty-reviews {
+.empty-review {
+    color: gray;
+}
+
+.add-review-link {
     color: gray;
 }
 
 @media screen and (max-width: 768px) {
     .details-wrapper .section{
         flex: 0 0 100%; /* Stack sections on top of each other on mobile */
+    }
+
+    .review-status-line {
+        margin-bottom: 10px;
     }
 }

@@ -104,6 +104,13 @@ body {
     margin: 0 auto;
 }
 
+.split-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
 /* Buttons & Links */
 .button {
     padding: 8px 12px;

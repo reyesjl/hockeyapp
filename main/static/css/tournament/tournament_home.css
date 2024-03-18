@@ -51,13 +51,6 @@
     font-size: 23px;
 }
 
-.split-wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
 .add-listing-link {
     color: gray;
     font-size: .9em;

@@ -108,6 +108,9 @@ def get_tournament(request, tournament_id):
         HttpResponse object rendering the tournament details page.
     """
     tournament = get_object_or_404(Tournament, pk=tournament_id)
-    context = {'tournament': tournament}
+    context = {
+        'reviews': '',
+        'tournament': tournament
+        }
     return render(request, 'tournament/get_tournament.html', context)
 
