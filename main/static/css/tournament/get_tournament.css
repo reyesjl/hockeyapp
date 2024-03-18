@@ -83,7 +83,7 @@
 /* Reviews */
 .review-section-title {
     font-weight: normal;
-    margin: 10px 0 0 0;
+    margin: 10px 0 20px 0;
 }
 
 .section.reviews {
@@ -91,7 +91,7 @@
 }
 
 .reviews-wrapper {
-    padding: 20px;
+    
 }
 
 .review {
