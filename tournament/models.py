@@ -1,7 +1,7 @@
 from django.db import models
 from main.choices import PARKING_SIZE_CHOICES, PARKING_COST_CHOICES, DRAFT_STATUS_CHOICES, TOURNAMENT_COMPANY_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
-from main.regions import nearest_region
+from main.regions import get_region
 
 class Location(models.Model):
     latitude = models.FloatField(default='0.0')
@@ -9,7 +9,7 @@ class Location(models.Model):
     region = models.CharField(max_length=50, default="All")  # Add region field
 
     def save(self, *args, **kwargs):
-        self.region = nearest_region(self.latitude, self.longitude)
+        self.region = get_region(self.latitude, self.longitude)
         super().save(*args, **kwargs)
 
 

@@ -28,8 +28,3 @@ class TournamentForm(forms.ModelForm):
             'stay_and_play': 'Check if there is a stay & play agreement.',
             'extended_checkout': 'Check if extended checkout is allowed in the stay & play agreement.'
         }
-
-    def clean_address(self):
-        address = self.cleaned_data.get('address')
-        # Convert the address here to get the latitude and longitude
-        return address

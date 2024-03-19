@@ -78,17 +78,25 @@
                     <select id="regionSelect" name="region" class="region-select-box">
                         <option value="All" {% if selected_region == 'All' %} selected {% endif %}>All Regions</option>
                         <optgroup label="USA Regions">
-                            <option value="North East" {% if selected_region == 'North East' %} selected {% endif %}>North East</option>
-                            <option value="South East" {% if selected_region == 'South East' %} selected {% endif %}>South East</option>
-                            <option value="Midwest" {% if selected_region == 'Midwest' %} selected {% endif %}>Midwest</option>
+                            <option value="South" {% if selected_region == 'South' %} selected {% endif %}>South</option>
                             <option value="West" {% if selected_region == 'West' %} selected {% endif %}>West</option>
-                            <option value="South West" {% if selected_region == 'South West' %} selected {% endif %}>South West</option>
-                            <!-- Add more regions for USA here -->
+                            <option value="North East" {% if selected_region == 'North East' %} selected {% endif %}>North East</option>
+                            <option value="Mid West" {% if selected_region == 'Mid West' %} selected {% endif %}>Mid West</option>
                         </optgroup>
                         <optgroup label="Canada">
-                            <option value="Eastern Canada" {% if selected_region == 'Eastern Canada' %} selected {% endif %}>Eastern</option>
-                            <option value="Western Canada" {% if selected_region == 'Western Canada' %} selected {% endif %}>Western</option>
-                            <!-- Add more regions for Canada here -->
+                            <option value="Alberta" {% if selected_region == 'Alberta' %} selected {% endif %}>Alberta</option>
+                            <option value="British Columbia" {% if selected_region == 'British Columbia' %} selected {% endif %}>British Columbia</option>
+                            <option value="Manitoba" {% if selected_region == 'Manitoba' %} selected {% endif %}>Manitoba</option>
+                            <option value="New Brunswick" {% if selected_region == 'New Brunswick' %} selected {% endif %}>New Brunswick</option>
+                            <option value="Newfoundland and Labrador" {% if selected_region == 'Newfoundland and Labrador' %} selected {% endif %}>Newfoundland and Labrador</option>
+                            <option value="Nova Scotia" {% if selected_region == 'Nova Scotia' %} selected {% endif %}>Nova Scotia</option>
+                            <option value="Ontario" {% if selected_region == 'Ontario' %} selected {% endif %}>Ontario</option>
+                            <option value="Prince Edward Island" {% if selected_region == 'Prince Edward Island' %} selected {% endif %}>Prince Edward Island</option>
+                            <option value="Quebec" {% if selected_region == 'Quebec' %} selected {% endif %}>Quebec</option>
+                            <option value="Saskatchewan" {% if selected_region == 'Saskatchewan' %} selected {% endif %}>Saskatchewan</option>
+                            <option value="Northwest Territories" {% if selected_region == 'Northwest Territories' %} selected {% endif %}>Northwest Territories</option>
+                            <option value="Nunavut" {% if selected_region == 'Nunavut' %} selected {% endif %}>Nunavut</option>
+                            <option value="Yukon" {% if selected_region == 'Yukon' %} selected {% endif %}>Yukon</option>
                         </optgroup>
                     </select>
                 </div>

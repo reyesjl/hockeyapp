@@ -6,6 +6,7 @@ from django.utils import timezone
 from .forms import TournamentForm
 from .models import Tournament, Location
 from django.shortcuts import render, redirect, get_object_or_404
+from main.regions import get_coordinates
 
 def tournament_home(request):
     """
@@ -85,8 +86,18 @@ def add_tournament(request):
     if request.method == 'POST':
         form = TournamentForm(request.POST)
         if form.is_valid():
-            # Create a default location for the tournament
-            location = Location.objects.create(latitude=0.0, longitude=0.0, region="All")
+            # Get the address entered by the user
+            address = form.cleaned_data['address']
+
+            # Call the get_coordinates function to get latitude and longitude
+            coordinates = get_coordinates(address)
+
+            # Create or update the Location model with the new coordinates
+            location, created = Location.objects.get_or_create(region="All", defaults={'latitude': coordinates['lat'], 'longitude': coordinates['lng']})
+
+            # Save the location object to ensure it's created or updated in the database
+            location.save()
+
             tournament = form.save(commit=False)
             tournament.location = location  # Assign the location to the tournament
             tournament.draft_status = 'draft'
