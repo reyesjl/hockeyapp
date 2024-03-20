@@ -87,7 +87,7 @@
         <h3 class="review-section-title">User Reviews</h3>
         <div class="split-wrapper">
             <div class="status-line">Showing latest reviews.</div>
-            <div class="review-link"><a class="add-review-link" href="#">+ Add New Review</a></div>
+            <div class="review-link"><a class="add-review-link" href="{% url 'tournament:review_tournament' tournament.id %}">+ Add New Review</a></div>
         </div>
         <div class="reviews-wrapper">
             {% for review in reviews %}
