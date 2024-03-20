@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Thank you.{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="A thank you and success page to display after the user has made a contributing to our site.">  
+    <link rel="stylesheet" href="{% static 'css/review/thankyou.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section height-50">
+    <div class="container">
+        <div class="hero-wrapper thankyou">
+            <h1 class="hero-title">Thank you for your contribution.</h1>
+            <p class="gray-text">{{ message }}</p>
+            <br>
+            <a class="teal-theme" href="{% url 'landing' %}">Go Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

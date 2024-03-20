@@ -7,6 +7,8 @@ from .forms import TournamentForm
 from .models import Tournament, Location
 from django.shortcuts import render, redirect, get_object_or_404
 from main.regions import get_coordinates
+from review.forms import TournamentReviewForm
+from review.models import TournamentReview
 
 def tournament_home(request):
     """
@@ -119,9 +121,38 @@ def get_tournament(request, tournament_id):
         HttpResponse object rendering the tournament details page.
     """
     tournament = get_object_or_404(Tournament, pk=tournament_id)
+    
+    # Fetch reviews associated with the tournament
+    reviews = TournamentReview.objects.filter(tournament=tournament)
+
     context = {
-        'reviews': '',
+        'reviews': reviews,
         'tournament': tournament
         }
     return render(request, 'tournament/get_tournament.html', context)
 
+def review_tournament(request, tournament_id):
+    """
+    Renders the form for reviewing a specific tournament and processes form submission.
+
+    Args:
+        request: HttpRequest object.
+        tournament_id: ID of the tournament to review.
+
+    Returns:
+        HttpResponse object rendering the review tournament page or redirecting to tournament details page.
+    """
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+
+    if request.method == 'POST':
+        form = TournamentReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.tournament = tournament
+            review.save()
+            return redirect('review:thankyou', message='Your review has been submitted.')
+    else:
+        initial_data = {'tournament': tournament}
+        form = TournamentReviewForm(initial=initial_data)
+
+    return render(request, 'tournament/review_tournament.html', {'form': form, 'tournament': tournament})

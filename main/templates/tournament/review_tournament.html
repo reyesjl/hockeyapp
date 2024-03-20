@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Tournament{% endblock %}
+{% block title %}Leave Review{% endblock %}
 
 {% load static %}
 
 {% block extra_head %}
-    <meta name="description" content="Page for adding a tournament listing.">  
-    <link rel="stylesheet" href="{% static 'css/tournament/add_tournament.css' %}">
+    <meta name="description" content="Page for adding a tournament review.">  
+    <link rel="stylesheet" href="{% static 'css/tournament/review_tournament.css' %}">
     <link rel="stylesheet" href="{% static 'css/forms.css' %}">
     <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
 {% endblock %}
@@ -15,13 +15,14 @@
 <div class="section">
     <div class="container">
         <div class="hero-wrapper">
-            <h1 class="hero-title">New Tournament</h1>
+            <h1 class="hero-title">Review Tournament</h1>
+            <p class="gray-text">For {{ tournament.name }} at <br>{{ tournament.address }}</p>
         </div>
         <div class="form-wrapper">
             <form class="form" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="button teal-theme" type="submit">Add Tournament</button>
+                <button class="button teal-theme" type="submit">Submit</button>
             </form>
         </div>
     </div>

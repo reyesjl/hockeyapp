@@ -85,21 +85,18 @@
     <hr>
     <div class="container">
         <h3 class="review-section-title">User Reviews</h3>
+        <div class="split-wrapper">
+            <div class="status-line">Showing latest reviews.</div>
+            <div class="review-link"><a class="add-review-link" href="#">+ Add New Review</a></div>
+        </div>
         <div class="reviews-wrapper">
             {% for review in reviews %}
-            <div class="split-wrapper">
-                <div class="status-line">Showing latest reviews.</div>
-                <div class="review-link"><a class="add-review-link" href="#">+ Add New Review</a></div>
-            </div>
             <div class="review">
-                <div class="review-label">Review header title</div>
-                <div class="review-preview">Review preview text will go here, short description of the users review....</div>
+                <div class="review-label">{{ review.date|date:"F" }}</div>
+                <div class="review-preview">{{ review.comment }}</div>
             </div>
             {% empty %}
-            <div class="split-wrapper">
                 <div class="review-status-line empty-review">Be the first to review this tournament!</div>
-                <div class="review-link"><a class="add-review-link" href="#">+ Add New Review</a></div>
-            </div>
             {% endfor %}
         </div>
     </div>

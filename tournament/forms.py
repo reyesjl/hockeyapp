@@ -2,13 +2,12 @@ from django import forms
 from .models import Tournament
 
 class TournamentForm(forms.ModelForm):
-    date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), help_text="Select the date of the tournament.")
-
     class Meta:
         model = Tournament
         fields = ['name', 'date', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
+            'date': 'Tournament Date',
             'company': 'Company',
             'website': 'Website',
             'address': 'Address',
@@ -19,6 +18,7 @@ class TournamentForm(forms.ModelForm):
             'extended_checkout': 'Extended Checkout'
         }
         help_texts = {
+            'date': 'Select the date of the tournament.',
             'company': 'Select the company organizing the tournament.',
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
@@ -27,4 +27,7 @@ class TournamentForm(forms.ModelForm):
             'parking_cost': 'Select the cost of parking.',
             'stay_and_play': 'Check if there is a stay & play agreement.',
             'extended_checkout': 'Check if extended checkout is allowed in the stay & play agreement.'
+        }
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'})
         }

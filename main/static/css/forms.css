@@ -1,3 +1,15 @@
+.hero-title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+}
+
+.errorlist {
+    padding: 0;
+    margin: 0;
+    color: darkred;
+    list-style-type: none;
+}
+
 .form-wrapper {
     padding-bottom: 100px;
     min-height: 100vh;
@@ -7,6 +19,12 @@ form {
     padding: 20px;
     border: 1px solid black;
     border-radius: 16px;
+}
+
+textarea {
+    width: 92%;
+    border-radius: 16px;
+    padding: 10px;
 }
 
 input[type="checkbox"] {
