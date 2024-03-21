@@ -138,6 +138,14 @@ body {
     opacity: 0.5; /* Optionally reduce opacity to indicate it's disabled */
 }
 
+.teal-link {
+    color: teal;
+}
+
+.aqua-link {
+    color: aquamarine;
+}
+
 /* Theme related */
 .dark-theme {
     color: #f6f6f6;

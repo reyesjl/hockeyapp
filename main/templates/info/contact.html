@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Form{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Contact form for our website for users to request help or get information about soemthing.">  
+    <link rel="stylesheet" href="{% static 'css/info/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Contact Form</h1>
+            <p class="gray-text">Need help with something?</p>
+        </div>
+        <div class="form-wrapper">
+            <form class="form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button teal-theme" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Feedback Form{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Feedback form for our website for users to give us feedback.">  
+    <link rel="stylesheet" href="{% static 'css/info/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Feedback Form</h1>
+            <p class="gray-text">Continuous feedback makes us better.</p>
+        </div>
+        <div class="form-wrapper">
+            <form class="form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button teal-theme" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

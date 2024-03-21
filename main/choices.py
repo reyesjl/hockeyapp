@@ -31,3 +31,9 @@ TOURNAMENT_COMPANY_CHOICES = [
     ('TCS', 'TCS'),
     ('WPG', 'WPG'),
 ]
+
+STATUS_CHOICES = [
+    ('Pending', 'Pending'),
+    ('Processing', 'Processing'),
+    ('Completed', 'Completed'),
+]
