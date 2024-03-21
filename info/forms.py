@@ -1,5 +1,5 @@
 from django import forms
-from .models import Promotion, Contact, Feedback
+from .models import Promotion, Contact, Feedback, Application
 
 class PromotionForm(forms.ModelForm):
     class Meta:
@@ -52,6 +52,23 @@ class FeedbackForm(forms.ModelForm):
         help_texts = {
             'subject': 'Enter the subject of your feedback.',
             'message': 'Enter your feedback here.',
+            'email': 'Enter your email address.',
+            'phone_number': 'Enter your phone number.',
+        }
+
+class ApplicationForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = ['application_type', 'explanation', 'email', 'phone_number']
+        labels = {
+            'application_type': 'Application Type',
+            'explanation': 'About You',
+            'email': 'Email',
+            'phone_number': 'Phone Number',
+        }
+        help_texts = {
+            'application_type': 'Select the type of application you are submitting.',
+            'explanation': 'What makes you a good fit for our team?',
             'email': 'Enter your email address.',
             'phone_number': 'Enter your phone number.',
         }

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import PromotionForm, ContactForm, FeedbackForm
+from .forms import PromotionForm, ContactForm, FeedbackForm, ApplicationForm
 
 def promotion(request):
     if request.method == 'POST':
@@ -16,7 +16,6 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            # Process the form data if needed
             form.save()
             return redirect('info:thankyou', message='Your contact form has been submitted.')
     else:
@@ -28,13 +27,23 @@ def feedback(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            # Process the form data if needed
             form.save()
             return redirect('info:thankyou', message='Your feedback form has been submitted.')
     else:
         form = FeedbackForm()
 
     return render(request, 'info/feedback.html', {'form': form})
+
+def application(request):
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('info:thankyou', message='Your application form has been submitted.')
+    else:
+        form = ApplicationForm()
+    return render(request, 'info/application.html', {'form':form})
+
 
 def thankyou(request, message):
     """

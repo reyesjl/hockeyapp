@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Application Form{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Application form for our website for users to apply for certain available roles.">  
+    <link rel="stylesheet" href="{% static 'css/info/application.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Application Form</h1>
+            <p class="gray-text">Join our team and gain access to our information system. Open source roles to help maintain site quality.</p>
+        </div>
+        <div class="form-wrapper">
+            <form class="form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button teal-theme" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

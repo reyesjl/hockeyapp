@@ -37,3 +37,15 @@ STATUS_CHOICES = [
     ('Processing', 'Processing'),
     ('Completed', 'Completed'),
 ]
+
+PROMOTION_CHOICES = [
+    ('Tournament', 'Promote Tournament'),
+    ('Restaurant', 'Promote Restaurant'),
+    ('Hotel', 'Promote Hotel'),
+    ('Entertainment', 'Promote Entertainment'),
+]
+
+APPLICATION_CHOICES = [
+    ('Editor', 'Editor'),
+    ('Curator', 'Curator'),
+]
