@@ -94,6 +94,11 @@ body {
     color: rgb(127, 127, 127);
 }
 
+.disabled-link {
+    opacity: 50%;
+    pointer-events: none;
+}
+
 .nav-spacer {
     padding-top: 80px;
 }
