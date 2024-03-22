@@ -68,7 +68,7 @@ PAYMENT_PROCESS_CHOICES = [
 FOOD_TYPE_CHOICES = [
     ('Italian', 'Italian'),
     ('Mexican', 'Mexican'),
-    ('American (Traditional)', 'American (Traditional)'),
+    ('American', 'American'),
     ('Chinese', 'Chinese'),
     ('Japanese', 'Japanese'),
     ('Indian', 'Indian'),
@@ -83,8 +83,8 @@ FOOD_TYPE_CHOICES = [
     ('Brazilian', 'Brazilian'),
     ('German', 'German'),
     ('British', 'British'),
-    ('Cajun/Creole', 'Cajun/Creole'),
-    ('Southern/Soul Food', 'Southern/Soul Food'),
+    ('Cajun', 'Cajun'),
+    ('Southern', 'Southern'),
     ('Caribbean', 'Caribbean'),
 ]
 
