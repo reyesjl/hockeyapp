@@ -1,8 +1,3 @@
-.tournament-company {
-    color: gray;
-    margin: 0;
-}
-
 .section.hero {
     margin-bottom: 20px;
 }
@@ -12,21 +7,45 @@
     margin: 5px 0;
 }
 
-.tournament-date {
+.restaurant-type {
     color: gray;
 }
 
-/* Tournament links */
-.section.links {
-    margin-bottom: 30px;
+.food-allergy-wrapper {
+    display: flex;
 }
 
-.tournament-site {
+.allergy {
+    margin-right: 2px;
+}
+
+.gluten-theme {
+    color: #8A2BE2; /* Purple */
+}
+
+.vegan-theme {
+    color: #3CB371; /* Medium Sea Green */
+}
+
+.dairy-theme {
+    color: #FFD700; /* Gold */
+}
+
+.vegetarian-theme {
+    color: #4169E1; /* Royal Blue */
+}
+
+/* Restaurant links */
+.restaurant-site {
     margin-bottom: 10px;    
 }
 
 .site-link {
-    color: teal;
+    color: #4B0082;
+}
+
+.section.links {
+    margin-bottom: 30px;
 }
 
 

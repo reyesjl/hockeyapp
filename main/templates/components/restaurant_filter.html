@@ -1,0 +1,243 @@
+<style>
+    .form-wrapper {
+        padding: 20px;
+        border-radius: 16px;
+        display: none;
+        margin-bottom: 20px;
+    }
+
+    .filter-sections-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .filter-section-title {
+       margin-bottom: 10px;
+       color: #333; 
+       font-weight: bold;
+    }
+
+    .display-filters-label {
+        margin-bottom: 50px;
+    }
+
+    .restaurant-type-options {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .restaurant-type-option {
+        display: flex;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    .form-actions-wrapper {
+        display: flex;
+    }
+
+    .form-actions-wrapper .button {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+    .region-select {
+        margin-bottom: 20px;
+    }
+
+    .region-select-box {
+        padding: 8px 12px;
+        border: 1px solid gray;
+        outline: none;
+        border-radius: 16px;
+    }
+
+    .region-select-box:hover {
+        cursor: pointer;
+    }
+
+</style>
+
+<div class="display-filters-label">
+    <button id="toggleFilters" onclick="toggleFilters()" class="button filter light-theme">Display Filters</button>
+    <button id="nearMeButton" onclick="getNearbyRestaurants()" class="button filter dark-theme">All Near Me</button>
+    <button class="button red-theme" type="button" onclick="clearFilters()">Clear Filters</button>
+</div>
+<div id="formWrapper" {% if open_filters %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
+    <form id="filterForm" action="{% url 'restaurant:restaurant_home' %}" method="GET">
+
+        <!-- Hidden location fields -->
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
+
+        <div class="filter-sections-wrapper">
+            <div class="filter-section">
+                <div class="filter-section-title">
+                    Select Region
+                </div>
+                <div class="region-select">
+                    <select id="regionSelect" name="region" class="region-select-box">
+                        <option value="All" {% if selected_region == 'All' %} selected {% endif %}>All Regions</option>
+                        <optgroup label="USA Regions">
+                            <option value="South" {% if selected_region == 'South' %} selected {% endif %}>South</option>
+                            <option value="West" {% if selected_region == 'West' %} selected {% endif %}>West</option>
+                            <option value="North East" {% if selected_region == 'North East' %} selected {% endif %}>North East</option>
+                            <option value="Mid West" {% if selected_region == 'Mid West' %} selected {% endif %}>Mid West</option>
+                        </optgroup>
+                        <optgroup label="Canada">
+                            <option value="Alberta" {% if selected_region == 'Alberta' %} selected {% endif %}>Alberta</option>
+                            <option value="British Columbia" {% if selected_region == 'British Columbia' %} selected {% endif %}>British Columbia</option>
+                            <option value="Manitoba" {% if selected_region == 'Manitoba' %} selected {% endif %}>Manitoba</option>
+                            <option value="New Brunswick" {% if selected_region == 'New Brunswick' %} selected {% endif %}>New Brunswick</option>
+                            <option value="Newfoundland and Labrador" {% if selected_region == 'Newfoundland and Labrador' %} selected {% endif %}>Newfoundland and Labrador</option>
+                            <option value="Nova Scotia" {% if selected_region == 'Nova Scotia' %} selected {% endif %}>Nova Scotia</option>
+                            <option value="Ontario" {% if selected_region == 'Ontario' %} selected {% endif %}>Ontario</option>
+                            <option value="Prince Edward Island" {% if selected_region == 'Prince Edward Island' %} selected {% endif %}>Prince Edward Island</option>
+                            <option value="Quebec" {% if selected_region == 'Quebec' %} selected {% endif %}>Quebec</option>
+                            <option value="Saskatchewan" {% if selected_region == 'Saskatchewan' %} selected {% endif %}>Saskatchewan</option>
+                            <option value="Northwest Territories" {% if selected_region == 'Northwest Territories' %} selected {% endif %}>Northwest Territories</option>
+                            <option value="Nunavut" {% if selected_region == 'Nunavut' %} selected {% endif %}>Nunavut</option>
+                            <option value="Yukon" {% if selected_region == 'Yukon' %} selected {% endif %}>Yukon</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-section">
+                <div class="filter-section-title">
+                    Select Restaurant Type
+                </div>
+                <div class="restaurant-type-options">
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType1" name="food_type" value="Italian" {% if 'Italian' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType1">Italian</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType2" name="food_type" value="Mexican" {% if 'Mexican' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType2">Mexican</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType3" name="food_type" value="American (Traditional)" {% if 'American (Traditional)' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType3">American (Traditional)</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType4" name="food_type" value="Chinese" {% if 'Chinese' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType4">Chinese</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType5" name="food_type" value="Japanese" {% if 'Japanese' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType5">Japanese</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType6" name="food_type" value="Indian" {% if 'Indian' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType6">Indian</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType7" name="food_type" value="French" {% if 'French' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType7">French</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType8" name="food_type" value="Mediterranean" {% if 'Mediterranean' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType8">Mediterranean</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType9" name="food_type" value="Thai" {% if 'Thai' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType9">Thai</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType10" name="food_type" value="Greek" {% if 'Greek' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType10">Greek</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType11" name="food_type" value="Spanish" {% if 'Spanish' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType11">Spanish</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType12" name="food_type" value="Korean" {% if 'Korean' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType12">Korean</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType13" name="food_type" value="Vietnamese" {% if 'Vietnamese' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType13">Vietnamese</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType14" name="food_type" value="Middle Eastern" {% if 'Middle Eastern' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType14">Middle Eastern</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType15" name="food_type" value="Brazilian" {% if 'Brazilian' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType15">Brazilian</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType16" name="food_type" value="German" {% if 'German' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType16">German</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType17" name="food_type" value="British" {% if 'British' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType17">British</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType18" name="food_type" value="Cajun/Creole" {% if 'Cajun/Creole' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType18">Cajun/Creole</label><br>
+                    </div>
+                    <div class="restaurant-type-option">
+                        <input type="checkbox" id="foodType19" name="food_type" value="Southern/Soul Food" {% if 'Southern/Soul Food' in selected_food_types %} checked {% endif %}>
+                        <label for="foodType19">Southern/Soul Food</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions-wrapper">
+            <button class="button purple-theme" type="button" onclick="applyFilters()">Apply Filters</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function toggleFilters() {
+        var formWrapper = document.getElementById('formWrapper');
+        var displayButton = document.getElementById('toggleFilters');
+
+        if (formWrapper.style.display === 'block') {
+            formWrapper.style.display = 'none';
+            displayButton.innerText = 'Display Filters';
+        } else {
+            formWrapper.style.display = 'block';
+            displayButton.innerText = 'Close Filters';
+        }
+    }
+
+    function applyFilters() {
+        document.getElementById('filterForm').submit();
+    }
+
+    function getNearbyRestaurants() {
+        // Check if geolocation is supported by the browser
+        if (navigator.geolocation) {
+            // Get user's current location
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                // Set the hidden fields in the form with user's coordinates
+                document.getElementById('latitude').value = latitude;
+                document.getElementById('longitude').value = longitude;
+
+                // Submit the form to fetch nearby restaurants
+                document.getElementById('filterForm').submit();
+            });
+        } else {
+            alert("Geolocation is not supported by your browser.");
+        }
+    }
+
+    function clearFilters() {
+        var checkboxes = document.querySelectorAll('input[name="food_type"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+
+        document.getElementById('latitude').value = '';
+        document.getElementById('longitude').value = '';
+        document.getElementById('regionSelect').value = 'All';
+        document.getElementById('filterForm').submit();
+    }
+</script>

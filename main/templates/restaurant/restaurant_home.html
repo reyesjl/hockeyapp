@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Restaurant Listings{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Main restaurant listings page.">  
+    <link rel="stylesheet" href="{% static 'css/restaurant/restaurant_home.css' %}">
+    <script src="{% static 'js/restaurant/restaurant.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Restaurant Listings</h1>
+            
+            <!-- Filter Component -->
+            {% include 'components/restaurant_filter.html' %}
+            
+        </div>
+
+        <!-- Results for: etc... -->
+        <div class="split-wrapper">
+            <div class="status-line">{{ status_line }}</div>
+            <div class="listing-link"><a class="add-listing-link" href="{% url 'restaurant:add_restaurant' %}">+ Add New Listing</a></div>
+        </div>
+        
+
+        <div class="results-wrapper">
+            <div class="restaurant-list">
+            {% for restaurant in restaurant_listings %}
+                <div class="restaurant">
+                    <div class="foodtype-with-buttons">
+                        <div class="foodtype-label">
+                            {{ restaurant.food_type }}
+                        </div>
+                        <div class="share-like-buttons">
+                            <div><button onclick="shareLink('{{ restaurant.id }}')" class="button light-theme"><i class="fa-solid fa-arrow-up-from-bracket"></i> Share</button></div>
+                            <div><button class="button red-theme disabled"><i class="fa-regular fa-heart"></i> Save</button></div>
+                        </div>
+                    </div>
+                    <div class="restaurant-hero">
+                        <div class="restaurant-name"><a class="restaurant-name-link" href="{% url 'restaurant:get_restaurant' restaurant.id %}">{{ restaurant.name }}</a></div>
+                    </div>
+                    <div class="restaurant-runner-details">
+                        <div class="runner-detail">
+                            <div class="detail-value">{{ restaurant.get_price_display }}</div>
+                        </div>
+                        <div class="spacer-dot">&#x2022;</div>
+                        <div class="runner-detail">
+                            <div class="detail-value">{{ restaurant.seating_time }} Seating</div>
+                        </div>
+                    </div>
+
+                    <!-- Displays color if restaurant serves these types of options. -->
+                    <div class="food-allergy-wrapper">
+                        <div class="allergy {% if restaurant.gluten_free %}gluten-theme{% else %}gray-text{% endif %}">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                        </div>
+                        <div class="allergy {% if restaurant.vegan %}vegan-theme{% else %}gray-text{% endif %}">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="allergy {% if restaurant.dairy_free %}dairy-theme{% else %}gray-text{% endif %}">
+                            <i class="fa-solid fa-cow"></i>
+                        </div>
+                        <div class="allergy {% if restaurant.vegetarian %}vegetarian-theme{% else %}gray-text{% endif %}">
+                            <i class="fa-solid fa-carrot"></i>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="section">No restaurants for the selected filters.</p>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

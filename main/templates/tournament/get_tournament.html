@@ -45,6 +45,20 @@
             </div>
         </div>
 
+        <div class="section agreement">
+            <div class="card agreement-card">
+                <h3 class="card-title">Agreement</h3>
+                <div class="card-content">
+                    <div class="content-label">Stay and Play</div>
+                    <div class="content-value">{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</div>
+                </div>
+                <div class="card-content">
+                    <div class="content-label">Extended Checkout</div>
+                    <div class="content-value">{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</div>
+                </div>
+            </div>
+        </div>
+        
         <div class="section parking">
             <div class="card parking-card">
                 <h3 class="card-title">Parking</h3>
@@ -65,19 +79,6 @@
             </div>
         </div>
 
-        <div class="section agreement">
-            <div class="card agreement-card">
-                <h3 class="card-title">Agreement</h3>
-                <div class="card-content">
-                    <div class="content-label">Stay and Play</div>
-                    <div class="content-value">{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</div>
-                </div>
-                <div class="card-content">
-                    <div class="content-label">Extended Checkout</div>
-                    <div class="content-value">{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

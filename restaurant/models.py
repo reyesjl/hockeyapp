@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Restaurant(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+    website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     food_type = models.CharField(max_length=100, choices=FOOD_TYPE_CHOICES)
     gluten_free = models.BooleanField(default=False)

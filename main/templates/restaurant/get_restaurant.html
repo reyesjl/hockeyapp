@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Restaurant Details{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Page for viewing the details of a selected restaurant.">  
+    <link rel="stylesheet" href="{% static 'css/restaurant/get_restaurant.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section hero">
+    <div class="container">
+        <div class="hero-wrapper">
+            <div class="restaurant-type">{{ restaurant.food_type }}</div>
+            <h1 class="hero-title">{{ restaurant.name }}</h1>
+            <div class="food-allergy-wrapper">
+                <div class="allergy {% if restaurant.gluten_free %}gluten-theme{% else %}gray-text{% endif %}">
+                    <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <div class="allergy {% if restaurant.vegan %}vegan-theme{% else %}gray-text{% endif %}">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <div class="allergy {% if restaurant.dairy_free %}dairy-theme{% else %}gray-text{% endif %}">
+                    <i class="fa-solid fa-cow"></i>
+                </div>
+                <div class="allergy {% if restaurant.vegetarian %}vegetarian-theme{% else %}gray-text{% endif %}">
+                    <i class="fa-solid fa-carrot"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section links">
+    <div class="container">
+        <div class="restaurant-site"><i class="fa-solid fa-globe"></i> <a class="site-link" href="{{ restaurant.website }}" target="_blank">Offical Restaurant Site</a></div>
+        <div class="restaurant-address"><i class="fa-regular fa-compass"></i> {{ restaurant.address }}</div>
+    </div>
+</div>
+
+<div class="section details container">
+    <div class="details-wrapper">
+        <div class="section ratings">
+            <div class="card rating-card">
+                <h3 class="card-title">Ratings</h3>
+                <div class="card-content">
+                    <div class="content-label">Meal Quality</div>
+                    <div class="content-value">{{ restaurant.meal_quality }} out of 5.0</div>
+                </div>
+                <div class="card-content">
+                    <div class="content-label">Service Quality</div>
+                    <div class="content-value">{{ restaurant.service_quality }} out of 5.0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section agreement">
+            <div class="card agreement-card">
+                <h3 class="card-title">Payment</h3>
+                <div class="card-content">
+                    <div class="content-label">Payment Process</div>
+                    <div class="content-value">{{ restaurant.payment_process }}</div>
+                </div>
+                <div class="card-content">
+                    <div class="content-label">Price Range</div>
+                    <div class="content-value">{{ restaurant.price }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section parking">
+            <div class="card parking-card">
+                <h3 class="card-title">Parking</h3>
+                <div class="card-content-wrapper">
+                    <div class="card-content parking">
+                        <div class="content-label">Size</div>
+                        <div class="content-value">{{ restaurant.parking_size }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section reviews">
+    <hr>
+    <div class="container">
+        <h3 class="review-section-title">User Reviews</h3>
+        <div class="split-wrapper">
+            <div class="status-line">Showing all reviews</div>
+            <div class="review-link"><a class="add-review-link" href="#">+ Add New Review</a></div>
+        </div>
+        <div class="reviews-wrapper">
+            {% for review in reviews %}
+            <div class="review">
+                <div class="review-label">{{ review.date|date:"F" }}</div>
+                <div class="review-preview">{{ review.comment }}</div>
+            </div>
+            {% empty %}
+                <div class="review-status-line empty-review">Be the first to review this tournament!</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

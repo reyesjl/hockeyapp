@@ -7,33 +7,33 @@
     margin-bottom: 20px;
 }
 
-.tournament-list {
+.restaurant-list {
     margin-bottom: 50px;
 }
 
-.tournament {
+.restaurant {
     padding: 20px;
     border: 1px solid gray;
     border-radius: 16px;
     margin-bottom: 10px;
 }
 
-.tournament-name-link {
+.restaurant-name-link {
     color: rgb(21, 21, 21);
 }
 
-.region-with-buttons {
+.foodtype-with-buttons {
     display: flex;
     width: auto;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.region-label {
-    color: teal;
+.foodtype-label {
+    color: #4B0082;
 }
 
-.region-with-buttons .button {
+.foodtype-with-buttons .button {
     margin-right: 5px;
     margin-bottom: 10px;
 }
@@ -42,7 +42,7 @@
     display: flex;
 }
 
-.tournament-name {
+.restaurant-name {
     text-transform: capitalize;
     font-weight: bold;
     margin-bottom: 10px;
@@ -57,19 +57,48 @@
     text-decoration: underline;
 }
 
-.tournament-runner-details {
+.restaurant-runner-details {
     color: gray;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 .runner-detail {
     text-transform: capitalize;
-    display: flex;
 }
 
 .spacer-dot {
     padding: 0 5px;
+}
+
+.food-allergy-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.allergy {
+    margin-right: 2px;
+}
+
+.gray-text {
+    opacity: 50%;
+}
+
+.gluten-theme {
+    color: #8A2BE2; /* Purple */
+}
+
+.vegan-theme {
+    color: #3CB371; /* Medium Sea Green */
+}
+
+.dairy-theme {
+    color: #FFD700; /* Gold */
+}
+
+.vegetarian-theme {
+    color: #4169E1; /* Royal Blue */
 }
 
 @media screen and (max-width: 768px) {
@@ -77,7 +106,7 @@
         width: 100%;
     }
 
-    .tournament-name {
+    .restaurant-name {
         width: 80%;
     }
 }

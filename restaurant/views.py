@@ -1,3 +1,118 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import Restaurant
+from tournament.models import Location
+from django.db.models import Q
+from main.regions import get_coordinates
+from .forms import RestaurantForm
 
-# Create your views here.
+def restaurant_home(request):
+    """
+    Renders the home page for restaurants, allowing users to filter and view restaurant listings.
+
+    Args:
+        request: HttpRequest object.
+
+    Returns:
+        HttpResponse object rendering the restaurant home page.
+    """
+    # Retrieve filter parameters from the request
+    selected_region = request.GET.get('region')
+    user_latitude = request.GET.get('latitude')
+    user_longitude = request.GET.get('longitude')
+    selected_food_types = request.GET.getlist('food_type')
+
+    # Prepare filter for restaurants
+    restaurant_filter = Q()
+
+    status_line = "Showing all restaurants."
+
+    open_filters = False  # Default value for open_filters
+
+    if user_latitude and user_longitude:
+        # Define the maximum distance (in degrees) for nearby restaurants
+        max_distance = .4  # Adjust as needed
+
+        # Filter restaurants within the maximum distance from the user
+        restaurant_filter &= Q(location__latitude__lte=float(user_latitude) + max_distance) & Q(location__latitude__gte=float(user_latitude) - max_distance) & Q(location__longitude__lte=float(user_longitude) + max_distance) & Q(location__longitude__gte=float(user_longitude) - max_distance)
+
+        status_line += " Within 20-25 miles of your Location."
+
+    # Filter restaurants by selected_region
+    if selected_region and selected_region != 'All':
+        restaurant_filter &= Q(location__region=selected_region)
+        status_line += f" Filtered by region: {selected_region}."
+        open_filters = True  # Set open_filters to True if selected region exists
+
+    # Filter restaurants by selected food types
+    if selected_food_types:
+        restaurant_filter &= Q(food_type__in=selected_food_types)
+        status_line += f" Filtered by food types: {', '.join(selected_food_types)}."
+        open_filters = True  # Set open_filters to True if selected food types exist
+
+    # Query restaurants using the built filter
+    restaurant_listings = Restaurant.objects.filter(restaurant_filter).order_by('name')
+
+    context = {
+        'selected_region': selected_region,
+        'restaurant_listings': restaurant_listings,
+        'selected_food_types': selected_food_types,
+        'status_line': status_line,
+        'open_filters': open_filters,  # Pass open_filters to the context   
+    }
+    return render(request, 'restaurant/restaurant_home.html', context)
+
+def add_restaurant(request):
+    """
+    Renders the form to add a new restaurant and processes form submission.
+
+    Args:
+        request: HttpRequest object.
+
+    Returns:
+        HttpResponse object rendering the add restaurant page or redirecting to restaurant home.
+    """
+    if request.method == 'POST':
+        form = RestaurantForm(request.POST)
+        if form.is_valid():
+            # Get the address entered by the user
+            address = form.cleaned_data['address']
+
+            # Call the get_coordinates function to get latitude and longitude
+            coordinates = get_coordinates(address)
+
+            # Create or update the Location model with the new coordinates
+            location, created = Location.objects.get_or_create(region="All", defaults={'latitude': coordinates['lat'], 'longitude': coordinates['lng']})
+
+            # Save the location object to ensure it's created or updated in the database
+            location.save()
+
+            restaurant = form.save(commit=False)
+            restaurant.location = location  # Assign the location to the restaurant
+            restaurant.draft_status = 'draft'
+            restaurant.save()
+            return redirect('restaurant:restaurant_home')
+    else:
+        form = RestaurantForm()
+    return render(request, 'restaurant/add_restaurant.html', {'form': form})
+
+def get_restaurant(request, restaurant_id):
+    """
+    Renders the details of a specific restaurant.
+
+    Args:
+        request: HttpRequest object.
+        restaurant_id: ID of the restaurant to retrieve.
+
+    Returns:
+        HttpResponse object rendering the restaurant details page.
+    """
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+    
+    # Fetch reviews associated with the restaurant
+    #reviews = RestaurantReview.objects.filter(restaurant=restaurant)
+
+    context = {
+        'reviews': '',
+        'restaurant': restaurant
+    }
+    return render(request, 'restaurant/get_restaurant.html', context)
