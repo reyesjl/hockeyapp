@@ -50,7 +50,7 @@ def restaurant_home(request):
         open_filters = True  # Set open_filters to True if selected food types exist
 
     # Query restaurants using the built filter
-    restaurant_listings = Restaurant.objects.filter(restaurant_filter).order_by('name')
+    restaurant_listings = Restaurant.objects.filter(restaurant_filter, draft_status='published').order_by('name')
 
     context = {
         'selected_region': selected_region,
