@@ -96,7 +96,7 @@ ALLERGEN_CHOICES = [
 ]
 
 PRICE_CHOICES = [
-    ('Cheap', 'Cheap'),
+    ('Reasonable', 'Reasonable'),
     ('Moderate', 'Moderate'),
     ('Expensive', 'Expensive'),
 ]

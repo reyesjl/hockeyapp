@@ -17,7 +17,7 @@ class Restaurant(models.Model):
     service_quality = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     seating_time = models.CharField(max_length=25, choices=SEATING_TIME_CHOICES, default='30 minutes')
     payment_process = models.CharField(max_length=20, choices=PAYMENT_PROCESS_CHOICES, default='Effortless')
-    price = models.CharField(max_length=20, choices=PRICE_CHOICES, default='moderate')
+    price = models.CharField(max_length=20, choices=PRICE_CHOICES, default='Reasonable')
     parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft')
 
