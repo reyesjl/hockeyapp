@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Entertainment Details{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Page for viewing the details of a selected entertainment venue.">  
+    <link rel="stylesheet" href="{% static 'css/entertainment/get_entertainment.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section hero">
+    <div class="container">
+        <div class="hero-wrapper">
+            <div class="activity-type">{{ entertainment.activity_type }}</div>
+            <h1 class="hero-title">{{ entertainment.name }}</h1>
+            <div class="alcohol-wrapper">
+                <div class="alcohol {% if entertainment.serve_beer %}beer-theme{% else %}gray-text{% endif %}">
+                    <i class="fa-solid fa-beer-mug-empty"></i>
+                </div>
+                <div class="alcohol {% if entertainment.serve_wine %}wine-theme{% else %}gray-text{% endif %}">
+                    <i class="fa-solid fa-wine-glass"></i>
+                </div>
+                <div class="alcohol {% if entertainment.serve_liquor %}liquor-theme{% else %}gray-text{% endif %}">
+                    <i class="fa-solid fa-martini-glass-citrus"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section links">
+    <div class="container">
+        <div class="entertainment-site"><i class="fa-solid fa-globe"></i> <a class="site-link" href="{{ entertainment.website }}" target="_blank">Official Entertainment Site</a></div>
+        <div class="entertainment-address"><i class="fa-regular fa-compass"></i> {{ entertainment.address }}</div>
+    </div>
+</div>
+
+<div class="section details container">
+    <div class="details-wrapper">
+        <div class="section rating">
+            <div class="card agreement-card">
+                <h3 class="card-title">Ratings</h3>
+                <div class="card-content">
+                    <div class="content-label">Service Quality</div>
+                    <div class="content-value">{{ entertainment.service_rating }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="section agreement">
+            <div class="card agreement-card">
+                <h3 class="card-title">Payment</h3>
+                <div class="card-content">
+                    <div class="content-label">Types</div>
+                    <div class="content-value">
+                    {% if entertainment.take_cash %}
+                        <span class="payment-type">Cash, </span>
+                    {% endif %}
+                    {% if entertainment.take_card %}
+                        <span class="payment-type">Card, </span>
+                    {% endif %}
+                    {% if entertainment.take_digital_payment %}
+                        <span class="payment-type">Digital Payment</span>
+                    {% endif %}
+                    {% if not entertainment.take_cash and not entertainment.take_card and not entertainment.take_digital_payment %}
+                        <span class="no-payment-type">No payment methods accepted</span>
+                    {% endif %}
+            </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section parking">
+            <div class="card parking-card">
+                <h3 class="card-title">Parking</h3>
+                <div class="card-content-wrapper">
+                    <div class="card-content parking">
+                        <div class="content-label">Size</div>
+                        <div class="content-value">{{ entertainment.parking_size }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section reviews">
+    <hr>
+    <div class="container">
+        <h3 class="review-section-title">User Reviews</h3>
+        <div class="split-wrapper">
+            <div class="status-line">Showing all reviews</div>
+            <div class="review-link"><a class="add-review-link" href="{% url 'entertainment:review_entertainment' entertainment.id %}">+ Add New Review</a></div>
+        </div>
+        <div class="reviews-wrapper">
+            {% for review in reviews %}
+            <div class="review">
+                <div class="review-label">{{ review.date|date:"F" }}</div>
+                <div class="review-preview">{{ review.comment }}</div>
+            </div>
+            {% empty %}
+                <div class="review-status-line empty-review">Be the first to review this entertainment venue!</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

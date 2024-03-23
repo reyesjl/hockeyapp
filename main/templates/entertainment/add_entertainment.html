@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Entertainment{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Page for adding an entertainment listing.">  
+    <link rel="stylesheet" href="{% static 'css/entertainment/add_entertainment.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">New Entertainment</h1>
+        </div>
+        <div class="form-wrapper">
+            <form class="form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button green-theme" type="submit">Add Entertainment</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

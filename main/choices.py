@@ -103,11 +103,11 @@ PRICE_CHOICES = [
 
 ACTIVITY_TYPE_CHOICES = [
     ('Arts and Crafts', 'Arts and Crafts'),
+    ('Bar', 'Bar'),
     ('Brewery', 'Brewery'),
     ('Class', 'Class'),
     ('Comedy Show', 'Comedy Show'),
     ('Concert', 'Concert'),
-    ('Cooking Demonstration', 'Cooking Demonstration'),
     ('Cultural Event', 'Cultural Event'),
     ('Dance Performance', 'Dance Performance'),
     ('Exhibition', 'Exhibition'),

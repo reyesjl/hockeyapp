@@ -7,42 +7,18 @@
     margin-bottom: 20px;
 }
 
-.restaurant-list {
+.entertainment-list {
     margin-bottom: 50px;
 }
 
-.restaurant {
+.entertainment {
     padding: 20px;
     border: 1px solid gray;
     border-radius: 16px;
     margin-bottom: 10px;
 }
 
-.restaurant-name-link {
-    color: rgb(21, 21, 21);
-}
-
-.foodtype-with-buttons {
-    display: flex;
-    width: auto;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.foodtype-label {
-    color: #4B0082;
-}
-
-.foodtype-with-buttons .button {
-    margin-right: 5px;
-    margin-bottom: 10px;
-}
-
-.share-like-buttons {
-    display: flex;
-}
-
-.restaurant-name {
+.entertainment-name {
     text-transform: capitalize;
     font-weight: bold;
     margin-bottom: 10px;
@@ -51,13 +27,37 @@
     font-size: 23px;
 }
 
+.entertainment-name-link {
+    color: rgb(21, 21, 21);
+}
+
 .add-listing-link {
     color: gray;
     font-size: .9em;
     text-decoration: underline;
 }
 
-.restaurant-runner-details {
+.activitytype-with-buttons {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.activitytype-label {
+    color: #006400;
+}
+
+.activitytype-with-buttons .button {
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.share-like-buttons {
+    display: flex;
+}
+
+.entertainment-runner-details {
     color: gray;
     display: flex;
     flex-wrap: wrap;
@@ -72,12 +72,12 @@
     padding: 0 5px;
 }
 
-.food-allergy-wrapper {
+.alcohol-wrapper {
     display: flex;
     justify-content: flex-end;
 }
 
-.allergy {
+.alcohol {
     margin-right: 5px;
 }
 
@@ -85,28 +85,25 @@
     opacity: 50%;
 }
 
-.gluten-theme {
-    color: #8A2BE2; /* Purple */
+.beer-theme {
+    color: #b99d00; /* Gold */
 }
 
-.vegan-theme {
-    color: #3CB371; /* Medium Sea Green */
+.wine-theme {
+    color: #8B008B; /* DarkMagenta */
 }
 
-.dairy-theme {
-    color: #FFD700; /* Gold */
+.liquor-theme {
+    color: #312be2; /* BlueViolet */
 }
 
-.vegetarian-theme {
-    color: #4169E1; /* Royal Blue */
-}
 
 @media screen and (max-width: 768px) {
     .share-like-wrapper {
         width: 100%;
     }
 
-    .restaurant-name {
+    .entertainment-name {
         width: 80%;
     }
 }

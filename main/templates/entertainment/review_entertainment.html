@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Leave Review{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Page for adding an entertainment review.">  
+    <link rel="stylesheet" href="{% static 'css/entertainment/review_entertainment.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Review Entertainment</h1>
+            <p class="gray-text">For {{ entertainment.name }} at <br>{{ entertainment.address }}</p>
+        </div>
+        <div class="form-wrapper">
+            <form class="form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="button green-theme" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

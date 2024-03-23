@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Entertainment Listings{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Main entertainment listings page.">  
+    <link rel="stylesheet" href="{% static 'css/entertainment/entertainment_home.css' %}">
+    <script src="{% static 'js/entertainment/entertainment.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Entertainment Listings</h1>
+            
+            <!-- Filter Component -->
+            {% include 'components/entertainment_filter.html' %}
+            
+        </div>
+
+        <!-- Results for: etc... -->
+        <div class="split-wrapper">
+            <div class="status-line">{{ status_line }}</div>
+            <div class="listing-link"><a class="add-listing-link" href="{% url 'entertainment:add_entertainment' %}">+ Add New Listing</a></div>
+        </div>
+        
+
+        <div class="results-wrapper">
+            <div class="entertainment-list">
+            {% for entertainment in entertainment_listings %}
+                <div class="entertainment">
+                    <div class="activitytype-with-buttons">
+                        <div class="activitytype-label">
+                            {{ entertainment.activity_type }}
+                        </div>
+                        <div class="share-like-buttons">
+                            <div><button onclick="shareLink('{{ entertainment.id }}')" class="button light-theme"><i class="fa-solid fa-arrow-up-from-bracket"></i> Share</button></div>
+                            <div><button class="button red-theme disabled"><i class="fa-regular fa-heart"></i> Save</button></div>
+                        </div>
+                    </div>
+                    <div class="entertainment-hero">
+                        <div class="entertainment-name"><a class="entertainment-name-link" href="{% url 'entertainment:get_entertainment' entertainment.id %}">{{ entertainment.name }}</a></div>
+                    </div>
+                    <div class="entertainment-runner-details">
+                        <div class="runner-detail">
+                            <div class="detail-value">{{ entertainment.age_range }}</div>
+                        </div>
+                        <div class="spacer-dot">&#x2022;</div>
+                        <div class="runner-detail">
+                            <div class="detail-value">{{ entertainment.parking_size }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Displays icons if entertainment serves these types of options. -->
+                    <div class="alcohol-wrapper">
+                        <div class="alcohol {% if entertainment.serve_beer %}beer-theme{% else %}gray-text{% endif %}">
+                            <i class="fa-solid fa-beer-mug-empty"></i>
+                        </div>
+                        <div class="alcohol {% if entertainment.serve_wine %}wine-theme{% else %}gray-text{% endif %}">
+                            <i class="fa-solid fa-wine-glass"></i>
+                        </div>
+                        <div class="alcohol {% if entertainment.serve_liquor %}liquor-theme{% else %}gray-text{% endif %}">
+                            <i class="fa-solid fa-martini-glass-citrus"></i>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="section">No entertainment venues for the selected filters.</p>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

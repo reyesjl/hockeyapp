@@ -4,6 +4,9 @@ from tournament.models import Location
 from django.db.models import Q
 from main.regions import get_coordinates
 from .forms import RestaurantForm
+from main.choices import FOOD_TYPE_CHOICES
+from review.models import RestaurantReview
+from review.forms import RestaurantReviewForm
 
 def restaurant_home(request):
     """
@@ -53,6 +56,7 @@ def restaurant_home(request):
     restaurant_listings = Restaurant.objects.filter(restaurant_filter, draft_status='published').order_by('name')
 
     context = {
+        'restaurant_type_options': FOOD_TYPE_CHOICES,
         'selected_region': selected_region,
         'restaurant_listings': restaurant_listings,
         'selected_food_types': selected_food_types,
@@ -109,10 +113,36 @@ def get_restaurant(request, restaurant_id):
     restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
     
     # Fetch reviews associated with the restaurant
-    #reviews = RestaurantReview.objects.filter(restaurant=restaurant)
+    reviews = RestaurantReview.objects.filter(restaurant=restaurant)
 
     context = {
-        'reviews': '',
+        'reviews': reviews,
         'restaurant': restaurant
     }
     return render(request, 'restaurant/get_restaurant.html', context)
+
+def review_restaurant(request, restaurant_id):
+    """
+    Renders the form for reviewing a specific restaurant and processes form submission.
+
+    Args:
+        request: HttpRequest object.
+        restaurant_id: ID of the restaurant to review.
+
+    Returns:
+        HttpResponse object rendering the review restaurant page or redirecting to restaurant details page.
+    """
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+
+    if request.method == 'POST':
+        form = RestaurantReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.restaurant = restaurant
+            review.save()
+            return redirect('review:thankyou', message='Your review has been submitted.')
+    else:
+        initial_data = {'restaurant': restaurant}
+        form = RestaurantReviewForm(initial=initial_data)
+
+    return render(request, 'restaurant/review_restaurant.html', {'form': form, 'restaurant': restaurant})

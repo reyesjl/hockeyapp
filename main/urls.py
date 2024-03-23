@@ -11,6 +11,7 @@ urlpatterns = [
     # all other apps
     path('tournament/', include('tournament.urls')),
     path('restaurant/', include('restaurant.urls')),
+    path('entertainment/', include('entertainment.urls')),
     path('review/', include('review.urls')),
     path('info/', include('info.urls')),
 ]

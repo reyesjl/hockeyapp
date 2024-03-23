@@ -20,12 +20,12 @@
         margin-bottom: 50px;
     }
 
-    .restaurant-type-options {
+    .activity-type-options {
         display: flex;
         flex-wrap: wrap;
     }
 
-    .restaurant-type-option {
+    .activity-type-option {
         display: flex;
         margin-right: 10px;
         margin-bottom: 10px;
@@ -59,11 +59,12 @@
 
 <div class="display-filters-label">
     <button id="toggleFilters" onclick="toggleFilters()" class="button filter light-theme">Display Filters</button>
-    <button id="nearMeButton" onclick="getNearbyRestaurants()" class="button filter dark-theme">All Near Me</button>
+    <button id="nearMeButton" onclick="getNearbyEntertainment()" class="button filter dark-theme">All Near Me</button>
     <button class="button red-theme" type="button" onclick="clearFilters()">Clear Filters</button>
 </div>
+
 <div id="formWrapper" {% if open_filters %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
-    <form id="filterForm" action="{% url 'restaurant:restaurant_home' %}" method="GET">
+    <form id="filterForm" action="{% url 'entertainment:entertainment_home' %}" method="GET">
 
         <!-- Hidden location fields -->
         <input type="hidden" id="latitude" name="latitude">
@@ -103,20 +104,20 @@
             </div>
             <div class="filter-section">
                 <div class="filter-section-title">
-                    Select Restaurant Type
+                    Select Activity Type
                 </div>
-                <div class="restaurant-type-options">
-                    {% for restaurant_type_value, restaurant_type_label in restaurant_type_options %}
-                        <div class="restaurant-type-option">
-                            <input type="checkbox" id="{{ restaurant_type_value }}" name="food_type" value="{{ restaurant_type_value }}" {% if restaurant_type_value in selected_food_types %} checked {% endif %}>
-                            <label for="{{ restaurant_type_value }}">{{ restaurant_type_label }}</label><br>
+                <div class="activity-type-options">
+                    {% for activity_type_value, activity_type_label in activity_type_choices %}
+                        <div class="activity-type-option">
+                            <input type="checkbox" id="{{ activity_type_value }}" name="activity_type" value="{{ activity_type_value }}" {% if activity_type_value in selected_activity_types %} checked {% endif %}>
+                            <label for="{{ activity_type_value }}">{{ activity_type_label }}</label><br>
                         </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
         <div class="form-actions-wrapper">
-            <button class="button purple-theme" type="button" onclick="applyFilters()">Apply Filters</button>
+            <button class="button green-theme" type="button" onclick="applyFilters()">Apply Filters</button>
         </div>
     </form>
 </div>
@@ -139,7 +140,7 @@
         document.getElementById('filterForm').submit();
     }
 
-    function getNearbyRestaurants() {
+    function getNearbyEntertainment() {
         // Check if geolocation is supported by the browser
         if (navigator.geolocation) {
             // Get user's current location
@@ -151,7 +152,7 @@
                 document.getElementById('latitude').value = latitude;
                 document.getElementById('longitude').value = longitude;
 
-                // Submit the form to fetch nearby restaurants
+                // Submit the form to fetch nearby entertainment venues
                 document.getElementById('filterForm').submit();
             });
         } else {
@@ -160,7 +161,7 @@
     }
 
     function clearFilters() {
-        var checkboxes = document.querySelectorAll('input[name="food_type"]');
+        var checkboxes = document.querySelectorAll('input[name="activity_type"]');
         checkboxes.forEach(function(checkbox) {
             checkbox.checked = false;
         });

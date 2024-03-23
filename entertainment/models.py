@@ -20,3 +20,6 @@ class Entertainment(models.Model):
     parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft')
 
+    def __str__(self):
+        return f"{self.name} - {self.address}"
+
