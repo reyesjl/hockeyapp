@@ -20,6 +20,8 @@ DRAFT_STATUS_CHOICES = [
 ]
 
 TOURNAMENT_COMPANY_CHOICES = [
+    ('Idk', 'Idk'),
+    ('Organized by Club/Rink','Organized by Club/Rink'),
     ('YHT', 'YHT'),
     ('CAN/AM', 'CAN/AM'),
     ('CHE', 'CHE'),

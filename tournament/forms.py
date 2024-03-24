@@ -19,7 +19,7 @@ class TournamentForm(forms.ModelForm):
         }
         help_texts = {
             'date': 'Select the date of the tournament.',
-            'company': 'Select the company organizing the tournament.',
+            'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
             'parking_size': 'Select the size of the parking area.',
