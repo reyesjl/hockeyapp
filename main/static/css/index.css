@@ -105,6 +105,10 @@ a.button.link {
 }
 
 /* Contribute section */
+.contribute-actions-wrapper {
+    padding: 10px 0;
+}
+
 .contribute-actions-wrapper .button {
     margin-bottom: 10px;
     margin-right: 5px;
