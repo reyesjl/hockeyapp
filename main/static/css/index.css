@@ -43,6 +43,10 @@
 }
 
 /* Location */
+.section.location {
+    padding-bottom: 10px;
+}
+
 .current-location-wrapper {
     padding: 20px;
     border: 1px solid black;
