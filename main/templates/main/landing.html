@@ -85,6 +85,21 @@
                 <button onclick="clearLocation()" class="location button red-theme">Clear</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="section call-to-action dark-theme">
+    <div class="container">
+        <div class="hero-wrapper">
+            <h1 class="hero-title">Contribute</h1>
+            <p class="hero-subtitle">Your opinions matter! Play an active role in our growth by suggesting new tournaments, restaurants, hotels, and activities, and by leaving reviews that guide our improvement efforts.</p>
+        </div>
+        <div class="contribute-actions-wrapper">
+            <a href="{% url 'tournament:add_tournament' %}" class="button button-link teal-theme">Add Tournament</a>
+            <a href="{% url 'restaurant:add_restaurant' %}" class="button button-link purple-theme">Add Restaurant</a>
+            <a href="{% url 'entertainment:add_entertainment' %}" class="button button-link green-theme">Add Entertainment</a>
+            <a href="{% url 'tournament:tournament_home' %}" class="button button-link light-theme">Leave Review</a>
+            <a href="{% url 'info:feedback' %}" class="button button-link light-theme">Give us Feedback</a>
+        </div>
         <div class="location columns">
             <div class="column">
                 <h1 class="column-title">Restaurants</h1>
@@ -104,21 +119,6 @@
                 <div class="column-content">Ready for some fun after hitting the ice? Discover nearby entertainment here.</div>
                 <!-- <div class="column-button"><a class="button link disabled" href="#">Learn More</a></div> -->
             </div>
-        </div>
-    </div>
-</div>
-<div class="section call-to-action dark-theme">
-    <div class="container">
-        <div class="hero-wrapper">
-            <h1 class="hero-title">Contribute</h1>
-            <p class="hero-subtitle">Your opinions matter! Play an active role in our growth by suggesting new tournaments, restaurants, hotels, and activities, and by leaving reviews that guide our improvement efforts.</p>
-        </div>
-        <div class="contribute-actions-wrapper">
-            <a href="{% url 'tournament:add_tournament' %}" class="button button-link teal-theme">Add Tournament</a>
-            <a href="{% url 'restaurant:add_restaurant' %}" class="button button-link purple-theme">Add Restaurant</a>
-            <a href="{% url 'entertainment:add_entertainment' %}" class="button button-link green-theme">Add Entertainment</a>
-            <a href="{% url 'tournament:tournament_home' %}" class="button button-link light-theme">Leave Review</a>
-            <a href="{% url 'info:feedback' %}" class="button button-link light-theme">Give us Feedback</a>
         </div>
     </div>
 </div>
