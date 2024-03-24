@@ -4,11 +4,11 @@ from .models import Tournament
 class TournamentForm(forms.ModelForm):
     class Meta:
         model = Tournament
-        fields = ['name', 'date', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'date', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
             'date': 'Tournament Date',
-            'company': 'Company',
+            #'company': 'Company',
             'website': 'Website',
             'address': 'Address',
             'parking_size': 'Parking Size',
@@ -19,7 +19,7 @@ class TournamentForm(forms.ModelForm):
         }
         help_texts = {
             'date': 'Select the date of the tournament.',
-            'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
+            #'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
             'parking_size': 'Select the size of the parking area.',

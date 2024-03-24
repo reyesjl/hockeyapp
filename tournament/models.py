@@ -19,7 +19,7 @@ class Location(models.Model):
 class Tournament(models.Model):
     name = models.CharField(max_length=100, default='yht tournament')
     date = models.DateField(null=True, blank=True)
-    company = models.CharField(max_length=100, choices=TOURNAMENT_COMPANY_CHOICES, default='yht')
+    #company = models.CharField(max_length=100, choices=TOURNAMENT_COMPANY_CHOICES, default='yht')
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
     address = models.CharField(max_length=255, default='5555 default address, DF 1234 USA') # physical address
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude
@@ -35,4 +35,4 @@ class Tournament(models.Model):
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft') # for publishing purposes
 
     def __str__(self):
-        return f"{self.name} at {self.company} - {self.address}"
+        return f"{self.name} at {self.address}"
