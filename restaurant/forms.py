@@ -4,7 +4,7 @@ from .models import Restaurant
 class RestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
-        fields = ['name', 'address', 'website', 'food_type', 'gluten_free', 'vegan', 'dairy_free', 'vegetarian', 'meal_quality', 'service_quality', 'seating_time', 'payment_process', 'price', 'parking_size']
+        fields = ['name', 'address', 'website', 'food_type', 'gluten_free', 'vegan', 'dairy_free', 'vegetarian', 'meal_quality', 'service_quality', 'seating_time', 'serving_time', 'payment_process', 'price', 'parking_size']
         labels = {
             'name': 'Restaurant Name',
             'address': 'Address',
@@ -17,9 +17,10 @@ class RestaurantForm(forms.ModelForm):
             'meal_quality': 'Meal Quality',
             'service_quality': 'Service Quality',
             'seating_time': 'Average Seating Time',
+            'serving_time': 'Average Serving Time',
             'payment_process': 'Payment Process',
             'price': 'Price Range',
-            'parking_size': 'Parking Size',
+            'parking_size': 'Parking',
         }
         help_texts = {
             'name': 'Enter the name of the restaurant.',
@@ -33,7 +34,8 @@ class RestaurantForm(forms.ModelForm):
             'meal_quality': 'Rate the overall quality of meals provided by the restaurant (1-5).',
             'service_quality': 'Rate the overall quality of service provided by the restaurant (1-5).',
             'seating_time': 'Average time it takes for customers to be seated after arrival.',
+            'serving_time': 'Average time it takes for meals to be served after ordering.',
             'payment_process': 'Describe the ease of the payment process at the restaurant.',
             'price': 'Select the price range of the restaurant.',
-            'parking_size': 'Select the size of parking available at the restaurant.',
+            'parking_size': 'Select the type of parking available at the restaurant.',
         }

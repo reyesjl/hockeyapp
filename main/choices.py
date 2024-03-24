@@ -4,6 +4,12 @@ PARKING_SIZE_CHOICES = [
     ('large', 'Large'),
 ]
 
+RESTAURANT_PARKING_CHOICES = [
+    ('Street', 'Street'),
+    ('Meter', 'Meter'),
+    ('Lot', 'Lot'),
+]
+
 PARKING_COST_CHOICES = [
     ('free', 'Free'),
     ('$0-$5', '$0 - $5'),
@@ -53,11 +59,21 @@ APPLICATION_CHOICES = [
 ]
 
 SEATING_TIME_CHOICES = [
-    ('less than 30 minutes', 'less than 30 minutes'),
+    ('15 minutes', '15 minutes'),
+    ('30 minutes', '30 minutes'),
     ('30 minutes', '30 minutes'),
     ('45 minutes', '45 minutes'),
     ('60 minutes', '60 minutes'),
-    ('90 minutes or more', '90 minutes or more'),
+    ('90 minutes', '90 minutes'),
+]
+
+SERVING_TIME_CHOICES = [
+    ('15 minutes', '15 minutes'),
+    ('30 minutes', '30 minutes'),
+    ('30 minutes', '30 minutes'),
+    ('45 minutes', '45 minutes'),
+    ('60 minutes', '60 minutes'),
+    ('90 minutes', '90 minutes'),
 ]
 
 PAYMENT_PROCESS_CHOICES = [

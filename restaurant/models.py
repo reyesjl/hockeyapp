@@ -1,6 +1,6 @@
 from django.db import models
 from tournament.models import Location
-from main.choices import PARKING_SIZE_CHOICES, SEATING_TIME_CHOICES, PAYMENT_PROCESS_CHOICES, DRAFT_STATUS_CHOICES, FOOD_TYPE_CHOICES, PRICE_CHOICES
+from main.choices import SERVING_TIME_CHOICES, RESTAURANT_PARKING_CHOICES, SEATING_TIME_CHOICES, PAYMENT_PROCESS_CHOICES, DRAFT_STATUS_CHOICES, FOOD_TYPE_CHOICES, PRICE_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Restaurant(models.Model):
@@ -16,9 +16,10 @@ class Restaurant(models.Model):
     meal_quality = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     service_quality = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     seating_time = models.CharField(max_length=25, choices=SEATING_TIME_CHOICES, default='30 minutes')
+    serving_time = models.CharField(max_length=25, choices=SERVING_TIME_CHOICES, default='30 minutes')
     payment_process = models.CharField(max_length=20, choices=PAYMENT_PROCESS_CHOICES, default='Effortless')
     price = models.CharField(max_length=20, choices=PRICE_CHOICES, default='Reasonable')
-    parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
+    parking_size = models.CharField(max_length=10, choices=RESTAURANT_PARKING_CHOICES, default='medium')
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft')
 
     def __str__(self):
