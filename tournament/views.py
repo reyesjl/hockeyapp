@@ -100,7 +100,7 @@ def add_tournament(request):
             tournament.location = location  # Assign the location to the tournament
             tournament.draft_status = 'draft'
             tournament.save()
-            return redirect('tournament:tournament_home')
+            return redirect('review:thankyou', message='Your tournament has been submitted. Give our team 1-2 days to review and publish it.')
     else:
         form = TournamentForm()
     return render(request, 'tournament/add_tournament.html', {'form': form})

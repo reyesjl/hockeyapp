@@ -94,7 +94,7 @@ def add_entertainment(request):
             entertainment.location = location  # Assign the location to the entertainment
             entertainment.draft_status = 'draft'
             entertainment.save()
-            return redirect('entertainment:entertainment_home')
+            return redirect('review:thankyou', message='Your entertainment has been submitted. Give our team 1-2 days to review and publish it.')
     else:
         form = EntertainmentForm()
     return render(request, 'entertainment/add_entertainment.html', {'form': form})
