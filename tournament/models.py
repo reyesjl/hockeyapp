@@ -25,13 +25,16 @@ class TournamentCompany(models.Model):
 
 class MajorCity(models.Model):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.name}"
     
 class Tournament(models.Model):
     name = models.CharField(max_length=100, default='yht tournament')
     date = models.DateField(null=True, blank=True)
     company = models.ForeignKey(TournamentCompany, on_delete=models.SET_NULL, null=True, blank=True)
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
-    #majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True, blank=True)
+    majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True, blank=True)
     address = models.CharField(max_length=255, default='5555 default address, DF 1234 USA') # physical address
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude
     upvotes = models.IntegerField(default=0)

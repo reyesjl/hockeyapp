@@ -53,10 +53,6 @@ def tournament_home(request):
 
         status_line += " Within 20-25 miles of your Location."
 
-    else:
-        # Filter upcoming tournaments without considering distance
-        tournament_filter &= Q(date__gte=timezone.now())
-
     # Filter tournaments by selected_region
     if selected_region and selected_region != 'All':
         tournament_filter &= Q(location__region=selected_region)
