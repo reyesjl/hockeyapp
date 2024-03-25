@@ -1,16 +1,15 @@
 from django.db import models
 from main.choices import PARKING_SIZE_CHOICES, PARKING_COST_CHOICES, DRAFT_STATUS_CHOICES, TOURNAMENT_COMPANY_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
-from main.regions import get_region, get_region_and_city
+from main.regions import get_region
 
 class Location(models.Model):
     latitude = models.FloatField(default='0.0')
     longitude = models.FloatField(default='0.0')
     region = models.CharField(max_length=50, default="All")  # Add region field
-    city = models.CharField(max_length=100, default="Unknown")  # Add city field
 
     def save(self, *args, **kwargs):
-        self.region, self.city = get_region_and_city(self.latitude, self.longitude)
+        self.region, self.city = get_region(self.latitude, self.longitude)
         super().save(*args, **kwargs)
 
 
@@ -23,12 +22,16 @@ class TournamentCompany(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+class MajorCity(models.Model):
+    name = models.CharField(max_length=100)
     
 class Tournament(models.Model):
     name = models.CharField(max_length=100, default='yht tournament')
     date = models.DateField(null=True, blank=True)
     company = models.ForeignKey(TournamentCompany, on_delete=models.SET_NULL, null=True, blank=True)
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
+    #majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True, blank=True)
     address = models.CharField(max_length=255, default='5555 default address, DF 1234 USA') # physical address
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude
     upvotes = models.IntegerField(default=0)
