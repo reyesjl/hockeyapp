@@ -42,6 +42,7 @@
                         </div>
                     </div>
                     <div class="entertainment-hero">
+                        <div class="entertainment-rating">Rating [{{ entertainment.overall_rating }}]</div>
                         <div class="entertainment-name"><a class="entertainment-name-link" href="{% url 'entertainment:get_entertainment' entertainment.id %}">{{ entertainment.name }}</a></div>
                     </div>
                     <div class="entertainment-runner-details">

@@ -18,6 +18,12 @@
     margin-bottom: 10px;
 }
 
+.entertainment-rating {
+    font-style: italic;
+    margin-bottom: 5px;
+    color: gray;
+}
+
 .entertainment-name {
     text-transform: capitalize;
     font-weight: bold;

@@ -7,7 +7,10 @@
     margin: 5px 0;
 }
 
-.restaurant-type {
+.restaurant-type-rating-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
     color: gray;
 }
 

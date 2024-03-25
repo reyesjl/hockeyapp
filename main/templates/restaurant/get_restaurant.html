@@ -14,7 +14,10 @@
 <div class="section hero">
     <div class="container">
         <div class="hero-wrapper">
-            <div class="restaurant-type">{{ restaurant.food_type }}</div>
+            <div class="restaurant-type-rating-wrapper">
+                <div class="restaurant-type">{{ restaurant.food_type }}</div>
+                <div class="restaurant-rating">Overall Rating [{{ restaurant.overall_rating }}]</div>
+            </div>
             <h1 class="hero-title">{{ restaurant.name }}</h1>
             <div class="food-allergy-wrapper">
                 <div class="allergy {% if restaurant.gluten_free %}gluten-theme{% else %}gray-text{% endif %}">

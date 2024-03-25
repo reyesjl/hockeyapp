@@ -2,6 +2,7 @@ from django.db import models
 from tournament.models import Location
 from main.choices import ACTIVITY_TYPE_CHOICES, AGE_RANGE_CHOICES, PARKING_SIZE_CHOICES, DRAFT_STATUS_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db.models import Avg
 
 class Entertainment(models.Model):
     name = models.CharField(max_length=255)
@@ -19,6 +20,18 @@ class Entertainment(models.Model):
     service_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft')
+
+    @property
+    def overall_rating(self):
+        return self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating'] or 4.5
+    
+    @property
+    def total_upvotes(self):
+        return self.reviews.filter(vote='upvote').count()
+
+    @property
+    def total_downvotes(self):
+        return self.reviews.filter(vote='downvote').count()
 
     def __str__(self):
         return f"{self.name} - {self.address}"

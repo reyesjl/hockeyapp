@@ -42,6 +42,7 @@
                         </div>
                     </div>
                     <div class="restaurant-hero">
+                        <div class="restaurant-rating">Rating [{{ restaurant.overall_rating }}]</div>
                         <div class="restaurant-name"><a class="restaurant-name-link" href="{% url 'restaurant:get_restaurant' restaurant.id %}">{{ restaurant.name }}</a></div>
                     </div>
                     <div class="restaurant-runner-details">
