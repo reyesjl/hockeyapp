@@ -4,6 +4,11 @@ PARKING_SIZE_CHOICES = [
     ('large', 'Large'),
 ]
 
+VOTE_CHOICES = [
+    ('upvote', 'Upvote'),
+    ('downvote', 'Downvote')
+]
+
 RESTAURANT_PARKING_CHOICES = [
     ('Street', 'Street'),
     ('Meter', 'Meter'),

@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from main.regions import get_coordinates
 from review.forms import TournamentReviewForm
 from review.models import TournamentReview
+from review.voting import update_vote_count
 
 def tournament_home(request):
     """
@@ -146,6 +147,10 @@ def review_tournament(request, tournament_id):
             review = form.save(commit=False)
             review.tournament = tournament
             review.save()
+
+            # Update tournament vote count
+            update_vote_count(tournament, review.vote)
+
             return redirect('review:thankyou', message='Your review has been submitted.')
     else:
         initial_data = {'tournament': tournament}

@@ -1,3 +1,4 @@
+from main.choices import VOTE_CHOICES
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from tournament.models import Tournament
@@ -9,6 +10,7 @@ class TournamentReview(models.Model):
     author = models.EmailField()
     date = models.DateField()
     comment = models.TextField()
+    vote = models.CharField(choices=VOTE_CHOICES, max_length=8, default='upvote')
     rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)], default=1.0)
     referee_rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)], default=1.0)
     comms_rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)], default=1.0)
@@ -21,6 +23,7 @@ class RestaurantReview(models.Model):
     author = models.EmailField()
     date = models.DateField()
     comment = models.TextField()
+    rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)], default=1.0)
     meal_quality = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
     service_quality = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
 
@@ -32,6 +35,7 @@ class EntertainmentReview(models.Model):
     author = models.EmailField()
     date = models.DateField()
     comment = models.TextField()
+    rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)], default=1.0)
     service_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
 
     def __str__(self):
