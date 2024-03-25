@@ -14,7 +14,7 @@ class TournamentReviewForm(forms.ModelForm):
             'comms_rating': 'Director of Communication'
         }
         help_texts = {
-            'author': 'Enter your email address.',
+            'author': 'Will not be shared. Enter your email address.',
             'date': 'Select the date of your visit.',
             'comment': 'Provide your review comments here.',
             'rating': 'Rate the tournament overall on a scale of 1 to 5.',
@@ -38,7 +38,7 @@ class RestaurantReviewForm(forms.ModelForm):
             'service_quality': 'Service Quality Rating',
         }
         help_texts = {
-            'author': 'Enter your email address.',
+            'author': 'Will not be shared. Enter your email address.',
             'date': 'Select the date of your visit.',
             'comment': 'Provide your review comments here.',
             'meal_quality': 'Rate the meal quality on a scale of 1 to 5.',
@@ -60,7 +60,7 @@ class EntertainmentReviewForm(forms.ModelForm):
             'service_rating': 'Service Quality Rating',
         }
         help_texts = {
-            'author': 'Enter your email address.',
+            'author': 'Will not be shared. Enter your email address.',
             'date': 'Select the date of your visit.',
             'comment': 'Provide your review comments here.',
             'service_rating': 'Rate the service quality on a scale of 1 to 5.',
