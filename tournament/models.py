@@ -38,7 +38,8 @@ class Tournament(models.Model):
     address = models.CharField(max_length=255, default='5555 default address, DF 1234 USA') # physical address
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude
     upvotes = models.IntegerField(default=0)
-    downvotes = models.IntegerField(default=0)      
+    downvotes = models.IntegerField(default=0)     
+    rating = models.FloatField(default=5.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # overall
     reff_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # referee
     comms_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # director of communications
     parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
