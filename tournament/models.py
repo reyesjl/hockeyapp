@@ -9,7 +9,7 @@ class Location(models.Model):
     region = models.CharField(max_length=50, default="All")  # Add region field
 
     def save(self, *args, **kwargs):
-        self.region, self.city = get_region(self.latitude, self.longitude)
+        self.region = get_region(self.latitude, self.longitude)
         super().save(*args, **kwargs)
 
 
