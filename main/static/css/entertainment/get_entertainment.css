@@ -48,6 +48,15 @@
     margin-bottom: 30px;
 }
 
+/* Description */
+.section.description {
+    margin-bottom: 30px;
+}
+
+.description-section-title {
+    font-weight: normal;
+    margin: 0;
+}
 
 /* Details wrapper*/
 .details-wrapper {

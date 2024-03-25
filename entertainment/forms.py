@@ -4,7 +4,7 @@ from .models import Entertainment
 class EntertainmentForm(forms.ModelForm):
     class Meta:
         model = Entertainment
-        fields = ['name', 'address', 'website', 'activity_type', 'age_range', 
+        fields = ['name', 'address', 'website', 'activity_type', 'description','age_range', 
                   'serve_beer', 'serve_wine', 'serve_liquor', 'take_cash', 'take_card', 
                   'take_digital_payment', 'parking_size']
         labels = {
@@ -12,6 +12,7 @@ class EntertainmentForm(forms.ModelForm):
             'address': 'Address',
             'website': 'Website',
             'activity_type': 'Type of Activity',
+            'description': 'Description',
             'age_range': 'Age Range',
             'serve_beer': 'Serve Beer?',
             'serve_wine': 'Serve Wine?',
@@ -27,6 +28,7 @@ class EntertainmentForm(forms.ModelForm):
             'address': 'Enter the address of the entertainment venue.',
             'website': 'Enter the website URL of the entertainment venue.',
             'activity_type': 'Select the type of activity offered by the entertainment venue.',
+            'description': 'Describe the activity in a short summary.',
             'age_range': 'Select the age range for which the entertainment venue is suitable.',
             'serve_beer': 'Check if the entertainment venue serves beer.',
             'serve_wine': 'Check if the entertainment venue serves wine.',

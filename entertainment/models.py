@@ -10,6 +10,7 @@ class Entertainment(models.Model):
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     activity_type = models.CharField(max_length=100, choices=ACTIVITY_TYPE_CHOICES)
+    description = models.TextField(blank=True, null=True)
     age_range = models.CharField(max_length=3, choices=AGE_RANGE_CHOICES)
     serve_beer = models.BooleanField(default=False)
     serve_wine = models.BooleanField(default=False)
