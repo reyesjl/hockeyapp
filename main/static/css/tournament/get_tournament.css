@@ -3,6 +3,13 @@
     margin: 0;
 }
 
+.date-rating-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: gray;
+}
+
 .section.hero {
     margin-bottom: 20px;
 }
@@ -10,10 +17,6 @@
 .hero-title {
     font-weight: normal;
     margin: 5px 0;
-}
-
-.tournament-date {
-    color: gray;
 }
 
 /* Tournament links */

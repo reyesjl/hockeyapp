@@ -148,9 +148,6 @@ def review_tournament(request, tournament_id):
             review.tournament = tournament
             review.save()
 
-            # Update tournament vote count
-            update_vote_count(tournament, review.vote)
-
             return redirect('review:thankyou', message='Your review has been submitted.')
     else:
         initial_data = {'tournament': tournament}

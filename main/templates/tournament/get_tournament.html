@@ -14,9 +14,13 @@
 <div class="section hero">
     <div class="container">
         <div class="hero-wrapper">
-            <div class="tournament-date">{{ tournament.date }}</div>
+            <div class="date-rating-wrapper">
+                <div class="tournament-date">{{ tournament.date }}</div>
+                <div class="tournament-rating">Overall Rating [{{ tournament.overall_rating }}]</div>
+            </div>
             <h1 class="hero-title">{{ tournament.name }}</h1>
             <div class="tournament-company">Hosted by {{ tournament.company }}</div>
+            
         </div>
     </div>
 </div>

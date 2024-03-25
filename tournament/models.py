@@ -2,6 +2,7 @@ from django.db import models
 from main.choices import PARKING_SIZE_CHOICES, PARKING_COST_CHOICES, DRAFT_STATUS_CHOICES, TOURNAMENT_COMPANY_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
 from main.regions import get_region
+from django.db.models import Avg
 
 class Location(models.Model):
     latitude = models.FloatField(default='0.0')
@@ -39,7 +40,6 @@ class Tournament(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)     
-    rating = models.FloatField(default=5.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # overall
     reff_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # referee
     comms_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # director of communications
     parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
@@ -48,6 +48,18 @@ class Tournament(models.Model):
     stay_and_play = models.BooleanField(default=False)
     extended_checkout = models.BooleanField(default=False) # within stay and play agreement
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft') # for publishing purposes
+
+    @property
+    def overall_rating(self):
+        return self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating'] or 4.5
+    
+    @property
+    def total_upvotes(self):
+        return self.reviews.filter(vote='upvote').count()
+
+    @property
+    def total_downvotes(self):
+        return self.reviews.filter(vote='downvote').count()
 
     def __str__(self):
         return f"{self.name} at {self.address}"
