@@ -66,7 +66,15 @@
                 </div>
                 <div class="card-content">
                     <div class="content-label">Price Range</div>
-                    <div class="content-value">{{ restaurant.price }}</div>
+                    <div class="content-value">
+                        {% if restaurant.price == 'Reasonable' %}
+                            $
+                        {% elif restaurant.price == 'Moderate' %}
+                            $$
+                        {% elif restaurant.price == 'Expensive' %}
+                            $$$
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

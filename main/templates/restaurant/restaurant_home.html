@@ -46,7 +46,15 @@
                     </div>
                     <div class="restaurant-runner-details">
                         <div class="runner-detail">
-                            <div class="detail-value">{{ restaurant.get_price_display }}</div>
+                            <div class="detail-value">
+                                {% if restaurant.price == 'Reasonable' %}
+                                    $
+                                {% elif restaurant.price == 'Moderate' %}
+                                    $$
+                                {% elif restaurant.price == 'Expensive' %}
+                                    $$$
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="spacer-dot">&#x2022;</div>
                         <div class="runner-detail">
