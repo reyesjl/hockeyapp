@@ -49,7 +49,7 @@ class Tournament(models.Model):
 
     @property
     def overall_rating(self):
-        return self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating'] or 4.5
+        return self.reviews.aggregate(avg_rating=Avg('rating'))['avg_rating'] or 0.0
     
     @property
     def total_upvotes(self):
