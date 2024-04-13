@@ -96,42 +96,34 @@ def get(request, tournament_id):
     reviews = TournamentReview.objects.filter(tournament=tournament)
 
     # Fetch an image using wikipedia
-    city_name = tournament.majorcity
+    #city_name = tournament.majorcity
     #city_summary = wiki.get_city_summary(city_name)
-    city_image_url = wiki.get_city_image_url(city_name)
+    #city_image_url = wiki.get_city_image_url(city_name)
+
+    # Parse and apply filters from request parameters for REVIEWS
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    is_filtering = False
+
+    # Filter reviews
+    if start_date:
+        reviews = reviews.filter(date__gte=start_date)
+        is_filtering = True
+    if end_date:
+        reviews = reviews.filter(date__lte=end_date)
+        is_filtering = True
 
     # Pass the tournament object and it's related reviews to the template
     context = {
         'tournament': tournament,
         'reviews': reviews,
-        'city_image_url': city_image_url,
+        'start_date_value': start_date,
+        'end_date_value': end_date,
+        'is_filtering': is_filtering,
     }
 
     # Render the template with the tournament details
     return render(request, 'tournament/details.html', context)
-
-def get_tournament(request, tournament_id):
-    """
-    Renders the details of a specific tournament.
-
-    Args:
-        request: HttpRequest object.
-        tournament_id: ID of the tournament to retrieve.
-
-    Returns:
-        HttpResponse object rendering the tournament details page.
-    """
-    tournament = get_object_or_404(Tournament, pk=tournament_id)
-    
-    # Fetch reviews associated with the tournament
-    reviews = TournamentReview.objects.filter(tournament=tournament)
-
-    context = {
-        'reviews': reviews,
-        'tournament': tournament,
-        'city_image_url': image_url,
-        }
-    return render(request, 'tournament/get_tournament.html', context)
 
 def review_tournament(request, tournament_id):
     """

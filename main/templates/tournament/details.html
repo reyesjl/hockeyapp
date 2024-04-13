@@ -14,15 +14,27 @@
 <div class="container pt-5">
     <div class="row">
         <div class="col-md-6">
-            <p>{{ tournament.start_date }} - {{ tournament.end_date }}</p>
+            <p class="text-black-50">{{ tournament.start_date }} - {{ tournament.end_date }}</p>
             <h1>{{ tournament.name }}</h1>
-            <p>Total Upvotes: {{ tournament.total_upvotes }}</p>
-            <p>Overall Rating: {{ tournament.overall_rating }}</p>
+            <p class="text-muted">Total Upvotes: {{ tournament.total_upvotes }}</p>
             <!-- Add other details as needed -->
         </div>
         <div class="col-md-6">
             <p>Company: {{ tournament.company }}</p>
             <p>Website: <a href="{{ tournament.website }}">{{ tournament.website }}</a></p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <h2>Ratings</h2>
+            <p>Overall: <br class="d-block d-sm-none">{{ tournament.overall_rating }} out of 5.0</p>
+            <p>Referee: <br class="d-block d-sm-none">{{ tournament.reff_rating }} out of 5.0</p>
+            <p>Comms: <br class="d-block d-sm-none">{{ tournament.comms_rating }} out of 5.0</p>
+        </div>
+        <div class="col">
+            <h2>Agreement</h2>
+            <p>Stay and Play: <br class="d-block d-sm-none">{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
+            <p>Extended Checkout: <br class="d-block d-sm-none">{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
         </div>
     </div>
     <div class="row mt-3">
@@ -108,8 +120,8 @@
             </form>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        {% for review in tournament.reviews.all %}
+    <div class="row row-cols-1 row-cols-md-2 g-4 py-3">
+        {% for review in reviews %}
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -120,6 +132,15 @@
                     <li class="list-group-item">{{ review.date }}</li>
                     <li class="list-group-item">Rating: {{ review.rating }}</li>
                 </ul>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">No reviews available for this range.</p>
+                    
+                </div>
             </div>
         </div>
         {% endfor %}
