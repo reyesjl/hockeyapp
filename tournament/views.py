@@ -141,15 +141,20 @@ def review_tournament(request, tournament_id):
         HttpResponse object rendering the review tournament page or redirecting to tournament details page.
     """
     tournament = get_object_or_404(Tournament, pk=tournament_id)
+    error_message = None
 
     if request.method == 'POST':
         form = TournamentReviewForm(request.POST)
         if form.is_valid():
-            review = form.save(commit=False)
-            review.tournament = tournament
-            review.save()
-
-            return redirect('review:thankyou', message='Your review has been submitted.')
+            email = form.cleaned_data['email']
+            # Check if a review with the same email already exists for the tournament
+            if TournamentReview.objects.filter(tournament=tournament, email__iexact=email).exists():
+                error_message = "You have already submitted a review for this tournament."
+            else:
+                review = form.save(commit=False)
+                review.tournament = tournament
+                review.save()
+                return redirect('review:thankyou', message='Your review has been submitted.')
     else:
         initial_data = {'tournament': tournament}
         form = TournamentReviewForm(initial=initial_data)
