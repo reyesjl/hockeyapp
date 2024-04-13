@@ -125,17 +125,30 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                   <p class="card-text" data-bs-toggle="collapse" href="#collapseReview{{ review.id }}" role="button" aria-expanded="false" aria-controls="collapseReview{{ review.id }}">
-                    {{ review.comment | truncatechars:120 }}
-                </p>
-                <div class="collapse" id="collapseReview{{ review.id }}">
-                    <p>{{ review.comment }}</p>
-                </div>
+                    <p class="card-text">{{ review.comment | truncatechars:120 }}</p>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#reviewModal{{ review.id }}">Read more</a>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ review.date }}</li>
                     <li class="list-group-item">Rating: {{ review.rating }}</li>
                 </ul>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="reviewModal{{ review.id }}" tabindex="-1" aria-labelledby="reviewModalLabel{{ review.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reviewModalLabel{{ review.id }}">Full Review</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ review.comment }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         {% empty %}
