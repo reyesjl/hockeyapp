@@ -4,13 +4,15 @@ import calendar
 from django.db.models import Q
 from django.utils import timezone
 from .forms import TournamentForm, RinkForm
+from restaurant.forms import RestaurantForm
+from restaurant.models import Restaurant
 from .models import Rink, Tournament, Location
 from django.shortcuts import render, redirect, get_object_or_404
 from main.regions import get_coordinates
 from review.forms import TournamentReviewForm
 from review.models import TournamentReview
 from review.voting import update_vote_count
-from .cities import wiki
+from django.contrib import messages
 
 def index(request):
     """
@@ -97,11 +99,9 @@ def get(request, tournament_id):
 
     # Fetch all rinks associated with the tournament
     rinks = Rink.objects.filter(tournament=tournament)
-
-    # Fetch an image using wikipedia
-    #city_name = tournament.majorcity
-    #city_summary = wiki.get_city_summary(city_name)
-    #city_image_url = wiki.get_city_image_url(city_name)
+    
+    # Fetch all restaurants associated with the tournament
+    restaurants = Restaurant.objects.filter(tournament=tournament)
 
     # Parse and apply filters from request parameters for REVIEWS
     start_date = request.GET.get('start_date')
@@ -120,6 +120,7 @@ def get(request, tournament_id):
     context = {
         'tournament': tournament,
         'rinks': rinks,
+        'restaurants': restaurants,
         'reviews': reviews,
         'start_date_value': start_date,
         'end_date_value': end_date,
@@ -179,16 +180,50 @@ def add_rink(request, tournament_id):
                 rink = form.save(commit=False)
                 rink.tournament = tournament
                 rink.save()
-                return redirect('tournaments:success', tournament_id=tournament_id)
+                return redirect('tournaments:success', tournament_id=tournament_id, object_type='rink')
     else:
         form = RinkForm()
     
     return render(request, 'tournament/add_rink.html', {'form': form, 'error_message': error_message})
 
-def success(request, tournament_id):
-    message = "Rink added successfully."
+def add_restaurant(request, tournament_id):
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+    error_message = None
+
+    if request.method == 'POST':
+        form = RestaurantForm(request.POST)
+        if form.is_valid():
+            if Restaurant.objects.filter(name__iexact=form.cleaned_data['name'], tournament=tournament).exists():
+                error_message = "This restaurant already exists for the tournament."
+            else:
+                # Gather geolocation
+                address = form.cleaned_data['address']
+                coordinates = get_coordinates(address)
+                location, created = Location.objects.get_or_create(region="All", defaults={'latitude': coordinates['lat'], 'longitude': coordinates['lng']})
+                location.save()
+                
+                restaurant = form.save(commit=False)
+                restaurant.location = location
+                restaurant.tournament = tournament
+                restaurant.draft_status = 'published'
+                restaurant.save()
+                return redirect('tournaments:success', tournament_id=tournament_id, object_type='restaurant')
+    else:
+        form = RestaurantForm()
+
+    return render(request, 'tournament/add_restaurant.html', {'form':form, 'error_message': error_message})
+
+def success(request, tournament_id, object_type):
+    if object_type == 'rink':
+        message = "Rink has been added successfully."
+    elif object_type == 'restaurant':
+        message = "Restaurant has been added successfully."
+    elif object_type == 'entertainment':
+        message = "Entertainment has been added successfully."
+
+    messages.success(request, message) 
+    
     context = {
-        "tournament_id": tournament_id,
-        "message": message,
+        'tournament_id': tournament_id,
     }
     return render(request, 'tournament/success.html', context)

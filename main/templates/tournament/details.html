@@ -60,12 +60,12 @@
     <div class="col-md-4">
         <div class="d-flex align-items-center justify-content-between">
             <h2>Restaurants</h2>
-            <a href="#" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
+            <a href="{% url 'tournaments:add_restaurant' tournament.id %}" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
         </div>
         {% if restaurants %}
             <ul>
                 {% for restaurant in restaurants %}
-                    <li>{{ restaurant.name }}</li>
+                    <li><a href="https://www.google.com/maps/search/?api=1&query={{ restaurant.address }}">{{ restaurant.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}

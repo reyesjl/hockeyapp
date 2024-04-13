@@ -1,10 +1,11 @@
 from django.db import models
-from tournament.models import Location
+from tournament.models import Location, Tournament
 from main.choices import SERVING_TIME_CHOICES, RESTAURANT_PARKING_CHOICES, SEATING_TIME_CHOICES, PAYMENT_PROCESS_CHOICES, DRAFT_STATUS_CHOICES, FOOD_TYPE_CHOICES, PRICE_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import Avg
 
 class Restaurant(models.Model):
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')

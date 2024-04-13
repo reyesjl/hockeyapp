@@ -14,7 +14,11 @@
         <div class="row mt-5">
             <div class="col-12 text-center">
                 <h1 class="hero-title">Success!</h1>
-                <p class="gray-text">{{ message }}</p>
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="gray-text">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
                 <br>
                 <a class="btn btn-primary" href="{% url 'tournaments:get' tournament_id %}">Back to Tournament</a>
             </div>
