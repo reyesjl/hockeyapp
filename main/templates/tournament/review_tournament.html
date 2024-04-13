@@ -12,19 +12,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="section">
-    <div class="container">
-        <div class="hero-wrapper">
-            <h1 class="hero-title">Review Tournament</h1>
-            <p class="gray-text">For {{ tournament.name }} at <br>{{ tournament.address }}</p>
-        </div>
-        <div class="form-wrapper">
-            <form class="form" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="button teal-theme" type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
+<div class="container mt-3 form-wrapper">
+    <h2>Review Tournament</h2>
+    <p class="text-muted">For {{ tournament.name }} at <br>{{ tournament.address }}</p>
+    <form method="post" class="mt-3 form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 {% endblock %}

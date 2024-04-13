@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tournament
+from .models import Tournament, Rink
 
 class TournamentForm(forms.ModelForm):
     class Meta:
@@ -32,4 +32,17 @@ class TournamentForm(forms.ModelForm):
         }
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'})
+        }
+
+class RinkForm(forms.ModelForm):
+    class Meta:
+        model = Rink
+        fields = ['name', 'address']
+        labels = {
+            'name': 'Rink Name',
+            'address': 'Rink Address',
+        }
+        help_texts = {
+            'name': 'Enter the name of the rink.',
+            'address': 'Enter the address of the rink.',
         }

@@ -3,8 +3,8 @@
 import calendar
 from django.db.models import Q
 from django.utils import timezone
-from .forms import TournamentForm
-from .models import Tournament, Location
+from .forms import TournamentForm, RinkForm
+from .models import Rink, Tournament, Location
 from django.shortcuts import render, redirect, get_object_or_404
 from main.regions import get_coordinates
 from review.forms import TournamentReviewForm
@@ -95,6 +95,9 @@ def get(request, tournament_id):
     tournament = get_object_or_404(Tournament, pk=tournament_id)
     reviews = TournamentReview.objects.filter(tournament=tournament)
 
+    # Fetch all rinks associated with the tournament
+    rinks = Rink.objects.filter(tournament=tournament)
+
     # Fetch an image using wikipedia
     #city_name = tournament.majorcity
     #city_summary = wiki.get_city_summary(city_name)
@@ -116,6 +119,7 @@ def get(request, tournament_id):
     # Pass the tournament object and it's related reviews to the template
     context = {
         'tournament': tournament,
+        'rinks': rinks,
         'reviews': reviews,
         'start_date_value': start_date,
         'end_date_value': end_date,
@@ -151,3 +155,30 @@ def review_tournament(request, tournament_id):
         form = TournamentReviewForm(initial=initial_data)
 
     return render(request, 'tournament/review_tournament.html', {'form': form, 'tournament': tournament})
+
+def add_rink(request, tournament_id):
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+    error_message = None
+    
+    if request.method == 'POST':
+        form = RinkForm(request.POST)
+        if form.is_valid():
+            if Rink.objects.filter(name=form.cleaned_data['name'], tournament=tournament).exists():
+                error_message = "This rink already exists for the tournament."
+            else:
+                rink = form.save(commit=False)
+                rink.tournament = tournament
+                rink.save()
+                return redirect('tournaments:success', tournament_id=tournament_id)
+    else:
+        form = RinkForm()
+    
+    return render(request, 'tournament/add_rink.html', {'form': form, 'error_message': error_message})
+
+def success(request, tournament_id):
+    message = "Rink added successfully."
+    context = {
+        "tournament_id": tournament_id,
+        "message": message,
+    }
+    return render(request, 'tournament/success.html', context)

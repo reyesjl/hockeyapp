@@ -42,12 +42,12 @@
         <div class="col">
             <div class="d-flex align-items-center justify-content-between">
                 <h2>Rinks</h2>
-                <a href="#" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
+                <a href="{% url 'tournaments:add_rink' tournament.id %}" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
             </div>
-            {% if tournament.rinks.all %}
+            {% if rinks %}
                 <ul>
-                    {% for rink in tournament.rinks.all %}
-                        <li>{{ rink.address }}</li>
+                    {% for rink in rinks %}
+                        <li><a href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">{{ rink.name }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -109,7 +109,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <h2>Reviews</h2>
         <div>
-            <a href="#" class="btn btn-primary btn-sm ms-2"><i class="fas fa-plus"></i> Add Review</a>
+            <a href="{% url 'tournaments:review' tournament.id %}" class="btn btn-primary btn-sm ms-2"><i class="fas fa-plus"></i> Add Review</a>
         </div>
     </div>
     <div class="container pt-3">
@@ -162,7 +162,16 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            <p class="fw-bold">Experience</p>
                             <p>{{ review.comment }}</p>
+                            <hr>
+                            <p class="fw-bold">Parking</p>
+                            <p>{{ review.parking_notes }}</p>
+                            <hr>
+                            <p class="fw-bold">Ratings</p>
+                            <p>Vote: {{ review.vote }}</p>
+                            <p>Referee: {{ review.referee_rating }}</p>
+                            <p>Comms: {{ review.comms_rating }}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

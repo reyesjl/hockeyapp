@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Location, MajorCity, Tournament, TournamentCompany
+from .models import Location, MajorCity, Tournament, TournamentCompany, Rink
 
 class LocationAdmin(admin.ModelAdmin):
     list_filter = ['region']
@@ -22,5 +22,6 @@ admin.site.register(Tournament, TournamentAdmin)
 admin.site.register(TournamentCompany, TournamentCompanyAdmin)
 admin.site.register(MajorCity, MajorCityAdmin)
 admin.site.register(Location, LocationAdmin)
+admin.site.register(Rink)
 
 

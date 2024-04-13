@@ -1,79 +1,49 @@
 from django import forms
 from .models import TournamentReview, RestaurantReview, EntertainmentReview
 
-class TournamentReviewForm(forms.ModelForm):
+RATING_CHOICES = [(str(round(i * 0.1, 1)), str(round(i * 0.1, 1))) for i in range(10, 51)]  # Generate choices from 1.0 to 5.0
+
+class BaseReviewForm(forms.ModelForm):
+    author = forms.EmailField(label='Email Address', help_text='Will not be shared. Enter your email address.')
+    date = forms.DateField(label='Review Date', help_text='Select the date of your visit.', widget=forms.DateInput(attrs={'type': 'date'}))
+    comment = forms.CharField(label='Comment', help_text='Provide your review comments here.', widget=forms.Textarea)
+    rating = forms.ChoiceField(label='Overall Rating', choices=RATING_CHOICES, help_text='Overall rate on a scale of 1 to 5.')
+    
+    class Meta:
+        abstract = True  # To make this form abstract and not directly usable
+    
+class TournamentReviewForm(BaseReviewForm):
+    referee_rating = forms.ChoiceField(label='Referee Rating', choices=RATING_CHOICES, help_text='Rate the referee quality on a scale of 1 to 5.')
+    comms_rating = forms.ChoiceField(label='Communication Rating', choices=RATING_CHOICES, help_text='Rate the director of communication on a scale of 1 to 5.')
+    
     class Meta:
         model = TournamentReview
-        fields = ['author', 'date', 'comment', 'parking_notes', 'vote', 'rating', 'referee_rating', 'comms_rating']
+        fields = ['author', 'date', 'comment', 'rating', 'parking_notes', 'vote', 'referee_rating', 'comms_rating']
         labels = {
-            'author': 'Email Address',
-            'date': 'Review Date',
-            'comment': 'Comment',
             'parking_notes': 'Parking Notes',
-            'vote' : 'Vote',
-            'rating': 'Overall Rating',
+            'vote': 'Vote',
             'referee_rating': 'Referee Quality',
             'comms_rating': 'Director of Communication'
         }
         help_texts = {
-            'author': 'Will not be shared. Enter your email address.',
-            'date': 'Select the date of your visit.',
-            'comment': 'Provide your review comments here.',
             'parking_notes': 'Provide parking notes here.',
             'vote': 'Overall do you give this tournament an upvote or a downvote.',
-            'rating': 'Rate the tournament overall on a scale of 1 to 5.',
-            'referee_rating': 'Rate the referee quality on a scale of 1 to 5.',
-            'comms_rating': 'Rate the director of communication on a scale of 1 to 5.'
         }
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
             'tournament': forms.HiddenInput(),
         }
 
-class RestaurantReviewForm(forms.ModelForm):
+class RestaurantReviewForm(BaseReviewForm):
+    meal_quality = forms.ChoiceField(label='Meal Quality Rating', choices=RATING_CHOICES, help_text='Rate on a scale of 1 to 5.')
+    service_quality = forms.ChoiceField(label='Service Quality Rating', choices=RATING_CHOICES, help_text='Rate on a scale of 1 to 5.')
+    
     class Meta:
         model = RestaurantReview
-        fields = ['author', 'date', 'comment', 'rating','meal_quality', 'service_quality']
-        labels = {
-            'author': 'Email Address',
-            'date': 'Review Date',
-            'comment': 'Comment',
-            'rating': 'Overall Rating',
-            'meal_quality': 'Meal Quality Rating',
-            'service_quality': 'Service Quality Rating',
-        }
-        help_texts = {
-            'author': 'Will not be shared. Enter your email address.',
-            'date': 'Select the date of your visit.',
-            'comment': 'Provide your review comments here.',
-            'rating': 'Rate the restaurant overall on a scale of 1 to 5.',
-            'meal_quality': 'Rate the meal quality on a scale of 1 to 5.',
-            'service_quality': 'Rate the service quality on a scale of 1 to 5.',
-        }
-        widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
-            'restaurant': forms.HiddenInput(),  # Add a hidden input field for the restaurant ID
-        }
+        fields = ['author', 'date', 'comment', 'rating', 'meal_quality', 'service_quality']
+        
+class EntertainmentReviewForm(BaseReviewForm):
+    service_rating = forms.ChoiceField(label='Service Quality Rating', choices=RATING_CHOICES, help_text='Rate on a scale of 1 to 5.')
     
-class EntertainmentReviewForm(forms.ModelForm):
     class Meta:
         model = EntertainmentReview
         fields = ['author', 'date', 'comment', 'rating', 'service_rating']
-        labels = {
-            'author': 'Email Address',
-            'date': 'Review Date',
-            'comment': 'Comment',
-            'rating': 'Rating',
-            'service_rating': 'Service Quality Rating',
-        }
-        help_texts = {
-            'author': 'Will not be shared. Enter your email address.',
-            'date': 'Select the date of your visit.',
-            'comment': 'Provide your review comments here.',
-            'rating': 'Rate this entertainment overall on a scale of 1 to 5.',
-            'service_rating': 'Rate the service quality on a scale of 1 to 5.',
-        }
-        widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
-            'entertainment': forms.HiddenInput(),  # Add a hidden input field for the entertainment ID
-        }

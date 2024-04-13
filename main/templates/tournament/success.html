@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Thank you.{% endblock %}
+{% block title %}Success{% endblock %}
 
 {% load static %}
 
@@ -16,7 +16,7 @@
                 <h1 class="hero-title">Success!</h1>
                 <p class="gray-text">{{ message }}</p>
                 <br>
-                <a class="btn btn-outline-info teal-theme" href="{% url 'landing' %}">Go Home</a>
+                <a class="btn btn-primary" href="{% url 'tournaments:get' tournament_id %}">Back to Tournament</a>
             </div>
         </div>
     </div>
