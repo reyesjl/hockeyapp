@@ -146,7 +146,7 @@ def review_tournament(request, tournament_id):
     if request.method == 'POST':
         form = TournamentReviewForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
+            email = form.cleaned_data['author']
             # Check if a review with the same email already exists for the tournament
             if TournamentReview.objects.filter(tournament=tournament, email__iexact=email).exists():
                 error_message = "You have already submitted a review for this tournament."
