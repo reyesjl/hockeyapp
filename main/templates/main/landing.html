@@ -6,17 +6,18 @@
 
 {% block extra_head %}
     <meta name="description" content="Discover the hockey tournament review platform.">  
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <script src="{% static 'js/main/landing.js' %}"></script>
     <script src="{% static 'js/main/location.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<section class="jumbotron text-center py-5">
+<section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">Plan. Connect. Review.</h1>
+        <h1 class="jumbotron-heading text-light">Plan. Connect. Review.</h1>
         <div class="row justify-content-center">
             <div class="col-md-6"> <!-- Use col-md-6 to take up 6 columns on medium-sized screens and center it -->
-                <p class="lead text-muted">Your go-to for youth hockey tournaments, nearby dining, entertainment, & hotels. Elevate your hockey experience today!</p>
+                <p class="lead text-light">Your go-to for youth hockey tournaments, nearby dining, entertainment, & hotels. Elevate your hockey experience today!</p>
             </div>
         </div>
         <p>
