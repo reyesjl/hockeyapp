@@ -163,7 +163,7 @@ def add_rink(request, tournament_id):
     if request.method == 'POST':
         form = RinkForm(request.POST)
         if form.is_valid():
-            if Rink.objects.filter(name=form.cleaned_data['name'], tournament=tournament).exists():
+            if Rink.objects.filter(name__iexact=form.cleaned_data['name'], tournament=tournament).exists():
                 error_message = "This rink already exists for the tournament."
             else:
                 rink = form.save(commit=False)
