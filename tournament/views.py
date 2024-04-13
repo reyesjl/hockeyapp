@@ -159,7 +159,12 @@ def review_tournament(request, tournament_id):
         initial_data = {'tournament': tournament}
         form = TournamentReviewForm(initial=initial_data)
 
-    return render(request, 'tournament/review_tournament.html', {'form': form, 'tournament': tournament})
+    context = {
+        'form': form, 
+        'tournament': tournament,
+        'error_message': error_message
+    }
+    return render(request, 'tournament/review_tournament.html', context)
 
 def add_rink(request, tournament_id):
     tournament = get_object_or_404(Tournament, pk=tournament_id)
