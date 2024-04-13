@@ -10,10 +10,11 @@ from main.regions import get_coordinates
 from review.forms import TournamentReviewForm
 from review.models import TournamentReview
 from review.voting import update_vote_count
+from .cities import wiki
 
-def tournament_home(request):
+def index(request):
     """
-    Renders the home page for tournaments, allowing users to filter and view tournament listings.
+    Renders the home page for tournaments, allowing users to view all tournament listings.
 
     Args:
         request: HttpRequest object.
@@ -21,58 +22,41 @@ def tournament_home(request):
     Returns:
         HttpResponse object rendering the tournament home page.
     """
-    # Retrieve filter parameters from the request
-    selected_region = request.GET.get('region')
-    selected_months = request.GET.getlist('months')
-    user_latitude = request.GET.get('latitude')
-    user_longitude = request.GET.get('longitude')
+    # Query all published tournaments
+    tournament_listings = Tournament.objects.filter(draft_status='published').order_by('start_date')
 
-    # Prepare filter for tournaments
-    tournament_filter = Q()
+    # Parse and apply filters from request parameters
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    major_city = request.GET.get('major_city')
+    tournament_name = request.GET.get('tournament_name')
+    is_filtering = False
 
-    status_line = "Showing all tournaments."
+    if start_date:
+        tournament_listings = tournament_listings.filter(start_date__gte=start_date)
+        is_filtering = True
+    if end_date:
+        tournament_listings = tournament_listings.filter(start_date__lte=end_date)
+        is_filtering = True
+    if major_city:
+        tournament_listings = tournament_listings.filter(majorcity__name__icontains=major_city)
+        is_filtering = True
+    if tournament_name:
+        tournament_listings = tournament_listings.filter(name__icontains=tournament_name)
+        is_filtering = True
 
-    # Convert selected months to integers
-    selected_months_int = [int(month) for month in selected_months]
-    # Get month names from integers
-    selected_months_str = [calendar.month_name[month] for month in selected_months_int]
-
-    open_filters = False  # Default value for open_filters
-
-    if selected_months:
-        # Add filter for selected months
-        tournament_filter &= Q(date__month__in=selected_months_int)
-        status_line += f" Filtered by months: {', '.join(selected_months_str)}."
-        open_filters = True  # Set open_filters to True if selected months exist
-
-    if user_latitude and user_longitude:
-        # Define the maximum distance (in degrees) for nearby tournaments
-        max_distance = .4  # Adjust as needed
-
-        # Filter tournaments within the maximum distance from the user
-        tournament_filter &= Q(location__latitude__lte=float(user_latitude) + max_distance) & Q(location__latitude__gte=float(user_latitude) - max_distance) & Q(location__longitude__lte=float(user_longitude) + max_distance) & Q(location__longitude__gte=float(user_longitude) - max_distance)
-
-        status_line += " Within 20-25 miles of your Location."
-
-    # Filter tournaments by selected_region
-    if selected_region and selected_region != 'All':
-        tournament_filter &= Q(location__region=selected_region)
-        status_line += f" Filtered by region: {selected_region}."
-        open_filters = True  # Set open_filters to True if selected region exists
-
-    # Query tournaments using the built filter
-    tournament_listings = Tournament.objects.filter(tournament_filter, draft_status='published').order_by('date')
-
+    # Pass filter values to context to prepopulate the form
     context = {
-        'selected_region': selected_region,
-        'selected_months': selected_months_int,
         'tournament_listings': tournament_listings,
-        'status_line': status_line,
-        'open_filters': open_filters,  # Pass open_filters to the context
+        'is_filtering': is_filtering,
+        'start_date_value': start_date,
+        'end_date_value': end_date,
+        'major_city_value': major_city,
+        'tournament_name_value': tournament_name,
     }
-    return render(request, 'tournament/tournament_home.html', context)
+    return render(request, 'tournament/index.html', context)
 
-def add_tournament(request):
+def create(request):
     """
     Renders the form to add a new tournament and processes form submission.
 
@@ -104,7 +88,27 @@ def add_tournament(request):
             return redirect('review:thankyou', message='Your tournament has been submitted. Give our team 1-2 days to review and publish it.')
     else:
         form = TournamentForm()
-    return render(request, 'tournament/add_tournament.html', {'form': form})
+    return render(request, 'tournament/create.html', {'form': form})
+
+def get(request, tournament_id):
+    # Retrieve the tournament object from the database based on the provided tournament_id
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+    reviews = TournamentReview.objects.filter(tournament=tournament)
+
+    # Fetch an image using wikipedia
+    city_name = tournament.majorcity
+    #city_summary = wiki.get_city_summary(city_name)
+    city_image_url = wiki.get_city_image_url(city_name)
+
+    # Pass the tournament object and it's related reviews to the template
+    context = {
+        'tournament': tournament,
+        'reviews': reviews,
+        'city_image_url': city_image_url,
+    }
+
+    # Render the template with the tournament details
+    return render(request, 'tournament/details.html', context)
 
 def get_tournament(request, tournament_id):
     """
@@ -124,7 +128,8 @@ def get_tournament(request, tournament_id):
 
     context = {
         'reviews': reviews,
-        'tournament': tournament
+        'tournament': tournament,
+        'city_image_url': image_url,
         }
     return render(request, 'tournament/get_tournament.html', context)
 

@@ -63,7 +63,7 @@
             <button class="button red-theme" type="button" onclick="clearFilters()">Clear Filters</button>
 </div>
 <div id="formWrapper" {% if open_filters %}style="display: block;"{% else %}style="display: none;"{% endif %} class="form-wrapper medium-theme">
-    <form id="filterForm" action="{% url 'tournament:tournament_home' %}" method="GET">
+    <form id="filterForm" action="{% url 'tournaments:tournament_home' %}" method="GET">
 
         <!-- Hidden location fields -->
         <input type="hidden" id="latitude" name="latitude">

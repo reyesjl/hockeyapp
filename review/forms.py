@@ -4,11 +4,12 @@ from .models import TournamentReview, RestaurantReview, EntertainmentReview
 class TournamentReviewForm(forms.ModelForm):
     class Meta:
         model = TournamentReview
-        fields = ['author', 'date', 'comment', 'vote', 'rating', 'referee_rating', 'comms_rating']
+        fields = ['author', 'date', 'comment', 'parking_notes', 'vote', 'rating', 'referee_rating', 'comms_rating']
         labels = {
             'author': 'Email Address',
             'date': 'Review Date',
             'comment': 'Comment',
+            'parking_notes': 'Parking Notes',
             'vote' : 'Vote',
             'rating': 'Overall Rating',
             'referee_rating': 'Referee Quality',
@@ -18,6 +19,7 @@ class TournamentReviewForm(forms.ModelForm):
             'author': 'Will not be shared. Enter your email address.',
             'date': 'Select the date of your visit.',
             'comment': 'Provide your review comments here.',
+            'parking_notes': 'Provide parking notes here.',
             'vote': 'Overall do you give this tournament an upvote or a downvote.',
             'rating': 'Rate the tournament overall on a scale of 1 to 5.',
             'referee_rating': 'Rate the referee quality on a scale of 1 to 5.',
@@ -25,7 +27,7 @@ class TournamentReviewForm(forms.ModelForm):
         }
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'tournament': forms.HiddenInput(),  # Add a hidden input field for the tournament ID
+            'tournament': forms.HiddenInput(),
         }
 
 class RestaurantReviewForm(forms.ModelForm):

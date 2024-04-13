@@ -10,6 +10,7 @@ class TournamentReview(models.Model):
     author = models.EmailField()
     date = models.DateField()
     comment = models.TextField()
+    parking_notes = models.TextField(default='')
     vote = models.CharField(choices=VOTE_CHOICES, max_length=8, default='upvote')
     rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)], default=1.0)
     referee_rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)], default=1.0)

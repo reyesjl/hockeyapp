@@ -1,28 +1,33 @@
 {% load static %}
-<nav class="navigation-bar">
-    <div class="nav-container">
-        <div class="logo-wrapper">
-            <a href="{% url 'landing' %}"><img src="{% static 'images/yht-logo-left-aligned.png' %}" /></a>
-        </div>
-        <div class="nav-button">
-            <i class="fa-solid fa-bars"></i>
-        </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'landing' %}">
+      <img src="{% static 'images/yht-base-logo.png' %}" alt="Logo" height="40px">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'landing' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Hotels</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'tournaments:index' %}">Tournaments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="{% url 'restaurant:restaurant_home' %}">Restaurants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="{% url 'entertainment:entertainment_home' %}">Entertainment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Questions</a>
+        </li>
+      </ul>
     </div>
-    <div class="hidden-navigation-bar">
-        <div class="nav-close-container">
-            <div class="close-button">
-                <i class="fa-solid fa-xmark"></i>
-            </div>
-            <div class="navlist-wrapper">
-                <ul class="nav-list">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'landing' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link disabled-link" href="#">Hotels</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'tournament:tournament_home' %}">Tournaments</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'restaurant:restaurant_home' %}">Restaurants</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'entertainment:entertainment_home' %}">Entertainment</a></li>
-                    <li class="nav-item"><a class="nav-link disabled-link" href="#">Questions</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+  </div>
 </nav>

@@ -11,8 +11,9 @@
 }
 
 .form-wrapper {
-    padding-bottom: 100px;
     min-height: 100vh;
+    width: 60%;
+    margin: 0 auto;
 }
 
 form {
@@ -21,10 +22,17 @@ form {
     border-radius: 16px;
 }
 
-textarea {
-    width: 92%;
-    border-radius: 16px;
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="checkbox"],
+select {
+    width: 100%;
     padding: 10px;
+    border-radius: 16px;
+    border: 1px solid black;
+    margin-bottom: 10px;
 }
 
 input[type="checkbox"] {
@@ -32,31 +40,23 @@ input[type="checkbox"] {
     width: 20px;
 }
 
-input {
-    padding: 10px;
-    border-radius: 16px;
-    outline: none;
-    border: 1px solid black;
-}
-
-select {
-    padding: 10px;
-    border-radius: 16px;
-    border: 1px solid black;
-}
-
 .form-wrapper form p {
-    margin-bottom: 40px; /* Add some space between each field */
+    margin-bottom: 20px; /* Reduced space between each field */
 }
 
 .form-wrapper form label {
-    display: block; /* Display labels as block elements */
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    font-weight: bold; /* Add some emphasis to labels */
 }
 
 .helptext {
-    display: block;
     font-size: .8em;
     color: gray;
-    padding-top: 5px;
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .form-wrapper {
+        width: 100%;
+    }
 }

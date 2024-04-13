@@ -32,7 +32,8 @@ class MajorCity(models.Model):
     
 class Tournament(models.Model):
     name = models.CharField(max_length=100, default='yht tournament')
-    date = models.DateField(null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     company = models.ForeignKey(TournamentCompany, on_delete=models.SET_NULL, null=True, blank=True)
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True, blank=True)

@@ -1,49 +1,43 @@
 {% load static %}
-<div class="section footer gray-theme">
-    <div class="footer-container">
-        <div class="footer-hero">
-            <div class="footer-title">Yht Reviews 2024</div>
-            <div class="footer-credit">Youth Hockey Tournaments [yht]</div>
-            <p class="small-text special-text">*This platform is under live maintenance and is updated weekly. If something does not work, please report it <a class="aqua-link" href="{% url 'info:feedback' %}">here</a>.</p>
-        </div>
-        <div class="footer-link-wrapper">
-            <div class="link-section">
-                <div class="section-label">
-                    <h1>Advertise</h1>
-                </div>
-                <div class="section-link">
-                    <ul class="link-list">
-                        <li><a class="aqua-link" href="{% url 'info:promotion' %}">Promote Tournament</a></li>
-                        <li><a class="aqua-link" href="{% url 'info:promotion' %}">Promote Restaurant</a></li>
-                        <li><a class="aqua-link disabled-link" href="{% url 'info:promotion' %}">Promote Hotel</a></li>
-                        <li><a class="aqua-link" href="{% url 'info:promotion' %}">Promote Activity</a></li>
-                    </ul>
-
-                </div>
-            </div>
-            <div class="link-section">
-                <div class="section-label">
-                    <h1>Help</h1>
-                </div>
-                <div class="section-link">
-                    <ul class="link-list">
-                        <li><a class="aqua-link disabled-link" href="#">Common Questions</a></li>
-                        <li><a class="aqua-link" href="{% url 'info:feedback' %}">Leave Feedback</a></li>
-                        <li><a class="aqua-link" href="{% url 'info:contact' %}">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="link-section">
-                <div class="section-label">
-                    <h1>Apply</h1>
-                </div>
-                <div class="section-link">
-                    <ul class="link-list">
-                        <li><a class="aqua-link" href="{% url 'info:application' %}">Site Editor</a> <span class="small-text special-text">[now open]</span></li>
-                        <li><a class="aqua-link" href="{% url 'info:application' %}">Site Curator</a> <span class="small-text special-text">[now open]</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<div class="b-example-divider"></div>
+<div class="container-fluid bg-black" data-bs-theme="light">
+  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5 border-top">
+    <div class="col mb-3">
+      <a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <p class="text-light">Youth Hockey Tournament Reviews 2024</p>
     </div>
+
+    <div class="col mb-3">
+
+    </div>
+
+    <div class="col mb-3">
+      <h5 class="text-light">Advertise</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="{% url 'info:promotion' %}" class="nav-link p-0 text-light">Promote Tournament</a></li>
+        <li class="nav-item mb-2"><a href="{% url 'info:promotion' %}" class="nav-link p-0 text-light">Promote Restaurant</a></li>
+        <li class="nav-item mb-2"><a href="{% url 'info:promotion' %}" class="nav-link p-0 text-light">Promote Hotel</a></li>
+        <li class="nav-item mb-2"><a href="{% url 'info:promotion' %}" class="nav-link p-0 text-light">Promote Activity</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5 class="text-light">Help</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light disabled-link">Common Questions</a></li>
+        <li class="nav-item mb-2"><a href="{% url 'info:feedback' %}" class="nav-link p-0 text-light">Leave Feedback</a></li>
+        <li class="nav-item mb-2"><a href="{% url 'info:contact' %}" class="nav-link p-0 text-light">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="col mb-3">
+      <h5 class="text-light">Apply</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="{% url 'info:application' %}" class="nav-link p-0 text-light">Site Editor <span class="small-text special-text">[now open]</span></a></li>
+        <li class="nav-item mb-2"><a href="{% url 'info:application' %}" class="nav-link p-0 text-light">Site Curator <span class="small-text special-text">[now open]</span></a></li>
+      </ul>
+    </div>
+  </footer>
 </div>

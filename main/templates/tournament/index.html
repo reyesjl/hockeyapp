@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Tournament Home{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Main tournaments page.">  
+    <link rel="stylesheet" href="{% static 'css/tournament/index.css' %}">
+    <script src="{% static 'js/tournament/index.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container pt-3">
+    <p>
+        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+            Filters
+        </button>
+    </p>
+    <div class="collapse {% if is_filtering %}show{% endif %}" id="filterCollapse">
+        <form method="GET">
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="major_city" class="form-label">Major City:</label>
+                    <input type="text" id="major_city" name="major_city" class="form-control" value="{{ major_city_value|default_if_none:'' }}">
+                </div>
+                <div class="col">
+                    <label for="tournament_name" class="form-label">Tournament Name:</label>
+                    <input type="text" id="tournament_name" name="tournament_name" class="form-control" value="{{ tournament_name_value|default_if_none:'' }}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="start_date" class="form-label">Start Date:</label>
+                    <input type="date" id="start_date" name="start_date" class="form-control" value="{{ start_date_value|default_if_none:'' }}">
+                </div>
+                <div class="col">
+                    <label for="end_date" class="form-label">End Date:</label>
+                    <input type="date" id="end_date" name="end_date" class="form-control" value="{{ end_date_value|default_if_none:'' }}">
+                </div>
+            </div>
+
+            <div class="col text-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+                <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container py-2">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for tournament in tournament_listings %}
+        <div class="col">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">City: {{ tournament.majorcity }}</li>
+                </ul>
+                <div class="card-body">
+                    <h5 class="card-title">{{ tournament.name }}</h5>
+                    <p>{{ tournament.start_date }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Overall Rating: {{ tournament.overall_rating }}</li>
+                    <li class="list-group-item">Total Upvotes: {{ tournament.total_upvotes }}</li>
+                    <li class="list-group-item">Parking Cost: {{ tournament.get_parking_cost_display }}</li>
+                    <li class="list-group-item">Stay and Play: {% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</li>
+                    <li class="list-group-item">Extended Checkout: {% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</li>
+                </ul>
+                <div class="card-body text-center">
+                    <a href="{% url 'tournaments:get' tournament.id %}" class="card-link">Details & Reviews</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

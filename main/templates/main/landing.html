@@ -6,120 +6,23 @@
 
 {% block extra_head %}
     <meta name="description" content="Discover the hockey tournament review platform.">  
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'css/components/accordion.css' %}">
     <script src="{% static 'js/main/landing.js' %}"></script>
-    <script src="{% static 'js/main/accordion.js' %}"></script>
     <script src="{% static 'js/main/location.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron" style="background-image: url('{% static 'images/landing-bg.jpg' %}')">
+<section class="jumbotron text-center py-5">
     <div class="container">
-        <div class="title-actions-wrapper">
-            <div class="title-container">
-                <div class="title-wrapper">
-                    <h1 class="title">Plan.</h1>
-                    <h1 class="title">Connect.</h1>
-                    <h1 id="review" class="title">Review.</h1>
-                    <p class="subtitle">The ultimate hockey tournament review system.</p>
-                </div>
+        <h1 class="jumbotron-heading">Plan. Connect. Review.</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6"> <!-- Use col-md-6 to take up 6 columns on medium-sized screens and center it -->
+                <p class="lead text-muted">Your go-to for youth hockey tournaments, nearby dining, entertainment, & hotels. Elevate your hockey experience today!</p>
             </div>
         </div>
+        <p>
+        <a href="{% url 'tournaments:index' %}" class="btn btn-dark my-2">View Tournaments</a>
+        <a href="#" class="btn btn-secondary my-2">Learn More</a>
+        </p>
     </div>
-</div>
-<div class="section tournaments light-theme">
-    <div class="container">
-        <div class="hero-wrapper">
-            <h1 class="hero-title">Review Platform</h1>
-            <p class="hero-subtitle">We provide user-driven tournament evaluations to assist hockey families in planning, ensuring safety, and maintaining enjoyment throughout their experience.</p>   
-        </div>
-        <div class="accordion-wrapper">
-            <div class="accordion">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        Improvement Opportunities
-                        <div class="status-dot"></div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Constructive feedback from reviews offers organizers opportunities for improvement, fostering a culture of continuous enhancement.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        Community Engagement
-                        <div class="status-dot"></div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>The platform fosters community engagement by allowing participants to share experiences and serves as an educational resource for newcomers to the hockey scene.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="header-title">Continuous Feedback Loop</div>
-                        <div class="status-dot"></div>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Access to comprehensive reviews empowers individuals to make informed decisions, while the platform establishes a continuous feedback loop between organizers and participants, ensuring ongoing improvement and collaboration.</p>
-                    </div>
-                </div>
-            </div>
-        </div>         
-    </div>
-</div>
-
-<div class="section location light-theme">
-    <div class="container">
-        <div class="hero-wrapper">
-            <h1 class="hero-title">Location System</h1>
-            <p class="hero-subtitle">Using your current location, we provide personalized suggestions for nearby restaurants, hotels, and activities, ensuring your hockey tournament travels are seamless and enjoyable.</p>
-            <div class="current-location-wrapper">
-                <div class="location-content">
-                    <div class="location-label">Estimated Location</div>
-                    <div class="location-address">
-                        <span id="user-location">
-                        </span>
-                    </div>
-                </div>
-                <button onclick="getLocation()" class="location button dark-theme">Get Location</button>
-                <button onclick="clearLocation()" class="location button red-theme">Clear</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="section call-to-action dark-theme">
-    <div class="container">
-        <div class="location columns">
-            <div class="column">
-                <h1 class="column-title">Restaurants</h1>
-                <div class="column-image"><img src="{% static 'images/restaurants.jpg' %}" alt="" /></div>
-                <div class="column-content">Facing a time crunch with your hockey crew? Score quick dining options at nearby restaurants.</div>
-                <!-- <div class="column-button"><a class="button link disabled" href="#">Learn More</a></div> -->
-            </div>
-            <div class="column">
-                <h1 class="column-title">Hotels</h1>
-                <div class="column-image"><img src="{% static 'images/hotels.jpg' %}" alt="" /></div>
-                <div class="column-content">Seeking a spot for team bonding and dining? Find a hockey-friendly hotel nearby.</div>
-                <!-- <div class="column-button"><a class="button link disabled" href="#">Learn More</a></div> -->
-            </div>
-            <div class="column">
-                <h1 class="column-title">Activities</h1>
-                <div class="column-image"><img src="{% static 'images/entertainment.jpg' %}" alt="" /></div>
-                <div class="column-content">Ready for some fun after hitting the ice? Discover nearby entertainment here.</div>
-                <!-- <div class="column-button"><a class="button link disabled" href="#">Learn More</a></div> -->
-            </div>
-        </div>
-        <div class="hero-wrapper">
-            <h1 class="hero-title">Contribute</h1>
-            <p class="hero-subtitle">Your opinions matter! Play an active role in our growth by suggesting new tournaments, restaurants, hotels, and activities, and by leaving reviews that guide our improvement efforts.</p>
-        </div>
-        <div class="contribute-actions-wrapper">
-            <a href="{% url 'tournament:add_tournament' %}" class="button button-link teal-theme">Add Tournament</a>
-            <a href="{% url 'restaurant:add_restaurant' %}" class="button button-link purple-theme">Add Restaurant</a>
-            <a href="{% url 'entertainment:add_entertainment' %}" class="button button-link green-theme">Add Entertainment</a>
-            <a href="{% url 'tournament:tournament_home' %}" class="button button-link light-theme">Leave Review</a>
-            <a href="{% url 'info:feedback' %}" class="button button-link light-theme">Give us Feedback</a>
-        </div>
-    </div>
-</div>
+</section>
 {% endblock %}

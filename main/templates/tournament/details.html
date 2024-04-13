@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}Tournament {{ tournament.id }} {% endblock %}
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Page for viewing the details of a selected hockey tournament.">  
+    <link rel="stylesheet" href="{% static 'css/tournament/details.css' %}">
+    <script src="{% static 'js/tournament/details.js' %}"></script>
+    <!-- <script src="{% static 'js/main/landing.js' %}"></script> -->
+{% endblock %}
+
+{% block content %}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <p>{{ tournament.start_date }} - {{ tournament.end_date }}</p>
+            <h1>{{ tournament.name }}</h1>
+            <p>Total Upvotes: {{ tournament.total_upvotes }}</p>
+            <p>Overall Rating: {{ tournament.overall_rating }}</p>
+            <!-- Add other details as needed -->
+        </div>
+        <div class="col-md-6">
+            <p>Company: {{ tournament.company }}</p>
+            <p>Website: <a href="{{ tournament.website }}">{{ tournament.website }}</a></p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <h2>Rinks</h2>
+            {% if tournament.rinks.all %}
+                <ul>
+                    {% for rink in tournament.rinks.all %}
+                        <li>{{ rink.address }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No rinks associated with this tournament yet.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row mt-3">
+    <hr>
+    <div class="col-md-4">
+        <h2>Restaurants</h2>
+        {% if restaurants %}
+            <ul>
+                {% for restaurant in restaurants %}
+                    <li>{{ restaurant.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No restaurants associated yet.</p>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <h2>Entertainment</h2>
+        {% if entertainments %}
+            <ul>
+                {% for entertainment in entertainments %}
+                    <li>{{ entertainment.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No entertainment associated yet.</p>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <h2>Hotels</h2>
+        {% if hotels %}
+            <ul>
+                {% for hotel in hotels %}
+                    <li>{{ hotel.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hotels associated yet.</p>
+        {% endif %}
+    </div>
+</div>
+</div>
+<div class="container py-5">
+    <hr>
+    <h2>Reviews</h2>
+    <div class="container pt-3">
+        <p>
+            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                Filters
+            </button>
+        </p>
+        <div class="collapse {% if is_filtering %}show{% endif %}" id="filterCollapse">
+            <form method="GET">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="start_date" class="form-label">Start Date:</label>
+                        <input type="date" id="start_date" name="start_date" class="form-control" value="{{ start_date_value|default_if_none:'' }}">
+                    </div>
+                    <div class="col">
+                        <label for="end_date" class="form-label">End Date:</label>
+                        <input type="date" id="end_date" name="end_date" class="form-control" value="{{ end_date_value|default_if_none:'' }}">
+                    </div>
+                </div>
+
+                <div class="col text-end">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for review in tournament.reviews.all %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">{{ review.comment | truncatechars:120 }}</p>
+                    <!-- Add other review details as needed -->
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ review.date }}</li>
+                    <li class="list-group-item">Rating: {{ review.rating }}</li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

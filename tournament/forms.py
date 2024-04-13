@@ -4,10 +4,11 @@ from .models import Tournament
 class TournamentForm(forms.ModelForm):
     class Meta:
         model = Tournament
-        fields = ['name', 'date', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'start_date', 'end_date', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
-            'date': 'Tournament Date',
+            'start_date': 'Tournament Start Date',
+            'end_date': 'Tournament End Date',
             'company': 'Company',
             'website': 'Website',
             'address': 'Address',
@@ -18,7 +19,8 @@ class TournamentForm(forms.ModelForm):
             'extended_checkout': 'Extended Checkout'
         }
         help_texts = {
-            'date': 'Select the date of the tournament.',
+            'start_date': 'Select the start date of the tournament.',
+            'end_date': 'Select the end date of the tournament.',
             'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
