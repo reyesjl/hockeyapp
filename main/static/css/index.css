@@ -1,6 +1,7 @@
 .jumbotron {
-    padding: 5rem 0;
-    background-image: url('/static/images/landing/slide1.jpg'); /* Change the path to your image */
+    padding: 6rem 0;
+    /* background-image: url('/static/images/landing/slide1.jpg'); */
+    background-image: url('/static/images/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
