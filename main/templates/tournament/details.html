@@ -166,7 +166,11 @@
                             <p>{{ review.comment }}</p>
                             <hr>
                             <p class="fw-bold">Parking</p>
-                            <p>{{ review.parking_notes }}</p>
+                            {% if review.parking_notes %}
+                                <p>{{ review.parking_notes }}</p>
+                            {% else %}
+                                <p class="text-muted">No parking notes for this review.</p>
+                            {% endif %}
                             <hr>
                             <p class="fw-bold">Ratings</p>
                             <p>Vote: {{ review.vote }}</p>
