@@ -29,7 +29,7 @@ class EntertainmentForm(forms.ModelForm):
             'website': 'Enter the website URL of the entertainment venue.',
             'activity_type': 'Select the type of activity offered by the entertainment venue.',
             'description': 'Describe the activity in a short summary.',
-            'age_range': 'Select the age range for which the entertainment venue is suitable.',
+            'age_range': 'Select the minimum age range for which the entertainment venue is suitable.',
             'serve_beer': 'Check if the entertainment venue serves beer.',
             'serve_wine': 'Check if the entertainment venue serves wine.',
             'serve_liquor': 'Check if the entertainment venue serves liquor.',

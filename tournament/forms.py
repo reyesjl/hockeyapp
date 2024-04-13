@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tournament, Rink
+from .models import Tournament, Rink, Hotel
 
 class TournamentForm(forms.ModelForm):
     class Meta:
@@ -45,4 +45,17 @@ class RinkForm(forms.ModelForm):
         help_texts = {
             'name': 'Enter the name of the rink.',
             'address': 'Enter the address of the rink.',
+        }
+
+class HotelForm(forms.ModelForm):
+    class Meta:
+        model = Hotel
+        fields = ['name', 'address']
+        labels = {
+            'name': 'Hotel Name',
+            'address': 'Hotel Address',
+        }
+        help_texts = {
+            'name': 'Enter the name of the hotel.',
+            'address': 'Enter the address of the hotel.',
         }

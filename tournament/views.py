@@ -1,18 +1,31 @@
 # This module handles views related to tournaments.
+# Custom imports
+from main.regions import get_coordinates
 
+#  Util imports
 import calendar
 from django.db.models import Q
 from django.utils import timezone
-from .forms import TournamentForm, RinkForm
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
+
+# Local imports
+from .forms import TournamentForm, RinkForm, HotelForm
+from .models import Hotel, Rink, Tournament, Location
+
+# Restaurant imports
 from restaurant.forms import RestaurantForm
 from restaurant.models import Restaurant
-from .models import Rink, Tournament, Location
-from django.shortcuts import render, redirect, get_object_or_404
-from main.regions import get_coordinates
+
+# Entertainment imports
+from entertainment.forms import EntertainmentForm
+from entertainment.models import Entertainment
+
+# Reviews imports
 from review.forms import TournamentReviewForm
 from review.models import TournamentReview
 from review.voting import update_vote_count
-from django.contrib import messages
+
 
 def index(request):
     """
@@ -103,6 +116,12 @@ def get(request, tournament_id):
     # Fetch all restaurants associated with the tournament
     restaurants = Restaurant.objects.filter(tournament=tournament)
 
+    # Fetch all the hotels associated with the tournament
+    hotels = Hotel.objects.filter(tournament=tournament)
+
+    # Fetch all entertainment associated with this tournament
+    entertainments = Entertainment.objects.filter(tournament=tournament)
+
     # Parse and apply filters from request parameters for REVIEWS
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
@@ -120,7 +139,9 @@ def get(request, tournament_id):
     context = {
         'tournament': tournament,
         'rinks': rinks,
+        'hotels': hotels,
         'restaurants': restaurants,
+        'entertainments': entertainments,
         'reviews': reviews,
         'start_date_value': start_date,
         'end_date_value': end_date,
@@ -184,7 +205,36 @@ def add_rink(request, tournament_id):
     else:
         form = RinkForm()
     
-    return render(request, 'tournament/add_rink.html', {'form': form, 'error_message': error_message})
+    context = {
+        'form': form, 
+        'tournament': tournament,
+        'error_message': error_message
+    }
+    return render(request, 'tournament/add_rink.html', context)
+
+def add_hotel(request, tournament_id):
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+    error_message = None
+
+    if request.method == 'POST':
+        form = HotelForm(request.POST)
+        if form.is_valid():
+            if Hotel.objects.filter(name__iexact=form.cleaned_data['name'], tournament=tournament).exists():
+                error_message = "This hotel already exists for the tournament."
+            else:
+                hotel = form.save(commit=False)
+                hotel.tournament = tournament
+                hotel.save()
+                return redirect('tournaments:success', tournament_id=tournament_id, object_type='hotel')
+    else:
+        form = HotelForm()
+
+    context = {
+        'form': form, 
+        'tournament': tournament,
+        'error_message': error_message
+    }
+    return render(request, 'tournament/add_hotel.html', context)
 
 def add_restaurant(request, tournament_id):
     tournament = get_object_or_404(Tournament, pk=tournament_id)
@@ -211,11 +261,50 @@ def add_restaurant(request, tournament_id):
     else:
         form = RestaurantForm()
 
-    return render(request, 'tournament/add_restaurant.html', {'form':form, 'error_message': error_message})
+    context = {
+        'form': form, 
+        'tournament': tournament,
+        'error_message': error_message
+    }    
+    return render(request, 'tournament/add_restaurant.html', context)
+
+def add_entertainment(request, tournament_id):
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+    error_message = None
+
+    if request.method == 'POST':
+        form = EntertainmentForm(request.POST)
+        if form.is_valid():
+            if Entertainment.objects.filter(name__iexact=form.cleaned_data['name'], tournament=tournament).exists():
+                error_message = "This entertainment already exists for the tournament."
+            else:
+                # Gather geolocation
+                address = form.cleaned_data['address']
+                coordinates = get_coordinates(address)
+                location, created = Location.objects.get_or_create(region="All", defaults={'latitude': coordinates['lat'], 'longitude': coordinates['lng']})
+                location.save()
+                
+                entertainment = form.save(commit=False)
+                entertainment.location = location
+                entertainment.tournament = tournament
+                entertainment.draft_status = 'published'
+                entertainment.save()
+                return redirect('tournaments:success', tournament_id=tournament_id, object_type='entertainment')
+    else:
+        form = EntertainmentForm()
+
+    context = {
+        'form': form, 
+        'tournament': tournament,
+        'error_message': error_message
+    }    
+    return render(request, 'tournament/add_restaurant.html', context)
 
 def success(request, tournament_id, object_type):
     if object_type == 'rink':
         message = "Rink has been added successfully."
+    elif object_type == 'hotel':
+        message = "Hotel has been added successfully."
     elif object_type == 'restaurant':
         message = "Restaurant has been added successfully."
     elif object_type == 'entertainment':

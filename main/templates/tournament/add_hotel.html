@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Rink{% endblock %}
+{% block title %}Add Hotel{% endblock %}
 
 {% load static %}
 
 {% block extra_head %}
-    <meta name="description" content="Page for adding a tournament rink.">  
+    <meta name="description" content="Page for adding a tournament hotel.">  
     <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 {% endblock %}
 
@@ -14,7 +14,7 @@
     {% if error_message %}
         <p class="text-danger">{{ error_message }}</p>
     {% endif %}
-    <h2>Add Rink</h2>
+    <h2>Add Hotel</h2>
     <p class="text-muted">For {{ tournament.name }}</p>
     <form method="POST" class="mt-3">
         {% csrf_token %}

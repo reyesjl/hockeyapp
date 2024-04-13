@@ -1,10 +1,11 @@
 from django.db import models
-from tournament.models import Location
+from tournament.models import Location, Tournament
 from main.choices import ACTIVITY_TYPE_CHOICES, AGE_RANGE_CHOICES, PARKING_SIZE_CHOICES, DRAFT_STATUS_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import Avg
 
 class Entertainment(models.Model):
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
