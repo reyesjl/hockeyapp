@@ -20,7 +20,7 @@ class TournamentCompanyAdmin(admin.ModelAdmin):
 
 class AgeGroupAdmin(admin.ModelAdmin):
     list_display = ['name']
-    ordering = ['name']
+    ordering = ['order']
 
 class AgeCategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
