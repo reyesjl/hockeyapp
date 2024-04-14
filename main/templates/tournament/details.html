@@ -74,10 +74,10 @@
                         <p class="text-muted">Unknown</p>
                     {% endfor %}
                 </p>
+                <p class="text-small"><span class="fw-bold">Stay and play:</span> <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Extended checkout:</span> <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
             </div>
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Stay and Play:</span> <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
-                <p class="text-small"><span class="fw-bold">Extended Checkout:</span> <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
             </div>
         </div>
     </div>
