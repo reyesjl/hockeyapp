@@ -65,8 +65,6 @@
                     <li class="list-group-item">Overall Rating: {{ tournament.overall_rating }}</li>
                     <li class="list-group-item">Total Upvotes: {{ tournament.total_upvotes }}</li>
                     <li class="list-group-item">Parking Cost: {{ tournament.get_parking_cost_display }}</li>
-                    <li class="list-group-item">Stay and Play: {% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</li>
-                    <li class="list-group-item">Extended Checkout: {% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</li>
                 </ul>
                 <div class="card-body text-center">
                     <a href="{% url 'tournaments:get' tournament.id %}" class="card-link">Details & Reviews</a>
