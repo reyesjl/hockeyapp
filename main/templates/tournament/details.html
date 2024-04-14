@@ -24,12 +24,12 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p class="text-small">Overall: <br>{{ tournament.overall_rating }} out of 5.0</p>
             <p class="text-small">Referee: <br>{{ tournament.reff_rating }} out of 5.0</p>
             <p class="text-small">Tournament Communication: <br>{{ tournament.comms_rating }} out of 5.0</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <p class="text-small">Games minimum: <br>{{ tournament.minimum_games_played }}</p>
             <p class="text-small">
             Level of play: <br>
@@ -44,11 +44,29 @@
             {% for age_group in tournament.age_groups.all %}
                 {{ age_group.name }},
             {% empty %}
-                <p class="text-muted">Not Known Yet.</p>
+                <p class="text-muted">Unknown</p>
             {% endfor %}
             </p>
         </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-3">
+            <p class="text-small">
+            First place hardware: <br>
+            {% for hardware in tournament.first_place_hardware.all %}
+                {{ hardware.name }},
+            {% empty %}
+                <p class="text-muted">Unknown</p>
+            {% endfor %}
+            </p>
+            <p class="text-small">
+            Second place hardware: <br>
+            {% for hardware in tournament.second_place_hardware.all %}
+                {{ hardware.name }},
+            {% empty %}
+                <p class="text-muted">Unknown</p>
+            {% endfor %}
+            </p>
+        </div>
+        <div class="col-md-3">
             <p class="text-small">Stay and Play: <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
             <p class="text-small">Extended Checkout: <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
         </div>
