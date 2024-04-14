@@ -30,19 +30,10 @@ DRAFT_STATUS_CHOICES = [
     ('published', 'Published'),
 ]
 
-TOURNAMENT_COMPANY_CHOICES = [
-    ('Idk', 'Idk'),
-    ('Organized by Club/Rink','Organized by Club/Rink'),
-    ('YHT', 'YHT'),
-    ('CAN/AM', 'CAN/AM'),
-    ('CHE', 'CHE'),
-    ('EliteAMSports', 'EliteAMSports'),
-    ('MyHockey', 'MyHockey'),
-    ('OneHockey', 'OneHockey'),
-    ('RSG', 'RSG'),
-    ('SES', 'SES'),
-    ('TCS', 'TCS'),
-    ('WPG', 'WPG'),
+MULTI_TEAM_CHOICES = [
+    ('No', 'No'),
+    ('2+', '2+'),
+    ('3+','3+'),
 ]
 
 STATUS_CHOICES = [

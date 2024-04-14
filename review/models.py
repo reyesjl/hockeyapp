@@ -1,7 +1,7 @@
 from main.choices import VOTE_CHOICES
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from tournament.models import Tournament
+from tournament.models import Tournament, TournamentHardware
 from restaurant.models import Restaurant
 from entertainment.models import Entertainment
 
