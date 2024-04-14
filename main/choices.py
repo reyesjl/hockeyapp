@@ -36,6 +36,12 @@ MULTI_TEAM_CHOICES = [
     ('3+','3+'),
 ]
 
+GAMES_PLAYED_CHOICES = [
+    ('5', '5'),
+    ('4', '4'),
+    ('3', '3'),
+]
+
 STATUS_CHOICES = [
     ('Pending', 'Pending'),
     ('Processing', 'Processing'),

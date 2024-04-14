@@ -1,5 +1,5 @@
 from django.db import models
-from main.choices import DRAFT_STATUS_CHOICES, MULTI_TEAM_CHOICES
+from main.choices import DRAFT_STATUS_CHOICES, MULTI_TEAM_CHOICES, GAMES_PLAYED_CHOICES
 from django.core.validators import MinValueValidator, MaxValueValidator
 from main.regions import get_region
 from django.db.models import Avg
@@ -48,6 +48,7 @@ class Tournament(models.Model):
     multi_team_discount = models.CharField(max_length=10, choices=MULTI_TEAM_CHOICES, default='No')
     early_bird_discount = models.BooleanField(default=False)
     other_discounts = models.BooleanField(default=False)
+    minimum_games_played = models.CharField(max_length=10, choices=GAMES_PLAYED_CHOICES, default='3')
     stay_and_play = models.BooleanField(default=False)
     extended_checkout = models.BooleanField(default=False) # within stay and play agreement
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft') # for publishing purposes

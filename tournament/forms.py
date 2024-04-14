@@ -9,13 +9,14 @@ class TournamentForm(forms.ModelForm):
 
     class Meta:
         model = Tournament
-        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'multi_team_discount', 'early_bird_discount', 'other_discounts', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'minimum_games_played', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'multi_team_discount', 'early_bird_discount', 'other_discounts', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
             'start_date': 'Tournament Start Date',
             'end_date': 'Tournament End Date',
             'levels_of_play': 'Levels of Play',
             'age_groups': 'Age Groups',
+            'minimum_games_played': 'Minimum Games Played',
             'first_place_hardware': '1st Place Hardware',
             'second_place_hardware': '2nd place Hardware',
             'company': 'Company',
@@ -32,6 +33,7 @@ class TournamentForm(forms.ModelForm):
             'end_date': 'Select the end date of the tournament.',
             'levels_of_play': 'Select the levels of play for the tournament',
             'age_groups': 'Select all groups this tournament supports',
+            'minimum_games_played': 'Select the minimum number of games played.',
             'first_place_hardware': 'Select the hardware that is given to first place.',
             'second_place_hardware': 'Select the hardware that is given to second place.',
             'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
