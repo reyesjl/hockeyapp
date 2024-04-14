@@ -70,6 +70,10 @@
                         {% endfor %}
                     </li>
                     <li class="list-group-item">
+                        Minimum Games Played:
+                        {{ tournament.minimum_games_played }}
+                    </li>
+                    <li class="list-group-item">
                         Early Bird Discount:
                         {% if tournament.early_bird_discount %}
                             Yes
