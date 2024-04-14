@@ -64,7 +64,6 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Overall Rating: {{ tournament.overall_rating }}</li>
                     <li class="list-group-item">Total Upvotes: {{ tournament.total_upvotes }}</li>
-                    <li class="list-group-item">Parking Cost: {{ tournament.get_parking_cost_display }}</li>
                     <li class="list-group-item">
                         Levels of Play:
                         {% for age_category in tournament.levels_of_play.all %}

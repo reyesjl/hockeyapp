@@ -45,9 +45,6 @@ class Tournament(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude   
     reff_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # referee
     comms_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # director of communications
-    parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
-    parking_valet = models.BooleanField(default=False)
-    parking_cost = models.CharField(max_length=10, choices=PARKING_COST_CHOICES, default='free')
     stay_and_play = models.BooleanField(default=False)
     extended_checkout = models.BooleanField(default=False) # within stay and play agreement
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft') # for publishing purposes
