@@ -81,8 +81,8 @@
             </div>
             <div class="col-md-3">
                 <p class="text-small"><span class="fw-bold">Multi-Team Discounts:</span> <br>{{ tournament.multi_team_discount}}</p>
-                <p class="text-small"><span class="fw-bold">Early Bird Discounts:</span> <br>{% if tournament.early_bird_discount %}Yes{% else %}No{% endif %}</p>
-                <p class="text-small"><span class="fw-bold">Other Discounts:</span> <br>{% if tournament.other_discounts %}Yes{% else %}No{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Early Bird Discounts:</span> <br>{% if tournament.early_bird_discount %}Yes{% else %}--{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Other Discounts:</span> <br>{% if tournament.other_discounts %}Yes{% else %}--{% endif %}</p>
             </div>
         </div>
     </div>
