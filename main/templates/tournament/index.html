@@ -65,6 +65,14 @@
                     <li class="list-group-item">Overall Rating: {{ tournament.overall_rating }}</li>
                     <li class="list-group-item">Total Upvotes: {{ tournament.total_upvotes }}</li>
                     <li class="list-group-item">Parking Cost: {{ tournament.get_parking_cost_display }}</li>
+                    <li class="list-group-item">
+                        {% for age_category in tournament.levels_of_play.all %}
+                            {{ age_category.name }},
+                        {% empty %}
+                            <p class="text-muted">Not Known Yet.</p>
+                        {% endfor %}
+                    </li>
+                    
                 </ul>
                 <div class="card-body text-center">
                     <a href="{% url 'tournaments:get' tournament.id %}" class="card-link">Details & Reviews</a>
