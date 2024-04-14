@@ -2,7 +2,7 @@ from django import forms
 from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory
 
 class TournamentForm(forms.ModelForm):
-    age_groups = forms.ModelMultipleChoiceField(queryset=AgeGroup.objects.all().order_by('name'), widget=forms.CheckboxSelectMultiple)
+    age_groups = forms.ModelMultipleChoiceField(queryset=AgeGroup.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('name'), widget=forms.CheckboxSelectMultiple)
 
     class Meta:

@@ -73,9 +73,7 @@ class AgeCategory(models.Model):
     
 class AgeGroup(models.Model):
     name = models.CharField(max_length=20)
-
-    class Meta:
-        ordering = ['name']
+    order = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name
