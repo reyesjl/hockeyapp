@@ -3,7 +3,7 @@ from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory, TournamentHa
 
 class TournamentForm(forms.ModelForm):
     age_groups = forms.ModelMultipleChoiceField(queryset=AgeGroup.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
-    levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('name'), widget=forms.CheckboxSelectMultiple)
+    levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     first_place_hardware = forms.ModelMultipleChoiceField(queryset=TournamentHardware.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     second_place_hardware = forms.ModelMultipleChoiceField(queryset=TournamentHardware.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
 
