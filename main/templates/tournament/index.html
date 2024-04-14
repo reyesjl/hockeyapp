@@ -81,6 +81,14 @@
                         Multi-Team Discount:
                         {{ tournament.multi_team_discount }}
                     </li> 
+                    <li class="list-group-item">
+                        Other discounts:
+                        {% if tournament.other_discounts %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </li>
                 </ul>
                 <div class="card-body text-center">
                     <a href="{% url 'tournaments:get' tournament.id %}" class="card-link">Details & Reviews</a>
