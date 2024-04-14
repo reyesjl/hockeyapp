@@ -19,12 +19,11 @@ class TournamentCompanyAdmin(admin.ModelAdmin):
     ordering = ['name'] 
 
 class TournamentHardwareAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    list_filter = ['name']
-    ordering = ['name']
+    list_display = ['name', 'order']
+    ordering = ['order']
 
 class AgeGroupAdmin(admin.ModelAdmin):
-    list_display = ['name']
+    list_display = ['name', 'order']
     ordering = ['order']
 
 class AgeCategoryAdmin(admin.ModelAdmin):

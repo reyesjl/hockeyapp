@@ -80,6 +80,7 @@ class AgeGroup(models.Model):
     
 class TournamentHardware(models.Model):
     name = models.CharField(max_length=50)
+    order = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name
