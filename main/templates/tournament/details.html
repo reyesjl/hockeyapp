@@ -31,12 +31,19 @@
             <p>Comms: <br class="d-block d-sm-none">{{ tournament.comms_rating }} out of 5.0</p>
         </div>
         <div class="col-md-4">
-            <h2>Levels of Play</h2>
+            <h2>Levels & Age</h2>
             <p>
             {% for age_category in tournament.levels_of_play.all %}
                 {{ age_category.name }},
             {% empty %}
                 <p class="text-muted">Levels not known yet.</p>
+            {% endfor %}
+            </p>
+            <p>
+            {% for age_group in tournament.age_groups.all %}
+                {{ age_group.name }},
+            {% empty %}
+                <p class="text-muted">Not Known Yet.</p>
             {% endfor %}
             </p>
         </div>
