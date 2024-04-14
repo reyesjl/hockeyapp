@@ -31,8 +31,9 @@
             <p>Comms: <br class="d-block d-sm-none">{{ tournament.comms_rating }} out of 5.0</p>
         </div>
         <div class="col-md-4">
-            <h2>Levels & Age</h2>
+            <h2>Levels</h2>
             <p>
+            Level of play:
             {% for age_category in tournament.levels_of_play.all %}
                 {{ age_category.name }},
             {% empty %}
@@ -40,6 +41,7 @@
             {% endfor %}
             </p>
             <p>
+            Age groups:
             {% for age_group in tournament.age_groups.all %}
                 {{ age_group.name }},
             {% empty %}
