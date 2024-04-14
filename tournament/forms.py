@@ -4,12 +4,13 @@ from .models import Tournament, Rink, Hotel
 class TournamentForm(forms.ModelForm):
     class Meta:
         model = Tournament
-        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
             'start_date': 'Tournament Start Date',
             'end_date': 'Tournament End Date',
             'levels_of_play': 'Levels of Play',
+            'age_groups': 'Age Groups',
             'company': 'Company',
             'website': 'Website',
             'address': 'Address',
@@ -23,6 +24,7 @@ class TournamentForm(forms.ModelForm):
             'start_date': 'Select the start date of the tournament.',
             'end_date': 'Select the end date of the tournament.',
             'levels_of_play': 'Select the levels of play for the tournament',
+            'age_groups': 'Select all groups this tournament supports',
             'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
@@ -35,6 +37,7 @@ class TournamentForm(forms.ModelForm):
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),
+            'age_groups': forms.CheckboxSelectMultiple,
             'levels_of_play': forms.CheckboxSelectMultiple,
         }
 
