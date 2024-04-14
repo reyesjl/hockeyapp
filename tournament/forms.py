@@ -17,7 +17,7 @@ class TournamentForm(forms.ModelForm):
             'levels_of_play': 'Levels of Play',
             'age_groups': 'Age Groups',
             'first_place_hardware': '1st Place Hardware',
-            'first_place_hardware': '2nd place Hardware',
+            'second_place_hardware': '2nd place Hardware',
             'company': 'Company',
             'website': 'Website',
             'address': 'Address',

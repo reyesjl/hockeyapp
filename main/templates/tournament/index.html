@@ -81,7 +81,14 @@
                             <p class="text-muted">Not Known Yet.</p>
                         {% endfor %}
                     </li>
-                    
+                    <li class="list-group-item">
+                        Early Bird Discount:
+                        {{ tournament.early_bird_discount }}
+                    </li>
+                    <li class="list-group-item">
+                        Multi-Team Discount:
+                        {{ tournament.multi_team_discount }}
+                    </li> 
                 </ul>
                 <div class="card-body text-center">
                     <a href="{% url 'tournaments:get' tournament.id %}" class="card-link">Details & Reviews</a>

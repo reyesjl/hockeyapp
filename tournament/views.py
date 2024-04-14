@@ -89,6 +89,7 @@ def create(request):
     if request.method == 'POST':
         form = TournamentForm(request.POST)
         if form.is_valid():
+            print("Form Data:", form.cleaned_data)
             # Check if a tournament with the same name already exists
             if Tournament.objects.filter(name__iexact=form.cleaned_data['name']).exists():
                 error_message = "Tournament already exists."
