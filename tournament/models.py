@@ -63,6 +63,12 @@ class Tournament(models.Model):
     def __str__(self):
         return f"{self.name} at {self.address}"
     
+class AgeCategory(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+    
 class Rink(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)

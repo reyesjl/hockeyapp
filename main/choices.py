@@ -25,17 +25,6 @@ PARKING_COST_CHOICES = [
     ('$25-$30', '$25 - $30'),
 ]
 
-LEVEL_CHOICES = [
-    ('AAA', 'AAA'),
-    ('AA', 'AA'),
-    ('UA', 'UA'),
-    ('A', 'A'),
-    ('LA', 'LA'),
-    ('B', 'B'),
-    ('Adult', 'Adult'),
-    ('Girls', 'Girls'),
-]
-
 DRAFT_STATUS_CHOICES = [
     ('draft', 'Draft'),
     ('published', 'Published'),
