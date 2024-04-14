@@ -9,7 +9,7 @@ class TournamentForm(forms.ModelForm):
 
     class Meta:
         model = Tournament
-        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'multi_team_discount', 'early_bird_discount', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'multi_team_discount', 'early_bird_discount', 'other_discounts', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
             'start_date': 'Tournament Start Date',
@@ -23,6 +23,7 @@ class TournamentForm(forms.ModelForm):
             'address': 'Address',
             'multi_team_discount': 'Multi-Team Discount',
             'early_bird_discount': 'Early Bird Discount',
+            'other_dicounts': 'Other Discounts',
             'stay_and_play': 'Stay and Play',
             'extended_checkout': 'Extended Checkout',
         }
@@ -38,6 +39,7 @@ class TournamentForm(forms.ModelForm):
             'address': 'Enter the physical address of the tournament.',
             'multi_team_discount': 'Select if multi-team disocunt is offered.',
             'early_bird_discount': 'Select if early-bird discount if offered.',
+            'other_discount': 'Select if they offer any other type of discounts.',
             'stay_and_play': 'Check if there is a stay & play agreement.',
             'extended_checkout': 'Check if extended checkout is allowed in the stay & play agreement.',
         }

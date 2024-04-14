@@ -47,6 +47,7 @@ class Tournament(models.Model):
     comms_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # director of communications
     multi_team_discount = models.CharField(max_length=10, choices=MULTI_TEAM_CHOICES, default='No')
     early_bird_discount = models.BooleanField(default=False)
+    other_discounts = models.BooleanField(default=False)
     stay_and_play = models.BooleanField(default=False)
     extended_checkout = models.BooleanField(default=False) # within stay and play agreement
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft') # for publishing purposes
