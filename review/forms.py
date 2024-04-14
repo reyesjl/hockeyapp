@@ -1,7 +1,8 @@
 from django import forms
 from .models import TournamentReview, RestaurantReview, EntertainmentReview
 
-RATING_CHOICES = [(str(round(i * 0.1, 1)), str(round(i * 0.1, 1))) for i in range(10, 51)]  # Generate choices from 1.0 to 5.0
+RATING_CHOICES = [(str(round(i * 0.5, 1)), str(round(i * 0.5, 1))) for i in range(2, 11)]
+
 
 class BaseReviewForm(forms.ModelForm):
     author = forms.EmailField(label='Email Address', help_text='Will not be shared. Enter your email address.')
