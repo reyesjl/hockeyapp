@@ -27,8 +27,8 @@ class AgeGroupAdmin(admin.ModelAdmin):
     ordering = ['order']
 
 class AgeCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    ordering = ['name']
+    list_display = ['name', 'order']
+    ordering = ['order']
 
 admin.site.register(Tournament, TournamentAdmin)
 admin.site.register(TournamentCompany, TournamentCompanyAdmin)
