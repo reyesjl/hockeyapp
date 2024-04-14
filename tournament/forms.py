@@ -9,7 +9,7 @@ class TournamentForm(forms.ModelForm):
 
     class Meta:
         model = Tournament
-        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'minimum_games_played', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'multi_team_discount', 'early_bird_discount', 'other_discounts', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'minimum_games_played', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'tournament_director', 'usa_hockey_sanction', 'multi_team_discount', 'early_bird_discount', 'other_discounts', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
             'start_date': 'Tournament Start Date',
@@ -22,6 +22,8 @@ class TournamentForm(forms.ModelForm):
             'company': 'Company',
             'website': 'Website',
             'address': 'Address',
+            'tournament_director': 'Tournament Director Onsite',
+            'usa_hockey_sanction': 'USA Hockey Sanctioned',
             'multi_team_discount': 'Multi-Team Discount',
             'early_bird_discount': 'Early Bird Discount',
             'other_dicounts': 'Other Discounts',
@@ -39,6 +41,8 @@ class TournamentForm(forms.ModelForm):
             'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
+            'tournament_director': 'Select if a tournament director is onsite.',
+            'usa_hockey_sanction': 'Select if this tournament is santioned by USA Hockey.',
             'multi_team_discount': 'Select if multi-team disocunt is offered.',
             'early_bird_discount': 'Select if early-bird discount if offered.',
             'other_discounts': 'Select if they offer any other type of discounts.',

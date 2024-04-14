@@ -45,6 +45,8 @@ class Tournament(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE) # latitude & longitude   
     reff_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # referee
     comms_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]) # director of communications
+    tournament_director = models.BooleanField(default=False)
+    usa_hockey_sanction = models.BooleanField(default=False)
     multi_team_discount = models.CharField(max_length=10, choices=MULTI_TEAM_CHOICES, default='No')
     early_bird_discount = models.BooleanField(default=False)
     other_discounts = models.BooleanField(default=False)
