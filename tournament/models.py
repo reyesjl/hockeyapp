@@ -36,6 +36,8 @@ class Tournament(models.Model):
     end_date = models.DateField(null=True, blank=True)
     levels_of_play = models.ManyToManyField('AgeCategory', blank=True)
     age_groups = models.ManyToManyField('AgeGroup', blank=True)
+    first_place_hardware = models.ManyToManyField('TournamentHardware', blank=True, related_name='first_place_hardware')
+    second_place_hardware = models.ManyToManyField('TournamentHardware', blank=True, related_name='second_place_hardware')
     company = models.ForeignKey(TournamentCompany, on_delete=models.SET_NULL, null=True, blank=True)
     website = models.CharField(max_length=100, default='https://www.yhtreviews.com')
     majorcity = models.ForeignKey(MajorCity, on_delete=models.SET_NULL, null=True, blank=True)

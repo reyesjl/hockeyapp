@@ -1,19 +1,23 @@
 from django import forms
-from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory
+from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory, TournamentHardware
 
 class TournamentForm(forms.ModelForm):
     age_groups = forms.ModelMultipleChoiceField(queryset=AgeGroup.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('name'), widget=forms.CheckboxSelectMultiple)
+    first_place_hardware = forms.ModelMultipleChoiceField(queryset=TournamentHardware.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
+    second_place_hardware = forms.ModelMultipleChoiceField(queryset=TournamentHardware.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
 
     class Meta:
         model = Tournament
-        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
             'start_date': 'Tournament Start Date',
             'end_date': 'Tournament End Date',
             'levels_of_play': 'Levels of Play',
             'age_groups': 'Age Groups',
+            'first_place_hardware': '1st Place Hardware',
+            'first_place_hardware': '2nd place Hardware',
             'company': 'Company',
             'website': 'Website',
             'address': 'Address',
@@ -28,6 +32,8 @@ class TournamentForm(forms.ModelForm):
             'end_date': 'Select the end date of the tournament.',
             'levels_of_play': 'Select the levels of play for the tournament',
             'age_groups': 'Select all groups this tournament supports',
+            'first_place_hardware': 'Select the hardware that is given to first place.',
+            'second_place_hardware': 'Select the hardware that is given to second place.',
             'company': 'Select the company organizing the tournament. If not found, send an email to info@yhtreviews.com',
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
