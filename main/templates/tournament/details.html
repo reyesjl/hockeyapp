@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-6">
             <p>Company: {{ tournament.company }}</p>
-            <p>Website: <a href="{{ tournament.website }}">{{ tournament.website }}</a></p>
+            <p>Website: <a target="_blank" href="{{ tournament.website }}">{{ tournament.website }}</a></p>
         </div>
     </div>
     <div class="row mt-3">
@@ -47,7 +47,7 @@
             {% if rinks %}
                 <ul>
                     {% for rink in rinks %}
-                        <li><a href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">{{ rink.name }}</a></li>
+                        <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">{{ rink.name }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -65,7 +65,7 @@
         {% if restaurants %}
             <ul>
                 {% for restaurant in restaurants %}
-                    <li><a href="https://www.google.com/maps/search/?api=1&query={{ restaurant.address }}">{{ restaurant.name }}</a></li>
+                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ restaurant.address }}">{{ restaurant.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -80,7 +80,7 @@
         {% if entertainments %}
             <ul>
                 {% for entertainment in entertainments %}
-                    <li><a href="https://www.google.com/maps/search/?api=1&query={{ entertainment.address }}">{{ entertainment.name }}</a></li>
+                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ entertainment.address }}">{{ entertainment.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -95,7 +95,7 @@
         {% if hotels %}
             <ul>
                 {% for hotel in hotels %}
-                    <li><a href="https://www.google.com/maps/search/?api=1&query={{ hotel.address }}">{{ hotel.name }}</a></li>
+                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ hotel.address }}">{{ hotel.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}

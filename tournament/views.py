@@ -71,6 +71,8 @@ def index(request):
     }
     return render(request, 'tournament/index.html', context)
 
+from django.urls import reverse
+
 def create(request):
     """
     Renders the form to add a new tournament and processes form submission.
@@ -81,29 +83,46 @@ def create(request):
     Returns:
         HttpResponse object rendering the add tournament page or redirecting to tournament home.
     """
+    error_message = None
+    tournament = None
+
     if request.method == 'POST':
         form = TournamentForm(request.POST)
         if form.is_valid():
-            # Get the address entered by the user
-            address = form.cleaned_data['address']
+            # Check if a tournament with the same name already exists
+            if Tournament.objects.filter(name__iexact=form.cleaned_data['name']).exists():
+                error_message = "Tournament already exists."
+            else:
+                # Get the address entered by the user
+                address = form.cleaned_data['address']
 
-            # Call the get_coordinates function to get latitude and longitude
-            coordinates = get_coordinates(address)
+                # Call the get_coordinates function to get latitude and longitude
+                coordinates = get_coordinates(address)
 
-            # Create or update the Location model with the new coordinates
-            location, created = Location.objects.get_or_create(region="All", defaults={'latitude': coordinates['lat'], 'longitude': coordinates['lng']})
+                # Create or update the Location model with the new coordinates
+                location, created = Location.objects.get_or_create(region="All", defaults={'latitude': coordinates['lat'], 'longitude': coordinates['lng']})
 
-            # Save the location object to ensure it's created or updated in the database
-            location.save()
+                # Save the location object to ensure it's created or updated in the database
+                location.save()
 
-            tournament = form.save(commit=False)
-            tournament.location = location  # Assign the location to the tournament
-            tournament.draft_status = 'draft'
-            tournament.save()
-            return redirect('review:thankyou', message='Your tournament has been submitted. Give our team 1-2 days to review and publish it.')
+                tournament = form.save(commit=False)
+                tournament.location = location  # Assign the location to the tournament
+                tournament.draft_status = 'published'
+                tournament.save()
+
+                # Redirect to the success page with tournament ID in the URL
+                return redirect('tournament:success', tournament_id=tournament.id, object_type='tournament')
     else:
         form = TournamentForm()
-    return render(request, 'tournament/create.html', {'form': form})
+
+    context = {
+        'form': form, 
+        'tournament': tournament,
+        'error_message': error_message
+    }
+
+    return render(request, 'tournament/create.html', context)
+
 
 def get(request, tournament_id):
     # Retrieve the tournament object from the database based on the provided tournament_id
@@ -303,6 +322,8 @@ def add_entertainment(request, tournament_id):
 def success(request, tournament_id, object_type):
     if object_type == 'rink':
         message = "Rink has been added successfully."
+    elif object_type == 'tournament':
+        message = "Tournament has been added successfully."
     elif object_type == 'hotel':
         message = "Hotel has been added successfully."
     elif object_type == 'restaurant':

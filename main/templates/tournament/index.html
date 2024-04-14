@@ -15,6 +15,7 @@
         <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
             Filters
         </button>
+        <a class="btn btn-primary" href="{% url 'tournaments:create' %}">Add Listing</a>
     </p>
     <div class="collapse {% if is_filtering %}show{% endif %}" id="filterCollapse">
         <form method="GET">
