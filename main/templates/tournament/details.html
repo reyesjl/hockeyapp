@@ -23,36 +23,76 @@
             <p><a target="_blank" href="{{ tournament.website }}">Tournament Site</a></p>
         </div>
     </div>
-    <div class="row mt-3">
-        <div class="col-md-4">
-            <p class="text-small">Overall: <br>{{ tournament.overall_rating }} out of 5.0</p>
-            <p class="text-small">Referee: <br>{{ tournament.reff_rating }} out of 5.0</p>
-            <p class="text-small">Tournament Communication: <br>{{ tournament.comms_rating }} out of 5.0</p>
-        </div>
-        <div class="col-md-4">
-            <p class="text-small">Games minimum: <br>{{ tournament.minimum_games_played }}</p>
-            <p class="text-small">
-            Level of play: <br>
-            {% for age_category in tournament.levels_of_play.all %}
-                {{ age_category.name }},
-            {% empty %}
-                <p class="text-muted">Levels not known yet.</p>
-            {% endfor %}
-            </p>
-            <p class="text-small">
-            Age groups: <br>
-            {% for age_group in tournament.age_groups.all %}
-                {{ age_group.name }},
-            {% empty %}
-                <p class="text-muted">Not Known Yet.</p>
-            {% endfor %}
-            </p>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            <p class="text-small">Stay and Play: <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
-            <p class="text-small">Extended Checkout: <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
+    
+<div class="accordion" id="tournamentInfoAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="overallRatingHeader">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#overallRatingCollapse" aria-expanded="true" aria-controls="overallRatingCollapse">
+                Overall Rating
+            </button>
+        </h2>
+        <div id="overallRatingCollapse" class="accordion-collapse collapse show" aria-labelledby="overallRatingHeader" data-bs-parent="#tournamentInfoAccordion">
+            <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Overall: {{ tournament.overall_rating }} out of 5.0</li>
+                    <li class="list-group-item">Referee: {{ tournament.reff_rating }} out of 5.0</li>
+                    <li class="list-group-item">Tournament Communication: {{ tournament.comms_rating }} out of 5.0</li>
+                </ul>
+            </div>
         </div>
     </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="gameplayInfoHeader">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gameplayInfoCollapse" aria-expanded="false" aria-controls="gameplayInfoCollapse">
+                Gameplay Information
+            </button>
+        </h2>
+        <div id="gameplayInfoCollapse" class="accordion-collapse collapse" aria-labelledby="gameplayInfoHeader" data-bs-parent="#tournamentInfoAccordion">
+            <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Games Minimum: {{ tournament.minimum_games_played }}</li>
+                    <li class="list-group-item">Level of Play: 
+                        <ul>
+                            {% for age_category in tournament.levels_of_play.all %}
+                                <li>{{ age_category.name }}</li>
+                            {% empty %}
+                                <li><span class="text-muted">Levels not known yet.</span></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="list-group-item">Age Groups: 
+                        <ul>
+                            {% for age_group in tournament.age_groups.all %}
+                                <li>{{ age_group.name }}</li>
+                            {% empty %}
+                                <li><span class="text-muted">Not Known Yet.</span></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="stayAndPlayHeader">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#stayAndPlayCollapse" aria-expanded="false" aria-controls="stayAndPlayCollapse">
+                Stay and Play Information
+            </button>
+        </h2>
+        <div id="stayAndPlayCollapse" class="accordion-collapse collapse" aria-labelledby="stayAndPlayHeader" data-bs-parent="#tournamentInfoAccordion">
+            <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Stay and Play: {% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</li>
+                    <li class="list-group-item">Extended Checkout: {% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
     <div class="row mt-3">
         <hr>
         <div class="col">
