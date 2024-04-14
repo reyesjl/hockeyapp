@@ -37,7 +37,7 @@ class TournamentForm(forms.ModelForm):
             'website': 'Enter the website of the tournament.',
             'address': 'Enter the physical address of the tournament.',
             'multi_team_discount': 'Select if multi-team disocunt is offered.',
-            'early_bird_discount': 'Select if early-bird discount if offored.',
+            'early_bird_discount': 'Select if early-bird discount if offered.',
             'stay_and_play': 'Check if there is a stay & play agreement.',
             'extended_checkout': 'Check if extended checkout is allowed in the stay & play agreement.',
         }
