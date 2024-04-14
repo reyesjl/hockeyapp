@@ -59,10 +59,12 @@
                 </ul>
                 <div class="card-body bg-dark text-light">
                     <h5 class="card-title">{{ tournament.name }}</h5>
-                    <p>{{ tournament.overall_rating }} / 5.0</p>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p>{{ tournament.overall_rating }} / 5.0</p>
+                        <p>{{ tournament.total_upvotes }} upvotes</p>
+                    </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Total Upvotes: {{ tournament.total_upvotes }}</li>
                     <li class="list-group-item">
                         Levels of Play:
                         {% for age_category in tournament.levels_of_play.all %}
