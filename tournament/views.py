@@ -41,18 +41,10 @@ def index(request):
     tournament_listings = Tournament.objects.filter(draft_status='published').order_by('majorcity__name')
 
     # Parse and apply filters from request parameters
-    start_date = request.GET.get('start_date')
-    end_date = request.GET.get('end_date')
     major_city = request.GET.get('major_city')
     tournament_name = request.GET.get('tournament_name')
     is_filtering = False
 
-    if start_date:
-        tournament_listings = tournament_listings.filter(start_date__gte=start_date)
-        is_filtering = True
-    if end_date:
-        tournament_listings = tournament_listings.filter(start_date__lte=end_date)
-        is_filtering = True
     if major_city:
         tournament_listings = tournament_listings.filter(majorcity__name__icontains=major_city)
         is_filtering = True
@@ -64,8 +56,6 @@ def index(request):
     context = {
         'tournament_listings': tournament_listings,
         'is_filtering': is_filtering,
-        'start_date_value': start_date,
-        'end_date_value': end_date,
         'major_city_value': major_city,
         'tournament_name_value': tournament_name,
     }

@@ -29,18 +29,6 @@
                     <input type="text" id="tournament_name" name="tournament_name" class="form-control" value="{{ tournament_name_value|default_if_none:'' }}">
                 </div>
             </div>
-
-            <div class="row mb-3">
-                <div class="col">
-                    <label for="start_date" class="form-label">Start Date:</label>
-                    <input type="date" id="start_date" name="start_date" class="form-control" value="{{ start_date_value|default_if_none:'' }}">
-                </div>
-                <div class="col">
-                    <label for="end_date" class="form-label">End Date:</label>
-                    <input type="date" id="end_date" name="end_date" class="form-control" value="{{ end_date_value|default_if_none:'' }}">
-                </div>
-            </div>
-
             <div class="col text-end">
                 <button type="submit" class="btn btn-primary">Filter</button>
                 <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear</button>
