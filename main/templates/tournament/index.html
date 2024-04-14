@@ -46,7 +46,7 @@
                     <li class="list-group-item text-muted">{{ tournament.majorcity }}</li>
                 </ul>
                 <div class="card-body bg-dark text-light">
-                    <h5 class="card-title">{{ tournament.name }}</h5>
+                    <h5 class="card-title"><a class="text-light" href="{% url 'tournaments:get' tournament.id %}">{{ tournament.name }}</a></h5>
                     <div class="d-flex align-items-center justify-content-between">
                         <p>{{ tournament.overall_rating }} / 5.0</p>
                         <p>{{ tournament.total_upvotes }} upvotes</p>
@@ -94,9 +94,6 @@
                         {% endif %}
                     </li>
                 </ul>
-                <div class="card-body text-center">
-                    <a href="{% url 'tournaments:get' tournament.id %}" class="card-link">Details & Reviews</a>
-                </div>
             </div>
         </div>
         {% endfor %}
