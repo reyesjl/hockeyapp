@@ -36,13 +36,13 @@
             <div class="col-md-3">
                 <p class="text-small"><span class="fw-bold">Overall:</span> <br>{{ tournament.overall_rating }} out of 5.0</p>
                 <p class="text-small"><span class="fw-bold">Referee:</span> (take with grain of salt) <br>{{ tournament.reff_rating }} out of 5.0</p>
-                <p class="text-small"><span class="fw-bold">Tournament communication:</span> <br>{{ tournament.comms_rating }} out of 5.0</p>
-                <p class="text-small"><span class="fw-bold">Tournament director onsite:</span> <br>Yes</p>
+                <p class="text-small"><span class="fw-bold">Tournament Communication:</span> <br>{{ tournament.comms_rating }} out of 5.0</p>
+                <p class="text-small"><span class="fw-bold">Tournament Director Onsite:</span> <br>Yes</p>
             </div>
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Games minimum:</span> <br>{{ tournament.minimum_games_played }}</p>
+                <p class="text-small"><span class="fw-bold">Games Minimum:</span> <br>{{ tournament.minimum_games_played }}</p>
                 <p class="text-small">
-                    <span class="fw-bold">Level of play:</span> <br>
+                    <span class="fw-bold">Level of Play:</span> <br>
                     {% for age_category in tournament.levels_of_play.all %}
                         {{ age_category.name }},
                     {% empty %}
@@ -50,18 +50,18 @@
                     {% endfor %}
                 </p>
                 <p class="text-small">
-                    <span class="fw-bold">Age groups:</span> <br>
+                    <span class="fw-bold">Age Groups:</span> <br>
                     {% for age_group in tournament.age_groups.all %}
                         {{ age_group.name }},
                     {% empty %}
                         <p class="text-muted">Unknown</p>
                     {% endfor %}
                 </p>
-                <p class="text-small"><span class="fw-bold">USA Hockey sanctioned:</span> <br>Yes</p>
+                <p class="text-small"><span class="fw-bold">USA Hockey Sanctioned:</span> <br>Yes</p>
             </div>
             <div class="col-md-3">
                 <p class="text-small">
-                    <span class="fw-bold">First place hardware:</span> <br>
+                    <span class="fw-bold">First Place Hardware:</span> <br>
                     {% for hardware in tournament.first_place_hardware.all %}
                         {{ hardware.name }},
                     {% empty %}
@@ -69,20 +69,20 @@
                     {% endfor %}
                 </p>
                 <p class="text-small">
-                    <span class="fw-bold">Second place hardware:</span> <br>
+                    <span class="fw-bold">Second Place Hardware:</span> <br>
                     {% for hardware in tournament.second_place_hardware.all %}
                         {{ hardware.name }},
                     {% empty %}
                         <p class="text-muted">Unknown</p>
                     {% endfor %}
                 </p>
-                <p class="text-small"><span class="fw-bold">Stay and play:</span> <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
-                <p class="text-small"><span class="fw-bold">Extended checkout:</span> <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Stay and Play:</span> <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Extended Checkout:</span> <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
             </div>
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Multi-Team discounts:</span> <br>{{ tournament.multi_team_discount}}</p>
-                <p class="text-small"><span class="fw-bold">Early bird discounts:</span> <br>{% if tournament.early_bird_discount %}Yes{% else %}No{% endif %}</p>
-                <p class="text-small"><span class="fw-bold">Other discounts:</span> <br>{% if tournament.other_discounts %}Yes{% else %}No{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Multi-Team Discounts:</span> <br>{{ tournament.multi_team_discount}}</p>
+                <p class="text-small"><span class="fw-bold">Early Bird Discounts:</span> <br>{% if tournament.early_bird_discount %}Yes{% else %}No{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Other Discounts:</span> <br>{% if tournament.other_discounts %}Yes{% else %}No{% endif %}</p>
             </div>
         </div>
     </div>
