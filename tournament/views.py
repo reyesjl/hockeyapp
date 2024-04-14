@@ -38,7 +38,7 @@ def index(request):
         HttpResponse object rendering the tournament home page.
     """
     # Query all published tournaments
-    tournament_listings = Tournament.objects.filter(draft_status='published').order_by('majorcity')
+    tournament_listings = Tournament.objects.filter(draft_status='published').order_by('majorcity__name')
 
     # Parse and apply filters from request parameters
     start_date = request.GET.get('start_date')
