@@ -18,12 +18,20 @@ class TournamentCompanyAdmin(admin.ModelAdmin):
     search_fields = ('name',)  # Allow searching by name
     ordering = ['name']  # Organize companies alphabetically by name
 
+class AgeGroupAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    ordering = ['name']
+
+class AgeCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    ordering = ['name']
+
 admin.site.register(Tournament, TournamentAdmin)
 admin.site.register(TournamentCompany, TournamentCompanyAdmin)
 admin.site.register(MajorCity, MajorCityAdmin)
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Rink)
-admin.site.register(AgeCategory)
-admin.site.register(AgeGroup)
+admin.site.register(AgeCategory, AgeCategoryAdmin)
+admin.site.register(AgeGroup, AgeGroupAdmin)
 
 
