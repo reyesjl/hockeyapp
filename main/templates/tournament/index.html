@@ -73,6 +73,14 @@
                             <p class="text-muted">Not Known Yet.</p>
                         {% endfor %}
                     </li>
+                    <li class="list-group-item">
+                        Age Groups:
+                        {% for age_group in tournament.age_groups.all %}
+                            {{ age_group.name }},
+                        {% empty %}
+                            <p class="text-muted">Not Known Yet.</p>
+                        {% endfor %}
+                    </li>
                     
                 </ul>
                 <div class="card-body text-center">
