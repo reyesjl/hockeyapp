@@ -1,7 +1,10 @@
 from django import forms
-from .models import Tournament, Rink, Hotel
+from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory
 
 class TournamentForm(forms.ModelForm):
+    age_groups = forms.ModelMultipleChoiceField(queryset=AgeGroup.objects.all().order_by('name'), widget=forms.CheckboxSelectMultiple)
+    levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('name'), widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Tournament
         fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'company', 'website', 'address', 'parking_size', 'parking_valet', 'parking_cost', 'stay_and_play', 'extended_checkout']
@@ -37,8 +40,6 @@ class TournamentForm(forms.ModelForm):
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),
-            'age_groups': forms.CheckboxSelectMultiple,
-            'levels_of_play': forms.CheckboxSelectMultiple,
         }
 
 
