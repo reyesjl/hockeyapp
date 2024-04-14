@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Location, MajorCity, Tournament, TournamentCompany, Rink, AgeCategory, AgeGroup
+from .models import Location, MajorCity, Tournament, TournamentCompany, Rink, AgeCategory, AgeGroup, TournamentHardware
 
 class LocationAdmin(admin.ModelAdmin):
     list_filter = ['region']
@@ -14,9 +14,14 @@ class TournamentAdmin(admin.ModelAdmin):
     search_fields = ('name','address',)
 
 class TournamentCompanyAdmin(admin.ModelAdmin):
-    list_display = ('name', 'abbr')  # Display name and abbreviation
-    search_fields = ('name',)  # Allow searching by name
-    ordering = ['name']  # Organize companies alphabetically by name
+    list_display = ('name', 'abbr')
+    search_fields = ('name',)
+    ordering = ['name'] 
+
+class TournamentHardwareAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    list_filter = ['name']
+    ordering = ['name']
 
 class AgeGroupAdmin(admin.ModelAdmin):
     list_display = ['name']
@@ -33,5 +38,6 @@ admin.site.register(Location, LocationAdmin)
 admin.site.register(Rink)
 admin.site.register(AgeCategory, AgeCategoryAdmin)
 admin.site.register(AgeGroup, AgeGroupAdmin)
+admin.site.register(TournamentHardware, TournamentHardwareAdmin)
 
 
