@@ -23,64 +23,65 @@
             <p><a target="_blank" href="{{ tournament.website }}">Tournament Site</a></p>
         </div>
     </div>
-    <div class="row mt-3">
-    <div class="col">
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            More Info
-        </button>
-    </div>
-</div>
 
-<div class="collapse show" id="collapseExample">
     <div class="row mt-3">
-        <div class="col-md-3">
-            <p class="text-small">Overall: <br>{{ tournament.overall_rating }} out of 5.0</p>
-            <p class="text-small">Referee: <br>{{ tournament.reff_rating }} out of 5.0</p>
-            <p class="text-small">Tournament Communication: <br>{{ tournament.comms_rating }} out of 5.0</p>
-        </div>
-        <div class="col-md-3">
-            <p class="text-small">Games minimum: <br>{{ tournament.minimum_games_played }}</p>
-            <p class="text-small">
-                Level of play: <br>
-                {% for age_category in tournament.levels_of_play.all %}
-                {{ age_category.name }},
-                {% empty %}
-                <p class="text-muted">Levels not known yet.</p>
-                {% endfor %}
-            </p>
-            <p class="text-small">
-                Age groups: <br>
-                {% for age_group in tournament.age_groups.all %}
-                {{ age_group.name }},
-                {% empty %}
-                <p class="text-muted">Unknown</p>
-                {% endfor %}
-            </p>
-        </div>
-        <div class="col-md-3">
-            <p class="text-small">
-                First place hardware: <br>
-                {% for hardware in tournament.first_place_hardware.all %}
-                {{ hardware.name }},
-                {% empty %}
-                <p class="text-muted">Unknown</p>
-                {% endfor %}
-            </p>
-            <p class="text-small">
-                Second place hardware: <br>
-                {% for hardware in tournament.second_place_hardware.all %}
-                {{ hardware.name }},
-                {% empty %}
-                <p class="text-muted">Unknown</p>
-                {% endfor %}
-            </p>
-        </div>
-        <div class="col-md-3">
-            <p class="text-small">Stay and Play: <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
-            <p class="text-small">Extended Checkout: <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
+        <div class="col">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                More Info
+            </button>
         </div>
     </div>
-</div>
+    <div class="collapse show" id="collapseExample">
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <p class="text-small"><span class="fw-bold">Overall:</span> <br>{{ tournament.overall_rating }} out of 5.0</p>
+                <p class="text-small"><span class="fw-bold">Referee:</span> <br>{{ tournament.reff_rating }} out of 5.0</p>
+                <p class="text-small"><span class="fw-bold">Tournament Communication:</span> <br>{{ tournament.comms_rating }} out of 5.0</p>
+            </div>
+            <div class="col-md-3">
+                <p class="text-small"><span class="fw-bold">Games minimum:</span> <br>{{ tournament.minimum_games_played }}</p>
+                <p class="text-small">
+                    <span class="fw-bold">Level of play:</span> <br>
+                    {% for age_category in tournament.levels_of_play.all %}
+                        {{ age_category.name }},
+                    {% empty %}
+                        <p class="text-muted">Levels not known yet.</p>
+                    {% endfor %}
+                </p>
+                <p class="text-small">
+                    <span class="fw-bold">Age groups:</span> <br>
+                    {% for age_group in tournament.age_groups.all %}
+                        {{ age_group.name }},
+                    {% empty %}
+                        <p class="text-muted">Unknown</p>
+                    {% endfor %}
+                </p>
+            </div>
+            <div class="col-md-3">
+                <p class="text-small">
+                    <span class="fw-bold">First place hardware:</span> <br>
+                    {% for hardware in tournament.first_place_hardware.all %}
+                        {{ hardware.name }},
+                    {% empty %}
+                        <p class="text-muted">Unknown</p>
+                    {% endfor %}
+                </p>
+                <p class="text-small">
+                    <span class="fw-bold">Second place hardware:</span> <br>
+                    {% for hardware in tournament.second_place_hardware.all %}
+                        {{ hardware.name }},
+                    {% empty %}
+                        <p class="text-muted">Unknown</p>
+                    {% endfor %}
+                </p>
+            </div>
+            <div class="col-md-3">
+                <p class="text-small"><span class="fw-bold">Stay and Play:</span> <br>{% if tournament.stay_and_play %}Yes{% else %}No{% endif %}</p>
+                <p class="text-small"><span class="fw-bold">Extended Checkout:</span> <br>{% if tournament.extended_checkout %}Yes{% else %}No{% endif %}</p>
+            </div>
+        </div>
+    </div>
+
     <div class="row mt-3">
         <hr>
         <div class="col">
