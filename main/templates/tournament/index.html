@@ -83,7 +83,11 @@
                     </li>
                     <li class="list-group-item">
                         Early Bird Discount:
-                        {{ tournament.early_bird_discount }}
+                        {% if tournament.early_bird_discount %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
                     </li>
                     <li class="list-group-item">
                         Multi-Team Discount:
