@@ -111,7 +111,7 @@ def create(request):
                 tournament.save()
 
                 # Redirect to the success page with tournament ID in the URL
-                return redirect('tournament:success', tournament_id=tournament.id, object_type='tournament')
+                return redirect('tournaments:success', tournament_id=tournament.id, object_type='tournament')
     else:
         form = TournamentForm()
 
