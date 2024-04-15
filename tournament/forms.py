@@ -24,7 +24,7 @@ class TournamentForm(forms.ModelForm):
             'usa_hockey_sanction': 'USA Hockey Sanctioned',
             'multi_team_discount': 'Multi-Team Discount',
             'early_bird_discount': 'Early Bird Discount',
-            'other_dicounts': 'Other Discounts',
+            'other_discounts': 'Other Discounts',
             'stay_and_play': 'Stay and Play',
             'extended_checkout': 'Extended Checkout',
         }
