@@ -1,3 +1,9 @@
+BOOLEAN_CHOICES = [
+    ('Yes', 'Yes'),
+    ('No', 'No'),
+    ("I don't Know", "I don't Know"),
+]
+
 PARKING_SIZE_CHOICES = [
     ('small', 'Small'),
     ('medium', 'Medium'),
@@ -63,7 +69,6 @@ APPLICATION_CHOICES = [
 SEATING_TIME_CHOICES = [
     ('15 minutes', '15 minutes'),
     ('30 minutes', '30 minutes'),
-    ('30 minutes', '30 minutes'),
     ('45 minutes', '45 minutes'),
     ('60 minutes', '60 minutes'),
     ('90 minutes', '90 minutes'),
@@ -71,7 +76,6 @@ SEATING_TIME_CHOICES = [
 
 SERVING_TIME_CHOICES = [
     ('15 minutes', '15 minutes'),
-    ('30 minutes', '30 minutes'),
     ('30 minutes', '30 minutes'),
     ('45 minutes', '45 minutes'),
     ('60 minutes', '60 minutes'),
