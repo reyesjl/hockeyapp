@@ -2,18 +2,16 @@ from django import forms
 from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory, TournamentHardware
 
 class TournamentForm(forms.ModelForm):
-    age_groups = forms.ModelMultipleChoiceField(queryset=AgeGroup.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
+    age_groups = forms.ModelMultipleChoiceField(queryset=AgeGroup.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     first_place_hardware = forms.ModelMultipleChoiceField(queryset=TournamentHardware.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     second_place_hardware = forms.ModelMultipleChoiceField(queryset=TournamentHardware.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
 
     class Meta:
         model = Tournament
-        fields = ['name', 'start_date', 'end_date', 'levels_of_play', 'age_groups', 'minimum_games_played', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'tournament_director', 'usa_hockey_sanction', 'multi_team_discount', 'early_bird_discount', 'other_discounts', 'stay_and_play', 'extended_checkout']
+        fields = ['name', 'levels_of_play', 'age_groups', 'minimum_games_played', 'first_place_hardware', 'second_place_hardware', 'company', 'website', 'address', 'tournament_director', 'usa_hockey_sanction', 'multi_team_discount', 'early_bird_discount', 'other_discounts', 'stay_and_play', 'extended_checkout']
         labels = {
             'name': 'Tournament Name',
-            'start_date': 'Tournament Start Date',
-            'end_date': 'Tournament End Date',
             'levels_of_play': 'Levels of Play',
             'age_groups': 'Age Groups',
             'minimum_games_played': 'Minimum Games Played',
@@ -31,8 +29,6 @@ class TournamentForm(forms.ModelForm):
             'extended_checkout': 'Extended Checkout',
         }
         help_texts = {
-            'start_date': 'Select the start date of the tournament.',
-            'end_date': 'Select the end date of the tournament.',
             'levels_of_play': 'Select the levels of play for the tournament',
             'age_groups': 'Select all groups this tournament supports',
             'minimum_games_played': 'Select the minimum number of games played.',
@@ -49,11 +45,6 @@ class TournamentForm(forms.ModelForm):
             'stay_and_play': 'Check if there is a stay & play agreement.',
             'extended_checkout': 'Check if extended checkout is allowed in the stay & play agreement.',
         }
-        widgets = {
-            'start_date': forms.DateInput(attrs={'type': 'date'}),
-            'end_date': forms.DateInput(attrs={'type': 'date'}),
-        }
-
 
 class RinkForm(forms.ModelForm):
     class Meta:

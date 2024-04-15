@@ -32,8 +32,6 @@ class MajorCity(models.Model):
     
 class Tournament(models.Model):
     name = models.CharField(max_length=100, default='yht tournament')
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
     levels_of_play = models.ManyToManyField('AgeCategory', blank=True)
     age_groups = models.ManyToManyField('AgeGroup', blank=True)
     first_place_hardware = models.ManyToManyField('TournamentHardware', blank=True, related_name='first_place_hardware')

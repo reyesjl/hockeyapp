@@ -86,20 +86,26 @@ def create(request):
             else:
                 # Get the address entered by the user
                 address = form.cleaned_data['address']
-
-                # Call the get_coordinates function to get latitude and longitude
                 coordinates = get_coordinates(address)
-
-                # Create or update the Location model with the new coordinates
                 location, created = Location.objects.get_or_create(region="All", defaults={'latitude': coordinates['lat'], 'longitude': coordinates['lng']})
-
-                # Save the location object to ensure it's created or updated in the database
                 location.save()
 
+                # Multiple Choice fields
+                levels_of_play = form.cleaned_data['levels_of_play']
+                age_groups = form.cleaned_data['age_groups']
+                first_place_hardware = form.cleaned_data['first_place_hardware']
+                second_place_hardware = form.cleaned_data['second_place_hardware']
+
                 tournament = form.save(commit=False)
-                tournament.location = location  # Assign the location to the tournament
+                tournament.location = location
                 tournament.draft_status = 'published'
                 tournament.save()
+
+                # Post save, modify values
+                tournament.levels_of_play.set(levels_of_play)
+                tournament.age_groups.set(age_groups)
+                tournament.first_place_hardware.set(first_place_hardware)
+                tournament.second_place_hardware.set(second_place_hardware)
 
                 # Redirect to the success page with tournament ID in the URL
                 return redirect('tournaments:success', tournament_id=tournament.id, object_type='tournament')
