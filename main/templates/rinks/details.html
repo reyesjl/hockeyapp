@@ -37,7 +37,7 @@
                 <p class="text-small"><span class="fw-bold">Bathroom Cleanliness:</span> <br>{{ rink.bathroom_state }}</p>
                 <p class="text-small"><span class="fw-bold">Parking Type:</span> <br>
                     {% for parking_type in rink.parking_type.all %}
-                        {{ parking_type.name }},
+                        {{ parking_type.name }}{% if not forloop.last %},{% endif %}
                     {% empty %}
                         --
                     {% endfor %}
@@ -54,7 +54,7 @@
                 <p class="text-small">
                     <span class="fw-bold">Offers/Needs:</span> <br>
                     {% for offer_need in rink.offers_needs.all %}
-                        {{ offer_need.name }},
+                        {{ offer_need.name }}{% if not forloop.last %},{% endif %}
                     {% empty %}
                         --
                     {% endfor %}

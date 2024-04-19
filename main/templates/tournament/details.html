@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="collapse show" id="collapseExample">
-        <div class="row mt-3">
+       <div class="row mt-3">
             <div class="col-md-3">
                 <p class="text-small"><span class="fw-bold">Overall:</span> <br>{{ tournament.overall_rating }} out of 5.0</p>
                 <p class="text-small"><span class="fw-bold">Referee:</span> (take with grain of salt) <br>{{ tournament.reff_rating }} out of 5.0</p>
@@ -50,7 +50,7 @@
                 <p class="text-small">
                     <span class="fw-bold">Level of Play:</span> <br>
                     {% for age_category in tournament.levels_of_play.all %}
-                        {{ age_category.name }},
+                        {{ age_category.name }}{% if not forloop.last %},{% endif %}
                     {% empty %}
                         --
                     {% endfor %}
@@ -58,7 +58,7 @@
                 <p class="text-small">
                     <span class="fw-bold">Age Groups:</span> <br>
                     {% for age_group in tournament.age_groups.all %}
-                        {{ age_group.name }},
+                        {{ age_group.name }}{% if not forloop.last %},{% endif %}
                     {% empty %}
                         --
                     {% endfor %}
@@ -75,7 +75,7 @@
                 <p class="text-small">
                     <span class="fw-bold">First Place Hardware:</span> <br>
                     {% for hardware in tournament.first_place_hardware.all %}
-                        {{ hardware.name }},
+                        {{ hardware.name }}{% if not forloop.last %},{% endif %}
                     {% empty %}
                         --
                     {% endfor %}
@@ -83,7 +83,7 @@
                 <p class="text-small">
                     <span class="fw-bold">Second Place Hardware:</span> <br>
                     {% for hardware in tournament.second_place_hardware.all %}
-                        {{ hardware.name }},
+                        {{ hardware.name }}{% if not forloop.last %},{% endif %}
                     {% empty %}
                         --
                     {% endfor %}
@@ -120,7 +120,8 @@
                     {% endif %}                   
                 </p>
             </div>
-        </div>
+        </div> 
+                
     </div>
 
     <div class="row mt-3">
