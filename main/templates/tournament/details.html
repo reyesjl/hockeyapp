@@ -30,7 +30,7 @@
                 Toggle Info
             </button>
             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#eventsModal">
-                Events
+                Dates
             </button>
         </div>
     </div>
@@ -44,7 +44,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p><a href="{% url 'tournaments:add_event' tournament.id %}">Add Event +</a></p>
+                    <p><a href="{% url 'tournaments:add_event' tournament.id %}">Add Dates +</a></p>
                     <!-- List of events will be displayed here -->
                     <ul class="list-group">
                         {% for event in events %}
