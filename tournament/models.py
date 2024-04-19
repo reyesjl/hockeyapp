@@ -117,3 +117,6 @@ class Hotel(models.Model):
 class ParkingAvailability(models.Model):
     name = models.CharField(max_length=100)
     order = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
