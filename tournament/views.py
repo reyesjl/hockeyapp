@@ -10,8 +10,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Local imports
-from .forms import TournamentForm, RinkForm, HotelForm
-from .models import Hotel, Tournament, Location
+from .forms import TournamentForm, RinkForm, HotelForm, EventForm
+from .models import Hotel, Tournament, Location, Event
 from rink.models import Rink
 
 # Restaurant imports
@@ -139,6 +139,9 @@ def get(request, tournament_id):
     # Fetch all entertainment associated with this tournament
     entertainments = Entertainment.objects.filter(tournament=tournament)
 
+    # Fetch all events associated with this tournament
+    events = Event.objects.filter(tournament=tournament)
+
     # Parse and apply filters from request parameters for REVIEWS
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
@@ -156,6 +159,7 @@ def get(request, tournament_id):
     context = {
         'tournament': tournament,
         'rinks': rinks,
+        'events': events,
         'hotels': hotels,
         'restaurants': restaurants,
         'entertainments': entertainments,
@@ -239,6 +243,37 @@ def add_rink(request, tournament_id):
         'error_message': error_message
     }
     return render(request, 'tournament/add_rink.html', context)
+
+
+def add_event(request, tournament_id):
+    tournament = get_object_or_404(Tournament, pk=tournament_id)
+    error_message = None
+
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+
+            # Check if an event with these dates already exists for this tournament
+            if Event.objects.filter(tournament=tournament, start_date=start_date, end_date=end_date).exists():
+                error_message = "Event already exists for this tournament."
+            else:
+                # Create a new event
+                event = form.save(commit=False)
+                event.tournament = tournament
+                event.save()
+                return redirect('tournaments:success', tournament_id=tournament_id, object_type='event')
+    else:
+        form = EventForm()
+
+    context =  {
+        'tournament': tournament, 
+        'form': form, 
+        'error_message': error_message
+    }
+    return render(request, 'tournament/add_event.html', context)
+
 
 def add_hotel(request, tournament_id):
     tournament = get_object_or_404(Tournament, pk=tournament_id)
@@ -339,6 +374,8 @@ def success(request, tournament_id, object_type):
         message = "Restaurant has been added successfully."
     elif object_type == 'entertainment':
         message = "Entertainment has been added successfully."
+    elif object_type == 'event':
+        message = "Event has been added successfully."
 
     messages.success(request, message) 
     

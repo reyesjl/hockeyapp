@@ -26,11 +26,41 @@
 
     <div class="row mt-3">
         <div class="col">
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                More Info
+            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Toggle Info
+            </button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#eventsModal">
+                Events
             </button>
         </div>
     </div>
+
+    <!-- Events Modal -->
+    <div class="modal fade" id="eventsModal" tabindex="-1" aria-labelledby="eventsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventsModalLabel">Events</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><a href="{% url 'tournaments:add_event' tournament.id %}">Add Event +</a></p>
+                    <!-- List of events will be displayed here -->
+                    <ul class="list-group">
+                        {% for event in events %}
+                            <li class="list-group-item">{{ event.start_date }} - {{ event.end_date }}</li>
+                        {% empty %}
+                            <li class="list-group-item">No events listed yet.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="collapse show" id="collapseExample">
        <div class="row mt-3">
             <div class="col-md-3">

@@ -53,12 +53,19 @@
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Events:
+                        {% for event_date in tournament.first_three_event_dates %}
+                            <p>{{ event_date|date:"F" }}</p>
+                            {% empty %}
+                            <p class="text-muted small">No Events yet.</p>
+                        {% endfor %}
+                    </li>
                     <li class="list-group-item">
                         Levels of Play:
                         {% for age_category in tournament.levels_of_play.all %}
                             {{ age_category.name }},
                         {% empty %}
-                            <p class="text-muted">Not Known Yet.</p>
+                            <p class="text-muted small">Not Known Yet.</p>
                         {% endfor %}
                     </li>
                     <li class="list-group-item">
@@ -66,7 +73,7 @@
                         {% for age_group in tournament.age_groups.all %}
                             {{ age_group.name }},
                         {% empty %}
-                            <p class="text-muted">Not Known Yet.</p>
+                            <p class="text-muted small">Not Known Yet.</p>
                         {% endfor %}
                     </li>
                     <li class="list-group-item">

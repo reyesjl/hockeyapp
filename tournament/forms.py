@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tournament, Hotel, AgeGroup, AgeCategory, TournamentHardware
+from .models import Tournament, Hotel, AgeGroup, AgeCategory, TournamentHardware, Event
 from rink.models import Rink, ParkingAvailability, PaymentModes, RinkNeed
 
 class TournamentForm(forms.ModelForm):
@@ -114,4 +114,21 @@ class HotelForm(forms.ModelForm):
         help_texts = {
             'name': 'Enter the name of the hotel.',
             'address': 'Enter the address of the hotel.',
+        }
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['start_date', 'end_date']
+        labels = {
+            'start_date': 'Start Date',
+            'end_date': 'End Date',
+        }
+        help_texts = {
+            'start_date': 'Select the start date of the event.',
+            'end_date': 'Select the end date of the event.',
+        }
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
         }
