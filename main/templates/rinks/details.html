@@ -32,9 +32,27 @@
     <div class="collapse show" id="collapseExample">
         <div class="row mt-3">
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Director Present:</span> <br>{{ rink.director_present }}</p>
-                <p class="text-small"><span class="fw-bold">Rink Temperature:</span> <br>{{ rink.rink_temp }}</p>
-                <p class="text-small"><span class="fw-bold">Bathroom Cleanliness:</span> <br>{{ rink.bathroom_state }}</p>
+                <p class="text-small"><span class="fw-bold">Director Present:</span> <br>
+                    {% if rink.director_present == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.director_present }}
+                    {% endif %}
+                </p>
+                <p class="text-small"><span class="fw-bold">Rink Temperature:</span> <br>
+                    {% if rink.rink_temp == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.rink_temp }}
+                    {% endif %}
+                </p>
+                <p class="text-small"><span class="fw-bold">Bathroom Cleanliness:</span> <br>
+                    {% if rink.bathroom_state == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.bathroom_state }}
+                    {% endif %}
+                </p>
                 <p class="text-small"><span class="fw-bold">Parking Type:</span> <br>
                     {% for parking_type in rink.parking_type.all %}
                         {{ parking_type.name }}{% if not forloop.last %},{% endif %}
@@ -44,13 +62,43 @@
                 </p>
             </div>
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Parking Size:</span> <br>{{ rink.parking_size }}</p>
-                <p class="text-small"><span class="fw-bold">Valet Parking:</span> <br>{{ rink.valet_parking }}</p>
-                <p class="text-small"><span class="fw-bold">Parking Cost:</span> <br>{{ rink.parking_cost }}</p>
+                <p class="text-small"><span class="fw-bold">Parking Size:</span> <br>
+                    {% if rink.parking_size == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.parking_size }}
+                    {% endif %}
+                </p>
+                <p class="text-small"><span class="fw-bold">Valet Parking:</span> <br>
+                    {% if rink.valet_parking == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.valet_parking }}
+                    {% endif %}
+                </p>
+                <p class="text-small"><span class="fw-bold">Parking Cost:</span> <br>
+                    {% if rink.parking_cost == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.parking_cost }}
+                    {% endif %}
+                </p>
             </div>
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Snack Bar:</span> <br>{{ rink.snack_bar }}</p>
-                <p class="text-small"><span class="fw-bold">Pro Shop:</span> <br>{{ rink.pro_shop }}</p>
+                <p class="text-small"><span class="fw-bold">Snack Bar:</span> <br>
+                    {% if rink.snack_bar == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.snack_bar }}
+                    {% endif %}
+                </p>
+                <p class="text-small"><span class="fw-bold">Pro Shop:</span> <br>
+                    {% if rink.pro_shop == "I don't Know" %}
+                        --
+                    {% else %}
+                        {{ rink.pro_shop }}
+                    {% endif %}
+                </p>
                 <p class="text-small">
                     <span class="fw-bold">Offers/Needs:</span> <br>
                     {% for offer_need in rink.offers_needs.all %}
