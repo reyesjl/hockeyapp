@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Tournament {{ tournament.id }} {% endblock %}
+{% block title %}Rink {{ rink.id }} {% endblock %}
 {% load static %}
 
 {% block extra_head %}
-    <meta name="description" content="Page for viewing the details of a selected hockey tournament.">  
-    <link rel="stylesheet" href="{% static 'css/tournament/details.css' %}">
-    <script src="{% static 'js/tournament/details.js' %}"></script>
+    <meta name="description" content="Page for viewing the details of a selected hockey rink.">  
+    <link rel="stylesheet" href="{% static 'css/rinks/details.css' %}">
+    <script src="{% static 'js/rinks/details.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -44,82 +44,7 @@
                         {{ tournament.tournament_director }}
                     {% endif %}
                 </p>
-            </div>
-            <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Games Minimum:</span> <br>{{ tournament.minimum_games_played }}</p>
-                <p class="text-small">
-                    <span class="fw-bold">Level of Play:</span> <br>
-                    {% for age_category in tournament.levels_of_play.all %}
-                        {{ age_category.name }},
-                    {% empty %}
-                        --
-                    {% endfor %}
-                </p>
-                <p class="text-small">
-                    <span class="fw-bold">Age Groups:</span> <br>
-                    {% for age_group in tournament.age_groups.all %}
-                        {{ age_group.name }},
-                    {% empty %}
-                        --
-                    {% endfor %}
-                </p>
-                <p class="text-small"><span class="fw-bold">USA Hockey Sanctioned:</span> <br>
-                    {% if tournament.usa_hockey_sanction == "I don't Know" %}
-                        --
-                    {% else %}
-                        {{ tournament.usa_hockey_sanction }}
-                    {% endif %} 
-                </p>
-            </div>
-            <div class="col-md-3">
-                <p class="text-small">
-                    <span class="fw-bold">First Place Hardware:</span> <br>
-                    {% for hardware in tournament.first_place_hardware.all %}
-                        {{ hardware.name }},
-                    {% empty %}
-                        --
-                    {% endfor %}
-                </p>
-                <p class="text-small">
-                    <span class="fw-bold">Second Place Hardware:</span> <br>
-                    {% for hardware in tournament.second_place_hardware.all %}
-                        {{ hardware.name }},
-                    {% empty %}
-                        --
-                    {% endfor %}
-                </p>
-                <p class="text-small"><span class="fw-bold">Stay and Play:</span> <br>
-                    {% if tournament.stay_and_play == "I don't Know" %}
-                        --
-                    {% else %}
-                        {{ tournament.stay_and_play }}
-                    {% endif %}
-                </p>
-                <p class="text-small"><span class="fw-bold">Extended Checkout:</span> <br>
-                    {% if tournament.extended_checkout == "I don't Know" %}
-                        --
-                    {% else %}
-                        {{ tournament.extended_checkout }}
-                    {% endif %}
-                </p>
-            </div>
-            <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Multi-Team Discounts:</span> <br>{{ tournament.multi_team_discount}}</p>
-                <p class="text-small"><span class="fw-bold">Early Bird Discounts:</span> <br>
-                    {% if tournament.early_bird_discount == "I don't Know" %}
-                        --
-                    {% else %}
-                        {{ tournament.early_bird_discount }}
-                    {% endif %}
-                </p>
-                <p class="text-small"><span class="fw-bold">Other Discounts:</span> <br>
-                    {% if tournament.other_discounts == "I don't Know" %}
-                        --
-                    {% else %}
-                        {{ tournament.other_discounts }}
-                    {% endif %}                   
-                </p>
-            </div>
+            </div> 
         </div>
     </div>
 

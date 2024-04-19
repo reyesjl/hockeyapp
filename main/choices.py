@@ -31,6 +31,13 @@ PARKING_COST_CHOICES = [
     ('$25-$30', '$25 - $30'),
 ]
 
+BATHROOM_CLEAN_CHOICES = [
+    ('Pretty Clean', 'Pretty Clean'),
+    ('Average', 'Average'),
+    ('Nothing to Rave Home About', 'Nothing to Rave Home About'),
+    ('Hose Shoes Off After Walk You Out', 'Hose Shoes Off After Walk You Out'),
+]
+
 DRAFT_STATUS_CHOICES = [
     ('draft', 'Draft'),
     ('published', 'Published'),
@@ -72,6 +79,12 @@ SEATING_TIME_CHOICES = [
     ('45 minutes', '45 minutes'),
     ('60 minutes', '60 minutes'),
     ('90 minutes', '90 minutes'),
+]
+
+RINK_TEMP_CHOICES = [
+    ('Shorts & Hoodies', 'Shorts & Hoodies'),
+    ('Linen Pants & Heavy Jacket', 'Linen Pants & Heavy Jackets'),
+    ('Moms Bring Your Blankets!','Moms Bring Your Blankets!'),
 ]
 
 SERVING_TIME_CHOICES = [

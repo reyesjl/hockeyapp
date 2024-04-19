@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory, TournamentHardware
+from .models import Tournament, Rink, Hotel, AgeGroup, AgeCategory, TournamentHardware, ParkingAvailability
 
 class TournamentForm(forms.ModelForm):
     levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
@@ -47,16 +47,35 @@ class TournamentForm(forms.ModelForm):
         }
 
 class RinkForm(forms.ModelForm):
+    parking_type = forms.ModelMultipleChoiceField(queryset=ParkingAvailability.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     class Meta:
         model = Rink
-        fields = ['name', 'address']
+        fields = ['name', 'address', 'director_present', 'rink_temp', 'parking_size', 'parking_type', 'valet_parking', 'parking_cost', 'snack_bar', 'pro_shop', 'bathroom_state']
         labels = {
             'name': 'Rink Name',
             'address': 'Rink Address',
+            'director_present': 'Director Present',
+            'rink_temp': 'Rink Temperature',
+            'parking_size': 'Parking Size',
+            'parking_type': 'Parking Type',
+            'valet_parking': 'Valet Parking',
+            'parking_cost': 'Parking Cost',
+            'snack_bar': 'Snack Bar Available',
+            'pro_shop': 'Pro Shop Available',
+            'bathroom_state': 'Bathroom Cleanliness',
         }
         help_texts = {
             'name': 'Enter the name of the rink.',
             'address': 'Enter the address of the rink.',
+            'director_present': 'Is a director present at the rink?',
+            'rink_temp': 'Select the temperature range at the rink.',
+            'parking_size': 'Select the size of parking available.',
+            'parking_type': 'Select the type(s) of parking available.',
+            'valet_parking': 'Is valet parking available at the rink?',
+            'parking_cost': 'Select the cost of parking.',
+            'snack_bar': 'Is there a snack bar available at the rink?',
+            'pro_shop': 'Is there a pro shop available at the rink?',
+            'bathroom_state': 'Select the cleanliness level of the bathrooms.',
         }
 
 class HotelForm(forms.ModelForm):

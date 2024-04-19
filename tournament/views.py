@@ -214,9 +214,15 @@ def add_rink(request, tournament_id):
             if Rink.objects.filter(name__iexact=form.cleaned_data['name'], tournament=tournament).exists():
                 error_message = "This rink already exists for the tournament."
             else:
+                # Multiple choice fields
+                parking_type = form.cleaned_data['parking_type']
+
                 rink = form.save(commit=False)
                 rink.tournament = tournament
                 rink.save()
+
+                # Set multiple choice fields
+                rink.parking_type.set(parking_type)
                 return redirect('tournaments:success', tournament_id=tournament_id, object_type='rink')
     else:
         form = RinkForm()
