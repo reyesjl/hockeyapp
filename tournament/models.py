@@ -79,6 +79,19 @@ class Tournament(models.Model):
     def __str__(self):
         return f"{self.name} at {self.address}"
     
+    @property
+    def all_event_dates(self):
+        # Retrieve the first three events associated with the tournament
+        events = self.event_set.order_by('start_date')
+
+        # Extract the dates from these events
+        event_dates = [event.start_date for event in events]
+
+        return event_dates
+
+    def __str__(self):
+        return f"{self.name} at {self.address}"
+    
 class AgeCategory(models.Model):
     name = models.CharField(max_length=20)
     order = models.IntegerField(null=True, blank=True)

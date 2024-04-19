@@ -54,8 +54,8 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Events:
-                        {% for event_date in tournament.first_three_event_dates %}
-                            <p>{{ event_date|date:"F" }}</p>
+                        {% for event_date in tournament.all_event_dates %}
+                            {{ event_date|date:"F" }}{% if not forloop.last %},{% endif %}
                             {% empty %}
                             <p class="text-muted small">No Events yet.</p>
                         {% endfor %}
