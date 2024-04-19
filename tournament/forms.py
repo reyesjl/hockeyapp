@@ -1,6 +1,6 @@
 from django import forms
 from .models import Tournament, Hotel, AgeGroup, AgeCategory, TournamentHardware
-from rink.models import Rink, ParkingAvailability
+from rink.models import Rink, ParkingAvailability, PaymentModes
 
 class TournamentForm(forms.ModelForm):
     levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
@@ -49,9 +49,10 @@ class TournamentForm(forms.ModelForm):
 
 class RinkForm(forms.ModelForm):
     parking_type = forms.ModelMultipleChoiceField(queryset=ParkingAvailability.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
+    payment_modes = forms.ModelMultipleChoiceField(queryset=PaymentModes.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
     class Meta:
         model = Rink
-        fields = ['name', 'address', 'director_present', 'rink_temp', 'parking_size', 'parking_type', 'valet_parking', 'parking_cost', 'snack_bar', 'pro_shop', 'bathroom_state']
+        fields = ['name', 'address', 'director_present', 'rink_temp', 'parking_size', 'parking_type', 'valet_parking', 'parking_cost', 'payment_modes', 'snack_bar', 'pro_shop', 'bathroom_state']
         labels = {
             'name': 'Rink Name',
             'address': 'Rink Address',
@@ -61,6 +62,7 @@ class RinkForm(forms.ModelForm):
             'parking_type': 'Parking Type',
             'valet_parking': 'Valet Parking',
             'parking_cost': 'Parking Cost',
+            'payment_modes': 'Payment Modes',
             'snack_bar': 'Snack Bar Available',
             'pro_shop': 'Pro Shop Available',
             'bathroom_state': 'Bathroom Cleanliness',
@@ -74,6 +76,7 @@ class RinkForm(forms.ModelForm):
             'parking_type': 'Select the type(s) of parking available.',
             'valet_parking': 'Is valet parking available at the rink?',
             'parking_cost': 'Select the cost of parking.',
+            'payment_modes': 'Select the mode(s) of payment available.',
             'snack_bar': 'Is there a snack bar available at the rink?',
             'pro_shop': 'Is there a pro shop available at the rink?',
             'bathroom_state': 'Select the cleanliness level of the bathrooms.',
