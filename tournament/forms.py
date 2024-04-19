@@ -48,10 +48,27 @@ class TournamentForm(forms.ModelForm):
         }
 
 class RinkForm(forms.ModelForm):
-    parking_type = forms.ModelMultipleChoiceField(queryset=ParkingAvailability.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
-    payment_modes = forms.ModelMultipleChoiceField(queryset=PaymentModes.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
-    offers_needs = forms.ModelMultipleChoiceField(queryset=RinkNeed.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)
-    
+    parking_type = forms.ModelMultipleChoiceField(
+        queryset=ParkingAvailability.objects.all().order_by('order'),
+        widget=forms.CheckboxSelectMultiple,
+        label='Parking Type', 
+        help_text='Select parking type(s) available:', 
+    )
+
+    payment_modes = forms.ModelMultipleChoiceField(
+        queryset=PaymentModes.objects.all().order_by('order'),
+        widget=forms.CheckboxSelectMultiple,
+        label='Payment Modes',
+        help_text='Select payment mode(s) available:', 
+    )
+
+    offers_needs = forms.ModelMultipleChoiceField(
+        queryset=RinkNeed.objects.all().order_by('order'),
+        widget=forms.CheckboxSelectMultiple,
+        label='Offers/Needs',
+        help_text='Select offers or needs available by pro shop:', 
+    )
+
     class Meta:
         model = Rink
         fields = ['name', 'address', 'director_present', 'rink_temp', 'parking_size', 'parking_type', 'valet_parking', 'parking_cost', 'payment_modes', 'snack_bar', 'pro_shop', 'skate_sharpening', 'offers_needs', 'bathroom_state']
