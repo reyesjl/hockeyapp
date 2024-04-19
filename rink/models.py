@@ -15,6 +15,9 @@ class Rink(models.Model):
     parking_cost = models.CharField(max_length=15, choices=PARKING_COST_CHOICES, default='Free')
     snack_bar = models.CharField(max_length=12, choices=BOOLEAN_CHOICES, default="I Don't Know")
     pro_shop = models.CharField(max_length=12, choices=BOOLEAN_CHOICES, default="I Don't Know")
+    offers_needs = models.ManyToManyField('RinkNeed', blank=True)
+    skate_sharpening = models.CharField(max_length=12, choices=BOOLEAN_CHOICES, default="I Don't Know")
+    
     bathroom_state = models.CharField(max_length=33, choices=BATHROOM_CLEAN_CHOICES, default='Pretty Clean')
 
     def __str__(self):
@@ -28,6 +31,13 @@ class ParkingAvailability(models.Model):
         return self.name
     
 class PaymentModes(models.Model):
+    name = models.CharField(max_length=100)
+    order = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class RinkNeed(models.Model):
     name = models.CharField(max_length=100)
     order = models.IntegerField(null=True, blank=True)
 
