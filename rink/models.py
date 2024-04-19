@@ -15,9 +15,7 @@ class Rink(models.Model):
     parking_cost = models.CharField(max_length=15, choices=PARKING_COST_CHOICES, default='Free')
     snack_bar = models.CharField(max_length=12, choices=BOOLEAN_CHOICES, default="I Don't Know")
     pro_shop = models.CharField(max_length=12, choices=BOOLEAN_CHOICES, default="I Don't Know")
-    offers_needs = models.ManyToManyField('RinkNeed', blank=True)
-    skate_sharpening = models.CharField(max_length=12, choices=BOOLEAN_CHOICES, default="I Don't Know")
-    
+    offers_needs = models.ManyToManyField('RinkNeed', blank=True)    
     bathroom_state = models.CharField(max_length=33, choices=BATHROOM_CLEAN_CHOICES, default='Pretty Clean')
 
     def __str__(self):

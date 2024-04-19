@@ -71,7 +71,7 @@ class RinkForm(forms.ModelForm):
 
     class Meta:
         model = Rink
-        fields = ['name', 'address', 'director_present', 'rink_temp', 'parking_size', 'parking_type', 'valet_parking', 'parking_cost', 'payment_modes', 'snack_bar', 'pro_shop', 'skate_sharpening', 'offers_needs', 'bathroom_state']
+        fields = ['name', 'address', 'director_present', 'rink_temp', 'parking_size', 'parking_type', 'valet_parking', 'parking_cost', 'payment_modes', 'snack_bar', 'pro_shop', 'offers_needs', 'bathroom_state']
         labels = {
             'name': 'Rink Name',
             'address': 'Rink Address',
@@ -84,7 +84,6 @@ class RinkForm(forms.ModelForm):
             'payment_modes': 'Payment Modes',
             'snack_bar': 'Snack Bar Available',
             'pro_shop': 'Pro Shop Available',
-            'skate_sharpening': 'Skate Sharpening',
             'offers_needs': 'Offered Needs',
             'bathroom_state': 'Bathroom Cleanliness',
         }
@@ -100,7 +99,6 @@ class RinkForm(forms.ModelForm):
             'payment_modes': 'Select the mode(s) of payment available.',
             'snack_bar': 'Is there a snack bar available at the rink?',
             'pro_shop': 'Is there a pro shop available at the rink?',
-            'skate_sharpening': 'Do they offer skate sharpening?',
             'offers_needs': 'Select the need(s) they offer.',
             'bathroom_state': 'Select the cleanliness level of the bathrooms.',
         }
