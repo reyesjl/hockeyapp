@@ -1,5 +1,5 @@
 from django import forms
-from .models import TournamentReview, RestaurantReview, EntertainmentReview
+from .models import TournamentReview, RestaurantReview, EntertainmentReview, RinkReview
 
 RATING_CHOICES = [(str(round(i * 0.5, 1)), str(round(i * 0.5, 1))) for i in range(2, 11)]
 
@@ -48,3 +48,12 @@ class EntertainmentReviewForm(BaseReviewForm):
     class Meta:
         model = EntertainmentReview
         fields = ['author', 'date', 'comment', 'rating', 'service_rating']
+
+class RinkReviewForm(forms.ModelForm):
+    author = forms.EmailField(label='Email Address', help_text='Will not be shared. Enter your email address.')
+    date = forms.DateField(label='Review Date', help_text='Select the date of your visit.', widget=forms.DateInput(attrs={'type': 'date'}))
+    comment = forms.CharField(label='Comment', help_text='Provide your review comments here.', widget=forms.Textarea)
+    
+    class Meta:
+        model = RinkReview
+        fields = ['author', 'date', 'comment']

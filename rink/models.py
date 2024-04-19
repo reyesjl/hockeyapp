@@ -7,7 +7,7 @@ class Rink(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     director_present = models.CharField(max_length=12, choices=BOOLEAN_CHOICES, default="I Don't Know")
-    rink_temp = models.CharField(max_length=50, choices=RINK_TEMP_CHOICES, default='Shorts & Hoodies')
+    rink_temp = models.CharField(max_length=50, choices=RINK_TEMP_CHOICES, default='Shorts & Hoodie')
     parking_size = models.CharField(max_length=100, choices=PARKING_SIZE_CHOICES, default='Medium')
     parking_type = models.ManyToManyField('ParkingAvailability', blank=True)
     payment_modes = models.ManyToManyField('PaymentModes', blank=True)

@@ -1,9 +1,10 @@
 from main.choices import VOTE_CHOICES
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from tournament.models import Tournament, TournamentHardware
+from tournament.models import Tournament
 from restaurant.models import Restaurant
 from entertainment.models import Entertainment
+from rink.models import Rink
 
 class TournamentReview(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE, related_name='reviews')
@@ -43,3 +44,13 @@ class EntertainmentReview(models.Model):
 
     def __str__(self):
         return f"Review for {self.entertainment.name} by {self.author}"
+    
+
+class RinkReview(models.Model):
+    rink = models.ForeignKey(Rink, on_delete=models.CASCADE, related_name='reviews')
+    author = models.EmailField()
+    date = models.DateField()
+    comment = models.TextField()
+
+    def __str__(self):
+        return f"Review for {self.rink.name} - {self.date}"

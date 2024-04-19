@@ -18,7 +18,7 @@
             <!-- Add other details as needed -->
         </div>
         <div class="col-md-6">
-            <p><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">Address</a></p>
+            <p><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">Rink Location</a></p>
         </div>
     </div>
 
@@ -32,13 +32,9 @@
     <div class="collapse show" id="collapseExample">
         <div class="row mt-3">
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Rink Name:</span> <br>{{ rink.name }}</p>
-                <p class="text-small"><span class="fw-bold">Address:</span> <br>{{ rink.address }}</p>
                 <p class="text-small"><span class="fw-bold">Director Present:</span> <br>{{ rink.director_present }}</p>
                 <p class="text-small"><span class="fw-bold">Rink Temperature:</span> <br>{{ rink.rink_temp }}</p>
-            </div>
-            <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Parking Size:</span> <br>{{ rink.parking_size }}</p>
+                <p class="text-small"><span class="fw-bold">Bathroom Cleanliness:</span> <br>{{ rink.bathroom_state }}</p>
                 <p class="text-small"><span class="fw-bold">Parking Type:</span> <br>
                     {% for parking_type in rink.parking_type.all %}
                         {{ parking_type.name }},
@@ -46,6 +42,9 @@
                         --
                     {% endfor %}
                 </p>
+            </div>
+            <div class="col-md-3">
+                <p class="text-small"><span class="fw-bold">Parking Size:</span> <br>{{ rink.parking_size }}</p>
                 <p class="text-small"><span class="fw-bold">Valet Parking:</span> <br>{{ rink.valet_parking }}</p>
                 <p class="text-small"><span class="fw-bold">Parking Cost:</span> <br>{{ rink.parking_cost }}</p>
             </div>
@@ -60,7 +59,6 @@
                         --
                     {% endfor %}
                 </p>
-                <p class="text-small"><span class="fw-bold">Bathroom Cleanliness:</span> <br>{{ rink.bathroom_state }}</p>
             </div>
         </div>
     </div>
@@ -69,9 +67,9 @@
 <div class="container py-5">
     <hr>
     <div class="d-flex align-items-center justify-content-between">
-        <h2>Reviews</h2>
+        <h2>Reviews / Parking Notes</h2>
         <div>
-            <a href="#" class="btn btn-primary btn-sm ms-2"><i class="fas fa-plus"></i> Add Review</a>
+            <a href="{% url 'rinks:review_rink' rink.id %}" class="btn btn-primary btn-sm ms-2"><i class="fas fa-plus"></i> Add Review</a>
         </div>
     </div>
     <div class="container pt-3">
@@ -112,7 +110,6 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ review.date }}</li>
-                    <li class="list-group-item">Rating: {{ review.rating }}</li>
                 </ul>
             </div>
             <!-- Modal -->
@@ -126,18 +123,6 @@
                         <div class="modal-body">
                             <p class="fw-bold">Experience</p>
                             <p>{{ review.comment }}</p>
-                            <hr>
-                            <p class="fw-bold">Parking</p>
-                            {% if review.parking_notes %}
-                                <p>{{ review.parking_notes }}</p>
-                            {% else %}
-                                <p class="text-muted">No parking notes for this review.</p>
-                            {% endif %}
-                            <hr>
-                            <p class="fw-bold">Ratings</p>
-                            <p>Vote: {{ review.vote }}</p>
-                            <p>Referee: {{ review.referee_rating }}</p>
-                            <p>Comms: {{ review.comms_rating }}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
