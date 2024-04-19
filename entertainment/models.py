@@ -20,7 +20,7 @@ class Entertainment(models.Model):
     take_card = models.BooleanField(default=False)
     take_digital_payment = models.BooleanField(default=False)
     service_rating = models.FloatField(default=4.0, validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
-    parking_size = models.CharField(max_length=10, choices=PARKING_SIZE_CHOICES, default='medium')
+    parking_size = models.CharField(max_length=12, choices=PARKING_SIZE_CHOICES, default='medium')
     draft_status = models.CharField(max_length=10, choices=DRAFT_STATUS_CHOICES, default='draft')
 
     @property

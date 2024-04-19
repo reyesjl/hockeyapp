@@ -5,6 +5,7 @@ BOOLEAN_CHOICES = [
 ]
 
 PARKING_SIZE_CHOICES = [
+    ("I don't Know", "I don't Know"),
     ('small', 'Small'),
     ('medium', 'Medium'),
     ('large', 'Large'),
@@ -22,7 +23,8 @@ RESTAURANT_PARKING_CHOICES = [
 ]
 
 PARKING_COST_CHOICES = [
-    ('free', 'Free'),
+    ("I don't Know", "I don't Know"),
+    ('Free', 'Free'),
     ('$0-$5', '$0 - $5'),
     ('$5-$10', '$5 - $10'),
     ('$10-$15', '$10 - $15'),
@@ -32,6 +34,7 @@ PARKING_COST_CHOICES = [
 ]
 
 BATHROOM_CLEAN_CHOICES = [
+    ("I don't Know", "I don't Know"),
     ('Pretty Clean', 'Pretty Clean'),
     ('Average', 'Average'),
     ('Nothing to Rave Home About', 'Nothing to Rave Home About'),
@@ -82,6 +85,7 @@ SEATING_TIME_CHOICES = [
 ]
 
 RINK_TEMP_CHOICES = [
+    ("I don't Know", "I don't Know"),
     ('Shorts & Hoodie', 'Shorts & Hoodie'),
     ('Pants & Heavy Jacket', 'Pants & Heavy Jackets'),
     ('Moms Bring Your Blankets!','Moms Bring Your Blankets!'),
