@@ -83,7 +83,7 @@ SEATING_TIME_CHOICES = [
 
 RINK_TEMP_CHOICES = [
     ('Shorts & Hoodies', 'Shorts & Hoodies'),
-    ('Linen Pants & Heavy Jacket', 'Linen Pants & Heavy Jackets'),
+    ('Pants & Heavy Jacket', 'Pants & Heavy Jackets'),
     ('Moms Bring Your Blankets!','Moms Bring Your Blankets!'),
 ]
 

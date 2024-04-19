@@ -217,6 +217,7 @@ def add_rink(request, tournament_id):
             else:
                 # Multiple choice fields
                 parking_type = form.cleaned_data['parking_type']
+                payment_modes = form.cleaned_data['payment_modes']
 
                 rink = form.save(commit=False)
                 rink.tournament = tournament
@@ -224,6 +225,7 @@ def add_rink(request, tournament_id):
 
                 # Set multiple choice fields
                 rink.parking_type.set(parking_type)
+                rink.payment_modes.set(payment_modes)
                 return redirect('tournaments:success', tournament_id=tournament_id, object_type='rink')
     else:
         form = RinkForm()
