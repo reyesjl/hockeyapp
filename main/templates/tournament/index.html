@@ -63,7 +63,7 @@
                     <li class="list-group-item">
                         Levels of Play:
                         {% for age_category in tournament.levels_of_play.all %}
-                            {{ age_category.name }},
+                            {{ age_category.name }}{% if not forloop.last %},{% endif %}
                         {% empty %}
                             <p class="text-muted small">Not Known Yet.</p>
                         {% endfor %}
@@ -71,7 +71,7 @@
                     <li class="list-group-item">
                         Age Groups:
                         {% for age_group in tournament.age_groups.all %}
-                            {{ age_group.name }},
+                            {{ age_group.name }}{% if not forloop.last %},{% endif %}
                         {% empty %}
                             <p class="text-muted small">Not Known Yet.</p>
                         {% endfor %}
