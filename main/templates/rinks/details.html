@@ -13,14 +13,12 @@
 <div class="container pt-5">
     <div class="row">
         <div class="col-md-6">
-            <p class="text-black-50">{{ tournament.majorcity }}</p>
-            <h1>{{ tournament.name }}</h1>
-            <p class="text-muted">Total Upvotes: {{ tournament.total_upvotes }}</p>
+            <h1>{{ rink.name }}</h1>
+            <p class="text-muted"></p>
             <!-- Add other details as needed -->
         </div>
         <div class="col-md-6">
-            <p>Company: {{ tournament.company }}</p>
-            <p><a target="_blank" href="{{ tournament.website }}">Tournament Site</a></p>
+            <p><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">Address</a></p>
         </div>
     </div>
 
@@ -34,84 +32,12 @@
     <div class="collapse show" id="collapseExample">
         <div class="row mt-3">
             <div class="col-md-3">
-                <p class="text-small"><span class="fw-bold">Overall:</span> <br>{{ tournament.overall_rating }} out of 5.0</p>
-                <p class="text-small"><span class="fw-bold">Referee:</span> (take with grain of salt) <br>{{ tournament.reff_rating }} out of 5.0</p>
-                <p class="text-small"><span class="fw-bold">Tournament Communication:</span> <br>{{ tournament.comms_rating }} out of 5.0</p>
-                <p class="text-small"><span class="fw-bold">Tournament Director Onsite:</span> <br>
-                    {% if tournament.tournament_director == "I don't Know" %}
-                        --
-                    {% else %}
-                        {{ tournament.tournament_director }}
-                    {% endif %}
-                </p>
+                <p class="text-small"><span class="fw-bold">Temperature:</p>
+                <p class="text-small"><span class="fw-bold">Bathrooms:</p>
+                <p class="text-small"><span class="fw-bold">:</p>
+                <p class="text-small"><span class="fw-bold">Director Present:</p>
             </div> 
         </div>
-    </div>
-
-    <div class="row mt-3">
-        <hr>
-        <div class="col">
-            <div class="d-flex align-items-center justify-content-between">
-                <h2>Rinks</h2>
-                <a href="{% url 'tournaments:add_rink' tournament.id %}" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
-            </div>
-            {% if rinks %}
-                <ul>
-                    {% for rink in rinks %}
-                        <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">{{ rink.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No rinks associated with this tournament yet.</p>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row mt-3">
-    <hr>
-    <div class="col-md-4">
-        <div class="d-flex align-items-center justify-content-between">
-            <h2>Restaurants</h2>
-            <a href="{% url 'tournaments:add_restaurant' tournament.id %}" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
-        </div>
-        {% if restaurants %}
-            <ul>
-                {% for restaurant in restaurants %}
-                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ restaurant.address }}">{{ restaurant.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="text-muted pt-2">No restaurants associated yet.</p>
-        {% endif %}
-    </div>
-    <div class="col-md-4">
-        <div class="d-flex align-items-center justify-content-between">
-            <h2>Entertainment</h2>
-            <a href="{% url 'tournaments:add_entertainment' tournament.id %}" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
-        </div>
-        {% if entertainments %}
-            <ul>
-                {% for entertainment in entertainments %}
-                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ entertainment.address }}">{{ entertainment.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="text-muted pt-2">No entertainment associated yet.</p>
-        {% endif %}
-    </div>
-    <div class="col-md-4">
-        <div class="d-flex align-items-center justify-content-between">
-            <h2>Hotels</h2>
-            <a href="{% url 'tournaments:add_hotel' tournament.id %}" class="btn btn-light btn-sm ms-2"><i class="fas fa-plus"></i> Add</a>
-        </div>
-        {% if hotels %}
-            <ul>
-                {% for hotel in hotels %}
-                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ hotel.address }}">{{ hotel.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="text-muted pt-2">No hotels associated yet.</p>
-        {% endif %}
     </div>
 </div>
 </div>
@@ -120,7 +46,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <h2>Reviews</h2>
         <div>
-            <a href="{% url 'tournaments:review' tournament.id %}" class="btn btn-primary btn-sm ms-2"><i class="fas fa-plus"></i> Add Review</a>
+            <a href="#" class="btn btn-primary btn-sm ms-2"><i class="fas fa-plus"></i> Add Review</a>
         </div>
     </div>
     <div class="container pt-3">

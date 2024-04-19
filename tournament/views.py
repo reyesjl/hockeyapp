@@ -11,7 +11,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 # Local imports
 from .forms import TournamentForm, RinkForm, HotelForm
-from .models import Hotel, Rink, Tournament, Location
+from .models import Hotel, Tournament, Location
+from rink.models import Rink
 
 # Restaurant imports
 from restaurant.forms import RestaurantForm

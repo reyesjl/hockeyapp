@@ -133,7 +133,7 @@
             {% if rinks %}
                 <ul>
                     {% for rink in rinks %}
-                        <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ rink.address }}">{{ rink.name }}</a></li>
+                        <li><a href="{% url 'rinks:get_rink' rink.id %}">{{ rink.name }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}

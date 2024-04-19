@@ -12,6 +12,7 @@ urlpatterns = [
     path('tournaments/', include('tournament.urls')),
     path('restaurants/', include('restaurant.urls')),
     path('entertainments/', include('entertainment.urls')),
+    path('rinks/', include('rink.urls')),
     path('reviews/', include('review.urls')),
     path('info/', include('info.urls')),
 ]

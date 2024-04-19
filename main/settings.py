@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'tournament',
     'restaurant',
     'entertainment',
+    'rink',
     'review',
     'info',
 ]
