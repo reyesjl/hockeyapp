@@ -107,7 +107,7 @@ class Tournament(models.Model):
         unique_months = set()
         for event in events:
             unique_months.add(event.start_date.strftime('%B'))  # '%B' for full month name
-
+            
         # Define the order of months
         month_order = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
