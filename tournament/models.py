@@ -80,14 +80,16 @@ class Tournament(models.Model):
         return f"{self.name} at {self.address}"
     
     @property
-    def all_event_dates(self):
+    def unique_months(self):
         # Retrieve the first three events associated with the tournament
         events = self.event_set.order_by('start_date')
 
-        # Extract the dates from these events
-        event_dates = [event.start_date for event in events]
+        # Extract unique months from these events
+        unique_months = set()
+        for event in events:
+            unique_months.add(event.start_date.strftime('%Y-%m'))
 
-        return event_dates
+        return list(unique_months)
 
     def __str__(self):
         return f"{self.name} at {self.address}"
