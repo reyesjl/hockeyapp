@@ -108,8 +108,11 @@ class Tournament(models.Model):
         for event in events:
             unique_months.add(event.start_date.strftime('%B'))  # '%B' for full month name
 
-        # Sort the unique months in reverse order
-        sorted_months = sorted(list(unique_months), reverse=True)
+        # Define the order of months
+        month_order = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+        # Sort the unique months in chronological order
+        sorted_months = sorted(unique_months, key=lambda x: month_order.index(x))
 
         return sorted_months
 
