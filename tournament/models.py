@@ -87,7 +87,7 @@ class Tournament(models.Model):
         # Extract unique months from these events
         unique_months = set()
         for event in events:
-            unique_months.add(event.start_date.strftime('%Y-%m'))
+            unique_months.add(event.start_date.strftime('%B'))  # '%B' for full month name
 
         return list(unique_months)
 
