@@ -3,7 +3,7 @@ from main.choices import DRAFT_STATUS_CHOICES, MULTI_TEAM_CHOICES, GAMES_PLAYED_
 from django.core.validators import MinValueValidator, MaxValueValidator
 from main.regions import get_region
 from django.db.models import Avg
-import datetime
+from django.utils import timezone
 
 class Location(models.Model):
     latitude = models.FloatField(default='0.0')
@@ -67,17 +67,36 @@ class Tournament(models.Model):
         return self.reviews.filter(vote='downvote').count()
     
     @property
-    def first_three_event_dates(self):
-        # Retrieve the first three events associated with the tournament
-        events = self.event_set.order_by('start_date')[:3]
+    def past_events(self):
+        # Retrieve all events associated with the tournament
+        all_events = self.event_set.all()
 
-        # Extract the dates from these events
-        event_dates = [event.start_date for event in events]
+        # Get the current date
+        current_date = timezone.now().date()
 
-        return event_dates
+        # Filter past events
+        past_events = [event for event in all_events if event.end_date < current_date]
 
-    def __str__(self):
-        return f"{self.name} at {self.address}"
+        # Sort past events by end date in ascending order
+        past_events_sorted = sorted(past_events, key=lambda event: event.end_date)
+
+        return past_events_sorted
+    
+    @property
+    def upcoming_events(self):
+        # Retrieve all events associated with the tournament
+        all_events = self.event_set.all()
+
+        # Get the current date
+        current_date = timezone.now().date()
+
+        # Filter past events
+        past_events = [event for event in all_events if event.end_date > current_date]
+
+        # Sort past events by end date in ascending order
+        past_events_sorted = sorted(past_events, key=lambda event: event.start_date)
+
+        return past_events_sorted
     
     @property
     def unique_months(self):
@@ -89,7 +108,10 @@ class Tournament(models.Model):
         for event in events:
             unique_months.add(event.start_date.strftime('%B'))  # '%B' for full month name
 
-        return list(unique_months)
+        # Sort the unique months in reverse order
+        sorted_months = sorted(list(unique_months), reverse=True)
+
+        return sorted_months
 
     def __str__(self):
         return f"{self.name} at {self.address}"

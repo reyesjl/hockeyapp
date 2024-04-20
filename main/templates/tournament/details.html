@@ -45,15 +45,24 @@
                 </div>
                 <div class="modal-body">
                     <p><a href="{% url 'tournaments:add_event' tournament.id %}">Add Dates +</a></p>
-                    <!-- List of events will be displayed here -->
+                    <h4>Upcoming Events</h4>
                     <ul class="list-group">
-                        {% for event in events %}
+                        {% for event in tournament.upcoming_events %}
                             <li class="list-group-item">{{ event.start_date }} - {{ event.end_date }}</li>
                         {% empty %}
-                            <li class="list-group-item">No events listed yet.</li>
+                            <li class="list-group-item">No upcoming events listed yet.</li>
                         {% endfor %}
                     </ul>
-                </div>
+                    <hr>
+                    <h4>Past Events</h4>
+                    <ul class="list-group">
+                        {% for event in tournament.past_events %}
+                            <li class="list-group-item">{{ event.start_date }} - {{ event.end_date }}</li>
+                        {% empty %}
+                            <li class="list-group-item">No past events listed yet.</li>
+                        {% endfor %}
+                    </ul>
+                </div> 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
