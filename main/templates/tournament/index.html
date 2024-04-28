@@ -53,12 +53,15 @@
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Upcoming Date:
-                        {% for month in tournament.current_event %}
-                            {{ month }}{% if not forloop.last %},{% endif %}
-                            {% empty %}
+                    <li class="list-group-item">Upcoming date:
+                        {% if tournament.current_event %}
+                            <p class="text-muted small">
+                                {{ tournament.current_event.start_date }} - {{ tournament.current_event.end_date }}
+                            </p>
+                            <!-- Additional details of the current event can be displayed here -->
+                        {% else %}
                             <p class="text-muted small">No Events yet.</p>
-                        {% endfor %}
+                        {% endif %}
                     </li>
                     <li class="list-group-item">
                         Levels of Play:
