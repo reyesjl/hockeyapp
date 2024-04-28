@@ -119,7 +119,7 @@ def get_restaurant(request, restaurant_id):
         'reviews': reviews,
         'restaurant': restaurant
     }
-    return render(request, 'restaurant/get_restaurant.html', context)
+    return render(request, 'restaurant/details.html', context)
 
 def review_restaurant(request, restaurant_id):
     """

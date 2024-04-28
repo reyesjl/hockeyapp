@@ -191,7 +191,7 @@
         {% if restaurants %}
             <ul>
                 {% for restaurant in restaurants %}
-                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ restaurant.address }}">{{ restaurant.name }}</a></li>
+                    <li><a href="{% url 'restaurant:get_restaurant' restaurant.id %}">{{ restaurant.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
