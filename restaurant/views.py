@@ -115,7 +115,22 @@ def get_restaurant(request, restaurant_id):
     # Fetch reviews associated with the restaurant
     reviews = RestaurantReview.objects.filter(restaurant=restaurant)
 
+    # Parse and apply filters from request parameters for REVIEWS
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    is_filtering = False
+
+    # Filter reviews
+    if start_date:
+        reviews = reviews.filter(date__gte=start_date)
+        is_filtering = True
+    if end_date:
+        reviews = reviews.filter(date__lte=end_date)
+        is_filtering = True
+
+
     context = {
+        'is_filtering': is_filtering,
         'reviews': reviews,
         'restaurant': restaurant
     }
