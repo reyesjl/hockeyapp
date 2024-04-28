@@ -68,36 +68,26 @@ class Tournament(models.Model):
     
     @property
     def past_events(self):
-        # Retrieve all events associated with the tournament
-        all_events = self.event_set.all()
+        # Retrieve past events associated with the tournament and order them by end date
+        past_events = self.event_set.filter(end_date__lt=timezone.now().date()).order_by('end_date')
+        return past_events
 
-        # Get the current date
-        current_date = timezone.now().date()
-
-        # Filter past events
-        past_events = [event for event in all_events if event.end_date < current_date]
-
-        # Sort past events by end date in ascending order
-        past_events_sorted = sorted(past_events, key=lambda event: event.end_date)
-
-        return past_events_sorted
-    
     @property
     def upcoming_events(self):
-        # Retrieve all events associated with the tournament
-        all_events = self.event_set.all()
-
-        # Get the current date
-        current_date = timezone.now().date()
-
-        # Filter past events
-        past_events = [event for event in all_events if event.end_date > current_date]
-
-        # Sort past events by end date in ascending order
-        past_events_sorted = sorted(past_events, key=lambda event: event.start_date)
-
-        return past_events_sorted
+        # Retrieve upcoming events associated with the tournament and order them by start date
+        upcoming_events = self.event_set.filter(start_date__gt=timezone.now().date()).order_by('-start_date')
+        return upcoming_events
     
+    @property 
+    def current_event(self):
+        # Retrieve the closest upcoming event
+        all_events = self.event_set.filter(end_date__gt=timezone.now().date()).order_by('start_date')
+
+        # Get the first upcoming event
+        current_event = all_events.first()
+
+        return current_event
+
     @property
     def unique_months(self):
         # Retrieve the first three events associated with the tournament
