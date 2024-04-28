@@ -129,9 +129,11 @@ def get_entertainment(request, entertainment_id):
         is_filtering = True
 
     context = {
-        'is_filtering': is_filtering,
         'reviews': reviews,
-        'entertainment': entertainment
+        'entertainment': entertainment,
+        'is_filtering': is_filtering,
+        'start_date_value': start_date,
+        'end_date_value': end_date,
     }
     return render(request, 'entertainment/details.html', context)
 

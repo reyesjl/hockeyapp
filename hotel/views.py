@@ -21,9 +21,11 @@ def get_hotel(request, hotel_id):
         is_filtering = True
 
     context = {
-        'is_filtering': is_filtering,
         'hotel': hotel,
         'reviews': reviews,
+        'is_filtering': is_filtering,
+        'start_date_value': start_date,
+        'end_date_value': end_date,
     }
     return render(request, 'hotels/details.html', context)
 

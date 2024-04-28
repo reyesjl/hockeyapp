@@ -130,9 +130,11 @@ def get_restaurant(request, restaurant_id):
 
 
     context = {
-        'is_filtering': is_filtering,
         'reviews': reviews,
-        'restaurant': restaurant
+        'restaurant': restaurant,
+        'is_filtering': is_filtering,
+        'start_date_value': start_date,
+        'end_date_value': end_date,
     }
     return render(request, 'restaurant/details.html', context)
 

@@ -21,9 +21,11 @@ def get_rink(request, rink_id):
         is_filtering = True
 
     context = {
-        'is_filtering': is_filtering,
         'rink': rink,
         'reviews': reviews,
+        'is_filtering': is_filtering,
+        'start_date_value': start_date,
+        'end_date_value': end_date,
     }
     return render(request, 'rinks/details.html', context)
 
