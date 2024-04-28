@@ -119,7 +119,7 @@ def get_entertainment(request, entertainment_id):
         'reviews': reviews,
         'entertainment': entertainment
     }
-    return render(request, 'entertainment/get_entertainment.html', context)
+    return render(request, 'entertainment/details.html', context)
 
 def review_entertainment(request, entertainment_id):
     """
