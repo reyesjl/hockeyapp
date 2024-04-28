@@ -12,19 +12,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="section">
-    <div class="container">
-        <div class="hero-wrapper">
-            <h1 class="hero-title">Review Restaurant</h1>
-            <p class="gray-text">For {{ restaurant.name }} at <br>{{ restaurant.address }}</p>
-        </div>
-        <div class="form-wrapper">
-            <form class="form" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="button purple-theme" type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
+<div class="container mt-3 form-wrapper">
+    {% if error_message %}
+        <p class="text-danger">{{ error_message }}</p>
+    {% endif %}
+    <h2>Review Restaurant</h2>
+    <p class="text-muted">For {{ restaurant.name }}</p>
+    <form method="post" class="mt-3 form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 {% endblock %}

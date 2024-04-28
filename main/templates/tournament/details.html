@@ -206,7 +206,7 @@
         {% if entertainments %}
             <ul>
                 {% for entertainment in entertainments %}
-                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ entertainment.address }}">{{ entertainment.name }}</a></li>
+                    <li><a href="{% url 'entertainment:get_entertainment' entertainment.id %}">{{ entertainment.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -221,7 +221,7 @@
         {% if hotels %}
             <ul>
                 {% for hotel in hotels %}
-                    <li><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ hotel.address }}">{{ hotel.name }}</a></li>
+                    <li><a href="https://www.google.com/maps/search/?api=1&query={{ hotel.address }}">{{ hotel.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
