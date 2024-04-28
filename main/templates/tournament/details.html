@@ -221,7 +221,7 @@
         {% if hotels %}
             <ul>
                 {% for hotel in hotels %}
-                    <li><a href="https://www.google.com/maps/search/?api=1&query={{ hotel.address }}">{{ hotel.name }}</a></li>
+                    <li><a href="{% url 'hotels:get_hotel' hotel.id %}">{{ hotel.name }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}

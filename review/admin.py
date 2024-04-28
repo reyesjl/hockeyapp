@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import TournamentReview, RestaurantReview, EntertainmentReview
+from .models import TournamentReview, RestaurantReview, EntertainmentReview, HotelReview
 
 class TournamentReviewAdmin(admin.ModelAdmin):
     list_display = ['tournament', 'author', 'date', 'rating']
@@ -19,6 +19,13 @@ class EntertainmentReviewAdmin(admin.ModelAdmin):
     list_filter = ['date']
     date_hierarchy = 'date'
 
+class HotelReviewAdmin(admin.ModelAdmin):
+    list_display = ['hotel', 'author', 'date']
+    search_fields = ['hotel__name', 'author']
+    list_filter = ['date']
+    date_hierarchy = 'date'
+
 admin.site.register(TournamentReview, TournamentReviewAdmin)
 admin.site.register(RestaurantReview, RestaurantReviewAdmin)
 admin.site.register(EntertainmentReview, EntertainmentReviewAdmin)
+admin.site.register(HotelReview, HotelReviewAdmin)

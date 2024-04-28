@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}Hotel {{ hotel.id }} {% endblock %}
+{% load static %}
+
+{% block extra_head %}
+    <meta name="description" content="Page for viewing the details of a selected hockey rink.">  
+    <link rel="stylesheet" href="{% static 'css/hotels/details.css' %}">
+    <script src="{% static 'js/hotels/details.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>{{ hotel.name }}</h1>
+            <p class="text-muted"></p>
+            <!-- Add other details as needed -->
+        </div>
+        <div class="col-md-6">
+            <p><a href="https://www.google.com/maps/search/?api=1&query={{ hotel.address }}">Hotel Location</a></p>
+        </div>
+    </div>
+</div>
+<div class="container py-5">
+    <hr>
+    <div class="d-flex align-items-center justify-content-between">
+        <h2>Reviews</h2>
+        <div>
+            <a href="{% url 'hotels:review_hotel' hotel.id %}" class="btn btn-primary btn-sm ms-2"><i class="fas fa-plus"></i> Add Review</a>
+        </div>
+    </div>
+    <div class="container pt-3">
+        <p>
+            <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                Filters
+            </button>
+        </p>
+        <div class="collapse {% if is_filtering %}show{% endif %}" id="filterCollapse">
+            <form method="GET">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="start_date" class="form-label">Start Date:</label>
+                        <input type="date" id="start_date" name="start_date" class="form-control" value="{{ start_date_value|default_if_none:'' }}">
+                    </div>
+                    <div class="col">
+                        <label for="end_date" class="form-label">End Date:</label>
+                        <input type="date" id="end_date" name="end_date" class="form-control" value="{{ end_date_value|default_if_none:'' }}">
+                    </div>
+                </div>
+
+                <div class="col text-end">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearFilters()">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4 py-3">
+        {% for review in reviews %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">{{ review.comment | truncatechars:120 }}</p>
+                    <div class="text-end">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#reviewModal{{ review.id }}">Read more</a>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ review.date }}</li>
+                    <li class="list-group-item">Rating: {{ review.rating }}</li>
+                </ul>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="reviewModal{{ review.id }}" tabindex="-1" aria-labelledby="reviewModalLabel{{ review.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reviewModalLabel{{ review.id }}">Full Review</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="fw-bold">Experience</p>
+                            <p>{{ review.comment }}</p>
+                            <hr>
+                            <p class="fw-bold">Parking</p>
+                            {% if review.parking_notes %}
+                                <p>{{ review.parking_notes }}</p>
+                            {% else %}
+                                <p class="text-muted">No parking notes for this review.</p>
+                            {% endif %}
+                            <hr>
+                            <p class="fw-bold">Ratings</p>
+                            <p>Vote: {{ review.vote }}</p>
+                            <p>Referee: {{ review.referee_rating }}</p>
+                            <p>Comms: {{ review.comms_rating }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">No reviews available for this range.</p>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Rink
-from review.forms import RinkReviewForm, RinkReview
+from review.forms import RinkReviewForm
+from review.models import RinkReview
 
 def get_rink(request, rink_id):
     rink = get_object_or_404(Rink, pk=rink_id)

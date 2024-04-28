@@ -1,6 +1,7 @@
 from django import forms
-from .models import Tournament, Hotel, AgeGroup, AgeCategory, TournamentHardware, Event
+from .models import Tournament, AgeGroup, AgeCategory, TournamentHardware, Event
 from rink.models import Rink, ParkingAvailability, PaymentModes, RinkNeed
+from hotel.models import Hotel
 
 class TournamentForm(forms.ModelForm):
     levels_of_play = forms.ModelMultipleChoiceField(queryset=AgeCategory.objects.all().order_by('order'), widget=forms.CheckboxSelectMultiple)

@@ -130,14 +130,6 @@ class TournamentHardware(models.Model):
     def __str__(self):
         return self.name
     
-class Hotel(models.Model):
-    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-    
 class Event(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     start_date = models.DateField()
